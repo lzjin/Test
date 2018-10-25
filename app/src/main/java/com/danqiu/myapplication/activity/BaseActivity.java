@@ -16,7 +16,7 @@ abstract class BaseActivity extends AppCompatActivity {
     public String TAG = getClass().getSimpleName();
     public ProgressDialog dialog;
     public ProgressDialogFragment dialogFragment;
-    public BaseActivity activity;//
+    public BaseActivity activity;//不v
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
