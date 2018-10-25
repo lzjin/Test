@@ -10,13 +10,14 @@ import com.danqiu.myapplication.views.ProgressDialogFragment;
 
 /**
  * Created by Administrator on 2018/9/19.
+ * 基类配置常用
  */
 
 abstract class BaseActivity extends AppCompatActivity {
     public String TAG = getClass().getSimpleName();
     public ProgressDialog dialog;
     public ProgressDialogFragment dialogFragment;
-    public BaseActivity activity;//不v
+    public BaseActivity activity;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
