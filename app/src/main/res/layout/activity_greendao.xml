@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/bt_add"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="添加"/>
+
+    <Button
+        android:id="@+id/bt_addList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="添加数组"/>
+
+    <Button
+        android:id="@+id/bt_where"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="查询单个"/>
+
+    <Button
+        android:id="@+id/bt_whereList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="查询多个"/>
+    <Button
+        android:id="@+id/bt_whereAll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="查询全部"/>
+
+    <Button
+        android:id="@+id/bt_alter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="修改"/>
+
+    <Button
+        android:id="@+id/bt_del"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="删除"/>
+
+    <Button
+        android:id="@+id/bt_delAll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="删除全部"/>
+
+
+    <TextView
+        android:id="@+id/tv_return"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:text="结果"/>
+
+</LinearLayout>
