@@ -10,7 +10,7 @@ import com.danqiu.myapplication.views.ProgressDialogFragment;
 
 /**
  * Created by Administrator on 2018/9/19.
- * 基类配置常用
+ * 基类配置常用1
  */
 
 abstract class BaseActivity extends AppCompatActivity {
