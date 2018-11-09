@@ -1,6 +1,7 @@
 package com.danqiu.myapplication;
 
 import android.Manifest;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -16,6 +17,10 @@ import com.danqiu.myapplication.utils.IntentUtil;
 import com.danqiu.myapplication.utils.MLog;
 import com.danqiu.myapplication.utils.ToastUtil;
 
+import org.angmarch.views.NiceSpinner;
+
+import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -41,6 +46,8 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
     Button btTake;
     @BindView(R.id.bt_kotlin)
     Button bt_kotlin;
+    @BindView(R.id.nice_spinner)
+    NiceSpinner niceSpinner;
 
 
     @Override
@@ -50,6 +57,12 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         ButterKnife.bind(this);
         requestPermission();
 
+        List<String> dataset = new LinkedList<>(Arrays.asList("One", "Two", "Three", "Four", "Five"));
+        niceSpinner.attachDataSource(dataset);
+        niceSpinner.setTextColor(Color.BLACK);
+        niceSpinner.setTextSize(13);
+
+
     }
     private void requestPermission(){
         String[] perms = {Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE
@@ -57,6 +70,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         if (EasyPermissions.hasPermissions(this, perms)) {
             // Already have permission, do the thing
             ToastUtil.showShort(this,"已授权");
+
         } else {
             // Do not have permissions, request them now
             EasyPermissions.requestPermissions(this, "为了更好的用户体验需要获取以下权限", 1, perms);

@@ -96,5 +96,8 @@ dependencies {
 
     implementation 'com.blankj:utilcode:1.11.1'
 
+    //
+    //implementation 'com.github.lin857800301:AndroidUtils:1.0'
+    implementation 'com.github.arcadefire:nice-spinner:1.3.4'
 
 }
