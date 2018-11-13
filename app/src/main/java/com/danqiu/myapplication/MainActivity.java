@@ -10,6 +10,7 @@ import android.widget.Button;
 import com.danqiu.myapplication.activity.GreenDaoAct;
 import com.danqiu.myapplication.activity.HandSlideAct;
 import com.danqiu.myapplication.activity.PreviewAct;
+import com.danqiu.myapplication.activity.RefreshActivity;
 import com.danqiu.myapplication.activity.TakePhotoAct;
 import com.danqiu.myapplication.activity.VedioPlayerActivity;
 import com.danqiu.myapplication.fragment.LoginDailogFragment;
@@ -44,10 +45,12 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
     Button btTab;
     @BindView(R.id.bt_take)
     Button btTake;
-    @BindView(R.id.bt_kotlin)
-    Button bt_kotlin;
+
     @BindView(R.id.nice_spinner)
     NiceSpinner niceSpinner;
+
+    @BindView(R.id.bt_refresh)
+    Button bRefresh;
 
 
     @Override
@@ -77,11 +80,11 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         }
     }
 
-    @OnClick({R.id.bt_kotlin,R.id.bt_dialogfragment,R.id.bt_img, R.id.bt_db, R.id.bt_hand, R.id.bt_video, R.id.bt_tab,R.id.bt_take})
+    @OnClick({R.id.bt_refresh,R.id.bt_dialogfragment,R.id.bt_img, R.id.bt_db, R.id.bt_hand, R.id.bt_video, R.id.bt_tab,R.id.bt_take})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.bt_kotlin:
-
+            case R.id.bt_refresh:
+                    IntentUtil.IntenToActivity(this,RefreshActivity.class);
                 break;
             case R.id.bt_dialogfragment:
                 LoginDailogFragment   fragment= new LoginDailogFragment();

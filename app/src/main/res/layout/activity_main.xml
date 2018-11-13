@@ -15,18 +15,19 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-
-          <Button
-                android:id="@+id/bt_kotlin"
+            <Button
+                android:id="@+id/bt_refresh"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="kotlin语言"/>
+                android:text="刷新框架"/>
+
+
 
             <Button
                 android:id="@+id/bt_dialogfragment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="dialogfragment"/>
+                android:text="弹框dialogfragment"/>
     <Button
         android:id="@+id/bt_img"
         android:layout_width="wrap_content"

@@ -43,6 +43,7 @@
         <activity android:name=".activity.CardNoAct"/>
         <activity android:name=".activity.PreviewAct"/>
         <activity android:name=".activity.TakePhotoAct"/>
+        <activity android:name=".activity.RefreshActivity"/>
     </application>
 
 </manifest>

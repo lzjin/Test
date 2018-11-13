@@ -18,4 +18,6 @@ public class MyApplication extends Application{
         //配置缓存的初始化
         Fresco.initialize(this, ImageLoaderConfig.getImagePipelineConfig(this));
     }
+
+
 }
