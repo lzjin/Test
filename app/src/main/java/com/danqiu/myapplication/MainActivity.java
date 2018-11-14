@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import com.danqiu.myapplication.activity.CustomViewActivity;
 import com.danqiu.myapplication.activity.GreenDaoAct;
 import com.danqiu.myapplication.activity.HandSlideAct;
 import com.danqiu.myapplication.activity.PreviewAct;
@@ -51,6 +52,8 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
 
     @BindView(R.id.bt_refresh)
     Button bRefresh;
+    @BindView(R.id.bt_custom)
+    Button btCustom;
 
 
     @Override
@@ -58,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        requestPermission();
+       // requestPermission();
 
         List<String> dataset = new LinkedList<>(Arrays.asList("One", "Two", "Three", "Four", "Five"));
         niceSpinner.attachDataSource(dataset);
@@ -80,9 +83,12 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         }
     }
 
-    @OnClick({R.id.bt_refresh,R.id.bt_dialogfragment,R.id.bt_img, R.id.bt_db, R.id.bt_hand, R.id.bt_video, R.id.bt_tab,R.id.bt_take})
+    @OnClick({R.id.bt_custom,R.id.bt_refresh,R.id.bt_dialogfragment,R.id.bt_img, R.id.bt_db, R.id.bt_hand, R.id.bt_video, R.id.bt_tab,R.id.bt_take})
     public void onViewClicked(View view) {
         switch (view.getId()) {
+            case R.id.bt_custom:
+                IntentUtil.IntenToActivity(this, CustomViewActivity.class);
+                break;
             case R.id.bt_refresh:
                     IntentUtil.IntenToActivity(this,RefreshActivity.class);
                 break;

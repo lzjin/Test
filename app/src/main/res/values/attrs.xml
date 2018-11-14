@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--自定义属性；文字背景-->
+    <declare-styleable name="ImgTextView">
+        <attr name="jtextSize" format="integer" />
+        <attr name="jtextColor" format="color" />
+        <attr name="jtext" format="string" />
+    </declare-styleable>
+
+</resources>
