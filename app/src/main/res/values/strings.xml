@@ -4,6 +4,9 @@
 
     <string name="no_more_data">没有更多数据</string>
 
+    <string name="str_forget">忘记密码?</string>
+    <string name="str_promptPass">请输入提现密码</string>
+
     <string name="N_A">N/A</string>
     <string name="close">Close</string>
     <string name="exit">Exit</string>

@@ -19,6 +19,16 @@
     <!--相册框架选中后颜色-->
     <color name="multiple_image_select_primary">#FF0000</color>
 
+
+    <color name="grayf9">#f9f9f9</color>  <!--===支付===-->
+    <color name="gray_gb">#dddddd</color>
+    <color name="grayc4">#c4c4c4</color>
+    <color name="graye3">#e3e7ee</color>
+    <color name="alipay">#00a5ff</color>
+    <color name="gray_e5">#e5e5e5</color>
+
+
+
     <!-- 雪白色 -->
     <color name="floralwhite">#FFFAF0</color>
     <!-- 花白色 -->

@@ -27,6 +27,12 @@
                 android:layout_height="wrap_content"
                 android:text="自定义文字图片"/>
 
+            <Button
+                android:id="@+id/bt_pay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="仿支付宝密码"/>
+
 
 
             <Button

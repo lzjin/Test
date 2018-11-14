@@ -24,4 +24,19 @@
         <item name="android:windowExitAnimation">@anim/photo_dialog_out_anim</item>  <!-- 上到下=消失 -->
     </style>
 
+    <!--==========自定义通用弹框=提示===配合setDimAmount改变有蒙层灰度=========-->
+    <style name="dialog_gray" parent="@android:style/Theme.Dialog">
+        <!--边框-->
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimAmount">0.4</item><!--弹框背景灰度-->
+    </style>
+
+    <!--====班组===工作类型弹框===动画======-->
+    <style name="teamTypeAnimation" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/photo_dialog_in_anim</item>  <!-- 下到上=显示 -->
+        <item name="android:windowExitAnimation">@anim/photo_dialog_out_anim</item>   <!-- 下到上=消失 -->
+    </style>
+
 </resources>
