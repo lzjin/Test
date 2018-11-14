@@ -38,7 +38,8 @@ import butterknife.OnClick;
 
 /**
  * Created by Administrator on 2018/10/22.
- * 拍照
+ * 拍照框架  如果是集成BaseActivity话，无法再onCreate的super只写getTakePhoto...
+ *           所以选择相册必须压缩
  */
 
 public class TakePhotoAct extends BaseActivity implements InvokeListener, TakePhoto.TakeResultListener {
