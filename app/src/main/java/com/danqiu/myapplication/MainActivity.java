@@ -1,18 +1,16 @@
 package com.danqiu.myapplication;
 
 import android.Manifest;
-import android.app.AlertDialog;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
 
 import com.danqiu.myapplication.activity.CustomViewActivity;
 import com.danqiu.myapplication.activity.GreenDaoAct;
 import com.danqiu.myapplication.activity.HandSlideAct;
+import com.danqiu.myapplication.activity.PayViewActivity;
 import com.danqiu.myapplication.activity.PreviewAct;
 import com.danqiu.myapplication.activity.RefreshActivity;
 import com.danqiu.myapplication.activity.TakePhotoAct;
@@ -22,7 +20,6 @@ import com.danqiu.myapplication.utils.IntentUtil;
 import com.danqiu.myapplication.utils.MLog;
 import com.danqiu.myapplication.utils.ToastUtil;
 import com.danqiu.myapplication.views.ComDialog;
-import com.danqiu.myapplication.views.PayViewPass;
 
 import org.angmarch.views.NiceSpinner;
 
@@ -94,7 +91,8 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.bt_pay:
-                payDialong();
+                IntentUtil.IntenToActivity(this,PayViewActivity.class);
+
                 break;
             case R.id.bt_custom:
                 IntentUtil.IntenToActivity(this, CustomViewActivity.class);
@@ -128,46 +126,6 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                 break;
         }
     }
-
-
-
-    /**
-     * 支付弹框
-     */
-    private void payDialong() {
-        payDialog=new ComDialog(this,R.style.dialog_gray,R.layout.dialog_pay_pass);
-        payDialog.setAlertDialog(false)
-                .setWindowSize(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT,0.4f)
-                .setOutColse(false)
-                .setGravity(R.style.teamTypeAnimation, Gravity.BOTTOM)
-                .setDialogListener(new ComDialog.OnDialogListener() {
-                    @Override
-                    public void onViewClick(AlertDialog mDialog, View mianView) {
-                        PayViewPass   payViewPass= (PayViewPass) mianView.findViewById(R.id.pay_View);
-                        payViewPass.getClose().setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                payDialog.dismiss();
-                            }
-                        });
-                        payViewPass.getForgetPsw().setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                payDialog.dismiss();
-
-                            }
-                        });
-                        payViewPass.setMyClickListener(new PayViewPass.OnMyClickListener() {
-                            @Override
-                            public void onMyFinish(String pass) {
-                                //passCheck(pass);//输入完密码进行请求支付
-
-                            }
-                        });
-                    }
-                }).setListener();
-    }
-
 
 
     @Override
