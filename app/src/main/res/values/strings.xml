@@ -6,6 +6,7 @@
 
     <string name="str_forget">忘记密码?</string>
     <string name="str_promptPass">请输入支付密码</string>
+    <string name="accessibility_desc">点击描述</string>
 
     <string name="N_A">N/A</string>
     <string name="close">Close</string>

@@ -16,10 +16,21 @@
             android:orientation="vertical">
 
             <Button
+                android:id="@+id/bt_pager"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3D画廊轮播"/>
+
+            <Button
                 android:id="@+id/bt_refresh"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="刷新框架"/>
+            <Button
+                android:id="@+id/bt_push"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="自动点击"/>
 
             <Button
                 android:id="@+id/bt_custom"
