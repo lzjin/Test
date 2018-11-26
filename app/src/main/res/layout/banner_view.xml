@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+        <!--viewpager-->
+        <!--<RelativeLayout-->
+            <!--android:id="@+id/banner_pager"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:background="@color/yellowf57">-->
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/viewPager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="60dp"
+                android:clipChildren="false"
+                android:layout_gravity="center"/>
+
+        <!--</RelativeLayout>-->
+        <!--指示器-->
+        <RelativeLayout
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:background="@color/blue3bafd9"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true">
+
+        </RelativeLayout>
+
+
+
+</RelativeLayout>
