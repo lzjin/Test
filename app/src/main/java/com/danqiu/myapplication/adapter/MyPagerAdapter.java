@@ -14,28 +14,29 @@ import com.danqiu.myapplication.R;
 import java.util.List;
 
 /**
- * Created by Administrator on 2018/11/19.
+ * Created by Administrator on 2018/11/27.
  */
 
-public class MyPager3DAdapter extends PagerAdapter {
+public class MyPagerAdapter extends PagerAdapter {
     private List<String> mListUrl;
     private Context mContext;
 
 
-    public MyPager3DAdapter(List<String> data,Context context){
+    public MyPagerAdapter(List<String> data, Context context) {
         this.mListUrl = data;
         this.mContext = context;
     }
+
     @Override
     public int getCount() {
-        //return mListUrl.size();
-          return 500000;
+        return mListUrl.size();
     }
 
     @Override
     public boolean isViewFromObject(View view, Object object) {
         return view == object;
     }
+
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
         container.removeView((View) object);
@@ -43,20 +44,20 @@ public class MyPager3DAdapter extends PagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.item_pager,container,false);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.item_pager, container, false);
         ImageView imageView = (ImageView) view.findViewById(R.id.iv);
-        //imageView.setBackgroundResource(mContext.getResources().getDrawable(R.drawable.banner_page_radius_shape));
-        //LoadImage(mContext,mListUrl.get(position),imageView,R.mipmap.ic_launcher);
 
-         int index=position % mListUrl.size();
-         LoadImage(mContext,mListUrl.get(index),imageView,R.mipmap.ic_launcher);
+        LoadImage(mContext, mListUrl.get(position), imageView, R.mipmap.ic_launcher);
+
+        // int index=position % mListUrl.size();
+        // LoadImage(mContext,mListUrl.get(index),imageView,R.mipmap.ic_launcher);
 
 
         container.addView(view);
         return view;
     }
 
-    public  void LoadImage(Context mContext, String url, ImageView imageview, int defaultImg) {
+    public void LoadImage(Context mContext, String url, ImageView imageview, int defaultImg) {
         Glide.with(mContext)
                 .load(url)
                 .centerCrop()
@@ -64,6 +65,4 @@ public class MyPager3DAdapter extends PagerAdapter {
                 .placeholder(defaultImg)
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE).into(imageview);
     }
-
-
 }
