@@ -7,8 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.danqiu.myapplication.R;
-import com.danqiu.myapplication.utils.GlideUtils;
 
 import java.util.List;
 
@@ -45,17 +46,24 @@ public class MyPager3DAdapter extends PagerAdapter {
         View view = LayoutInflater.from(mContext).inflate(R.layout.item_pager,container,false);
         ImageView imageView = (ImageView) view.findViewById(R.id.iv);
 
-        //GlideUtils.LoadImage(mContext,mListUrl.get(position),imageView,R.mipmap.ic_launcher);
+        //LoadImage(mContext,mListUrl.get(position),imageView,R.mipmap.ic_launcher);
 
          int index=position % mListUrl.size();
-         GlideUtils.LoadImage(mContext,mListUrl.get(index),imageView,R.mipmap.ic_launcher);
+         LoadImage(mContext,mListUrl.get(index),imageView,R.mipmap.ic_launcher);
 
 
         container.addView(view);
         return view;
     }
 
-
+    public  void LoadImage(Context mContext, String url, ImageView imageview, int defaultImg) {
+        Glide.with(mContext)
+                .load(url)
+                .centerCrop()
+                .dontAnimate()//防止设置placeholder导致第一次不显示网络图片,只显示默认图片的问题
+                .placeholder(defaultImg)
+                .diskCacheStrategy(DiskCacheStrategy.SOURCE).into(imageview);
+    }
 
 
 }

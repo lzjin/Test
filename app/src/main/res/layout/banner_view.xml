@@ -1,35 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rel_group"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:clipChildren="false">
 
         <!--viewpager-->
-        <!--<RelativeLayout-->
-            <!--android:id="@+id/banner_pager"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:background="@color/yellowf57">-->
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipChildren="false"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"/>
 
-            <android.support.v4.view.ViewPager
-                android:id="@+id/viewPager"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="60dp"
-                android:layout_marginRight="60dp"
-                android:clipChildren="false"
-                android:layout_gravity="center"/>
-
-        <!--</RelativeLayout>-->
         <!--指示器-->
-        <RelativeLayout
-            android:layout_width="150dp"
-            android:layout_height="40dp"
-            android:background="@color/blue3bafd9"
+        <LinearLayout
+            android:id="@+id/relIndicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true">
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal"
+            android:paddingBottom="10dp"
+            android:gravity="center">
 
-        </RelativeLayout>
+            <!--<ImageView-->
+               <!--android:layout_width="wrap_content"-->
+               <!--android:layout_height="wrap_content"-->
+               <!--android:src="@mipmap/ic_banner_point_press"-->
+               <!--android:layout_marginLeft="8dp"-->
+               <!--android:layout_marginRight="8dp"/>-->
+
+            <!--<ImageView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:src="@mipmap/ic_banner_point"-->
+                <!--android:layout_marginLeft="8dp"-->
+                <!--android:layout_marginRight="8dp"/>-->
+
+            <!--<ImageView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:src="@mipmap/ic_banner_point"-->
+                <!--android:layout_marginLeft="8dp"-->
+                <!--android:layout_marginRight="8dp"/>-->
+
+        </LinearLayout>
 
 
 
