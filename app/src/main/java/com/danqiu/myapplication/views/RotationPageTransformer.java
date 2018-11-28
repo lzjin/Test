@@ -1,7 +1,6 @@
 package com.danqiu.myapplication.views;
 
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.View;
 
 /**
@@ -15,9 +14,16 @@ public class RotationPageTransformer implements ViewPager.PageTransformer {
 
     private static final float MIN_SCALE = 0.85f;//0.85缩放
 
-    private static final  float MIN_ALPHA = 0.6f;//最小透明度
 
-    private static final String TAG = "test";
+    private float MIN_ALPHA = 1.0f;//最小透明度
+
+    public RotationPageTransformer() {
+    }
+
+    public RotationPageTransformer(float MIN_ALPHA) {
+        this.MIN_ALPHA = MIN_ALPHA;
+    }
+
     @Override
     public void transformPage(View view, float position) {
         //setScaleY只支持api11以上
@@ -51,7 +57,6 @@ public class RotationPageTransformer implements ViewPager.PageTransformer {
             float alpha = MIN_ALPHA + (1 - MIN_ALPHA) * (1 - Math.abs(position));
             view.setAlpha(alpha);
 
-            Log.i(TAG,"position = " + position + " alpha = " + alpha);
 
         }
         /**

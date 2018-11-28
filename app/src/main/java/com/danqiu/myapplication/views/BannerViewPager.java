@@ -13,13 +13,11 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import com.danqiu.myapplication.R;
 import com.danqiu.myapplication.adapter.MyPager3DAdapter;
 import com.danqiu.myapplication.utils.MLog;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -37,95 +35,159 @@ public class BannerViewPager extends RelativeLayout implements View.OnTouchListe
     private RelativeLayout mRelGroup;
     private LinearLayout mLineIndicator;
     private ImageView[] mImageView;//存放viewpager底部圆点imageview对象
-    private List<String> urlList;
+    private List<String> mList;
     private long secondTime=0,firstTime=0;
     private int currentIndex = 0;//当前page
-    private int startCurrentIndex = 200;//当前page
+    private int startCurrentIndex = 2000;//当前page
     private Timer mTimer=null;//定时器
     private MyTimerTask mTimerTask=null;
     private int resId_piont_press=R.mipmap.ic_banner_point_press;
     private int resId_piont=R.mipmap.ic_banner_point;
+    private boolean isPoint=false;
 
+    public static interface OnClickBannerListener {
+        void onBannerClick(int position);
+    }
+    private OnClickBannerListener mBannerListener;
+
+    public BannerViewPager addBannerListener(OnClickBannerListener listener) {
+        mBannerListener = listener;
+        return this;
+    }
 
     @SuppressLint("HandlerLeak")
     Handler mHandler = new Handler(){
         public void handleMessage(Message msg) {
             int index =  mViewPager.getCurrentItem()+1;//下一个页
             mViewPager.setCurrentItem(index);//设置此次要显示的pager
-            currentIndex=index%urlList.size();
+            currentIndex=index%mList.size();
             setImageBackground(currentIndex);
+
         }
     };
-
 
     public BannerViewPager(Context context) {
         super(context);
     }
     public BannerViewPager(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        this.mContext = (Activity) context;
     }
     public BannerViewPager(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.mContext = (Activity) context;
-        init();
-        this.addView(mLayout); //将子布局添加到父容器,才显示控件
     }
 
-    private void init() {
-
-        urlList=new ArrayList<>();
-
-
-        urlList.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1543221773&di=c63f30c7809e518cafbff961bcd9ec2a&imgtype=jpg&er=1&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F0116605851154fa8012060c8587ca1.jpg");
-        urlList.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1542627042541&di=3ad9deeefff266e76d1f5d57a58f63d1&imgtype=0&src=http%3A%2F%2Fpic.90sjimg.com%2Fdesign%2F00%2F69%2F99%2F66%2F9fce5755f081660431464492a9aeb003.jpg");
-        urlList.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1542627042539&di=95bd41d43c335e74863d9bb540361906&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F019a0558be22d6a801219c77d0578a.jpg%402o.jpg");
-        urlList.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1542627042539&di=cdd54bffd2aac448c70ae6b416a004d4&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01edb3555ea8100000009af0ba36f5.jpg%401280w_1l_2o_100sh.jpg");
-        urlList.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1542627042538&di=9e5bddb59561300aa239277b81cc13c6&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F015c4c58c92dfda801219c77d6fdb2.jpg%402o.jpg");
-
-        currentIndex=startCurrentIndex%urlList.size();
-
-        mPagerAdapter = new MyPager3DAdapter(urlList,mContext);
-
+    /**
+     * 初始化viewpager
+     * @param list  url集合
+     * @param isGallery 是否使用3D画廊效果
+     */
+    public BannerViewPager initBanner(List<String> list,boolean isGallery){
+        mList=list;
+        //引入布局
         mLayout = LayoutInflater.from(mContext).inflate( R.layout.banner_view, null);
         mViewPager  = (ViewPager) mLayout.findViewById(R.id.viewPager);//关闭
-        mRelGroup  = (RelativeLayout) mLayout.findViewById(R.id.rel_group);
-        mLineIndicator  = (LinearLayout) mLayout.findViewById(R.id.relIndicator);
-        mViewPager.setAdapter(mPagerAdapter);
-        mViewPager.setPageTransformer(true,new RotationPageTransformer());
+        mLineIndicator  = (LinearLayout) mLayout.findViewById(R.id.lineIndicator);
+        //初始化位置
+        currentIndex=startCurrentIndex%mList.size();
 
-        setPageMargin(20,60);
+        mPagerAdapter = new MyPager3DAdapter(mList,mContext);
+
+
+        mViewPager.setAdapter(mPagerAdapter);
+        if(isGallery){
+            mViewPager.setPageTransformer(true,new RotationPageTransformer());
+        }
+
         mViewPager.setCurrentItem(startCurrentIndex);
         mViewPager.setOffscreenPageLimit(2);//设置预加载的数量，这里设置了2,会预加载中心item左边两个Item和右边两个Item
         mViewPager.setOnTouchListener(this);
         mViewPager.addOnPageChangeListener(this);
+        return this;
+    }
 
-        initPoint();
+
+    /**
+     * 初始化viewpager
+     * @param list  url集合
+     * @param isGallery 是否使用3D画廊效果
+     * @param alpha  滑动透明度变化
+     */
+    public BannerViewPager initBanner(List<String> list,boolean isGallery,float alpha){
+        mList=list;
+        //引入布局
+        mLayout = LayoutInflater.from(mContext).inflate( R.layout.banner_view, null);
+        mViewPager  = (ViewPager) mLayout.findViewById(R.id.viewPager);//关闭
+        mLineIndicator  = (LinearLayout) mLayout.findViewById(R.id.lineIndicator);
+        //初始化位置
+        currentIndex=startCurrentIndex%mList.size();
+
+        mPagerAdapter = new MyPager3DAdapter(mList,mContext);
+
+
+        mViewPager.setAdapter(mPagerAdapter);
+        if(isGallery){
+            mViewPager.setPageTransformer(true,new RotationPageTransformer(alpha));
+        }
+
+        mViewPager.setCurrentItem(startCurrentIndex,false);
+        mViewPager.setOffscreenPageLimit(2);//设置预加载的数量，这里设置了2,会预加载中心item左边两个Item和右边两个Item
+        mViewPager.setOnTouchListener(this);
+        mViewPager.addOnPageChangeListener(this);
+        return this;
+    }
+     public BannerViewPager addRoundCorners(int corners){
+         mPagerAdapter.setmRoundCorners(corners);
+         return this;
+     }
+    /**
+     *
+     * @param rowMargin 两个Page之间的距离
+     * @param edgeMargin  中间的page距离屏幕便于间距，包括了page之间的间距
+     * 注意当添加了3D画廊效果时,columnMargin尽量设小。应该本是已经进行了x、y的缩放
+     */
+    public BannerViewPager addPageMargin(int rowMargin,int edgeMargin) {
+
+        mViewPager.setPageMargin(dip2px(rowMargin));
+        RelativeLayout.LayoutParams layout = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,
+                RelativeLayout.LayoutParams.WRAP_CONTENT);
+        layout.setMargins(dip2px(edgeMargin), 0, dip2px(edgeMargin), 0);
+        mViewPager.setLayoutParams(layout);
+        return this;
     }
 
     /**
      * 初始化指示器
      */
-    private void initPoint() {
-            mImageView = new ImageView[urlList.size()];
-        for (int i = 0; i < urlList.size(); i++) {
-             ImageView imageView=new ImageView(mContext);
-             imageView.setPadding(dip2px(4),0,dip2px(4),0);
+    public BannerViewPager addPoint(int distance) {
+        this.isPoint=true;
+        mImageView = new ImageView[mList.size()];
+        for (int i = 0; i < mList.size(); i++) {
+            ImageView imageView=new ImageView(mContext);
 
-             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-             params.setMargins(dip2px(5), 0, dip2px(5), 0);
-             imageView.setLayoutParams(params);
-             if(i==currentIndex){
-                 imageView.setImageResource(resId_piont_press);
-             }
-             else {
-                 imageView.setImageResource(resId_piont);
-             }
-             mImageView[i]=imageView;
-             mLineIndicator.addView(imageView);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            params.setMargins(dip2px(distance)/2, 0, dip2px(distance)/2, 0);
+            imageView.setLayoutParams(params);
+            if(i==currentIndex){
+                imageView.setImageResource(resId_piont_press);
+            }
+            else {
+                imageView.setImageResource(resId_piont);
+            }
+            mImageView[i]=imageView;
+            mLineIndicator.addView(imageView);
         }
 
-        //通过定时器，制作自动划动效果
-        //startTimer(5);
+        return this;
+    }
+
+    /**
+     * 配置完成,将布局添加到父容器
+     */
+    public BannerViewPager  finishConfig(){
+        this.addView(mLayout);
+        return this;
     }
 
 
@@ -134,7 +196,7 @@ public class BannerViewPager extends RelativeLayout implements View.OnTouchListe
      * 开启定时器
      * @param time
      */
-    public void startTimer(int time) {
+    public BannerViewPager addStartTimer(int time) {
         if (mTimer == null) {
             mTimer = new Timer();
         }
@@ -142,6 +204,7 @@ public class BannerViewPager extends RelativeLayout implements View.OnTouchListe
             mTimerTask=new MyTimerTask();
         }
         mTimer.schedule(mTimerTask, 3000, 1000*time);
+        return  this;
     }
 
     public void stopTimer(){
@@ -150,29 +213,14 @@ public class BannerViewPager extends RelativeLayout implements View.OnTouchListe
         mTimerTask.cancel();
         mTimerTask = null;
     }
-     class MyTimerTask extends TimerTask{
-         @Override
-         public void run() {
-             mHandler.sendEmptyMessage(1001);//在此线程中，不能操作ui主线程
-         }
-     }
-
-    /**
-     *
-     * @param columnMargin 两个Page之间的距离
-     * @param rowMargin  page的外边距
-     */
-    private void setPageMargin(int columnMargin,int rowMargin) {
-
-        mViewPager.setPageMargin(dip2px(columnMargin));
-
-
-        RelativeLayout.LayoutParams layout = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,
-                                                  RelativeLayout.LayoutParams.WRAP_CONTENT);
-        layout.setMargins(dip2px(rowMargin), 0, dip2px(rowMargin), 0);
-        mViewPager.setLayoutParams(layout);
-
+    class MyTimerTask extends TimerTask{
+        @Override
+        public void run() {
+            mHandler.sendEmptyMessage(1001);//在此线程中，不能操作ui主线程
+        }
     }
+
+
 
     /**
      * 点击Page事件
@@ -182,24 +230,23 @@ public class BannerViewPager extends RelativeLayout implements View.OnTouchListe
      */
     @Override
     public boolean onTouch(View v, MotionEvent event) {
-        switch (event.getAction()){
+       if(mBannerListener!=null){
+         switch (event.getAction()){
             case MotionEvent.ACTION_DOWN:
                 firstTime = System.currentTimeMillis();
-                MLog.i("test","--------ACTION_DOWN");
                 break ;
             case MotionEvent.ACTION_MOVE:
-                MLog.i("test","--------ACTION_MOVE");
                 break ;
             case  MotionEvent.ACTION_UP :
-                MLog.i("test","--------ACTION_UP");
                 secondTime = System.currentTimeMillis();
-                MLog.i("test","--------"+(secondTime - firstTime));
-                if (secondTime - firstTime < 100) {
-                    Toast.makeText(mContext, "点击", Toast.LENGTH_SHORT).show();
+                if (secondTime - firstTime < 75) {
+                    MLog.i("test","------------+"+(secondTime - firstTime));
+                    mBannerListener.onBannerClick(currentIndex);
                 }
                 break ;
-        }
-        return false;
+         }
+       }
+      return false;
     }
 
 
@@ -224,7 +271,7 @@ public class BannerViewPager extends RelativeLayout implements View.OnTouchListe
 
     @Override
     public void onPageSelected(int position) {
-        currentIndex=position%urlList.size();
+        currentIndex=position%mList.size();
         setImageBackground(currentIndex);
     }
 
@@ -238,13 +285,15 @@ public class BannerViewPager extends RelativeLayout implements View.OnTouchListe
      * @param selectItemsIndex
      */
     private void setImageBackground(int selectItemsIndex) {
-        for (int i = 0; i < mImageView.length; i++) {
-            if (i == selectItemsIndex) {
-                mImageView[i].setImageResource(resId_piont_press);
+        if(isPoint){
+           for (int i = 0; i < mImageView.length; i++) {
+              if (i == selectItemsIndex) {
+                  mImageView[i].setImageResource(resId_piont_press);
 
-            } else {
-                mImageView[i].setImageResource(resId_piont);
-            }
+              } else {
+                  mImageView[i].setImageResource(resId_piont);
+              }
+           }
         }
     }
 }

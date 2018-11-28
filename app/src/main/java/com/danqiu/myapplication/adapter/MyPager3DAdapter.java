@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.danqiu.myapplication.R;
+import com.danqiu.myapplication.utils.CornerTransform;
 
 import java.util.List;
 
@@ -18,14 +19,24 @@ import java.util.List;
  */
 
 public class MyPager3DAdapter extends PagerAdapter {
-    private List<String> mListUrl;
+    private List<String> mList;
     private Context mContext;
+    private int mRoundCorners=-1;
 
+    public int getmRoundCorners() {
+        return mRoundCorners;
+    }
 
-    public MyPager3DAdapter(List<String> data,Context context){
-        this.mListUrl = data;
+    public void setmRoundCorners(int mRoundCorners) {
+        this.mRoundCorners = mRoundCorners;
+    }
+
+    public MyPager3DAdapter(List<String> list, Context context){
+        this.mList = list;
         this.mContext = context;
     }
+
+
     @Override
     public int getCount() {
         //return mListUrl.size();
@@ -45,25 +56,36 @@ public class MyPager3DAdapter extends PagerAdapter {
     public Object instantiateItem(ViewGroup container, int position) {
         View view = LayoutInflater.from(mContext).inflate(R.layout.item_pager,container,false);
         ImageView imageView = (ImageView) view.findViewById(R.id.iv);
-        //imageView.setBackgroundResource(mContext.getResources().getDrawable(R.drawable.banner_page_radius_shape));
-        //LoadImage(mContext,mListUrl.get(position),imageView,R.mipmap.ic_launcher);
 
-         int index=position % mListUrl.size();
-         LoadImage(mContext,mListUrl.get(index),imageView,R.mipmap.ic_launcher);
+         int index=position % mList.size();
+         LoadImage(mList.get(index),imageView,R.mipmap.ic_launcher);
 
 
         container.addView(view);
         return view;
     }
 
-    public  void LoadImage(Context mContext, String url, ImageView imageview, int defaultImg) {
-        Glide.with(mContext)
-                .load(url)
-                .centerCrop()
-                .dontAnimate()//防止设置placeholder导致第一次不显示网络图片,只显示默认图片的问题
-                .placeholder(defaultImg)
-                .diskCacheStrategy(DiskCacheStrategy.SOURCE).into(imageview);
+    public  void LoadImage( String url, ImageView imageview, int defaultImg) {
+        if(mRoundCorners==-1){
+            Glide.with(mContext)
+                    .load(url)
+                    .centerCrop()
+                    .dontAnimate()//防止设置placeholder导致第一次不显示网络图片,只显示默认图片的问题
+                    .placeholder(defaultImg)
+                    .diskCacheStrategy(DiskCacheStrategy.SOURCE).into(imageview);
+        }
+        else {
+            Glide.with(mContext)
+                    .load(url)
+                    .centerCrop()
+                    .dontAnimate()//防止设置placeholder导致第一次不显示网络图片,只显示默认图片的问题
+                    .placeholder(defaultImg)
+                    .transform(new CornerTransform(mContext, mRoundCorners))
+                    .diskCacheStrategy(DiskCacheStrategy.SOURCE).into(imageview);
+        }
+
     }
+
 
 
 }

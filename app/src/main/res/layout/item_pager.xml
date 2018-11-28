@@ -7,5 +7,5 @@
         android:id="@+id/iv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/banner_page_radius_shape"/>
+        android:scaleType="fitXY" />
 </RelativeLayout>

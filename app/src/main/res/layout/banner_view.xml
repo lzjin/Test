@@ -17,7 +17,7 @@
 
         <!--指示器-->
         <LinearLayout
-            android:id="@+id/relIndicator"
+            android:id="@+id/lineIndicator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
