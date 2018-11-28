@@ -208,10 +208,15 @@ public class BannerViewPager extends RelativeLayout implements View.OnTouchListe
     }
 
     public void stopTimer(){
-        mTimer.cancel();
-        mTimer = null;
-        mTimerTask.cancel();
-        mTimerTask = null;
+        if(mTimer!=null){
+            mTimer.cancel();
+            mTimer = null;
+        }
+        if(mTimerTask!=null){
+            mTimerTask.cancel();
+            mTimerTask = null;
+        }
+
     }
     class MyTimerTask extends TimerTask{
         @Override

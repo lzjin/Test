@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import com.danqiu.myapplication.R;
+import com.danqiu.myapplication.utils.ToastUtil;
 import com.danqiu.myapplication.views.BannerViewPager;
 
 import java.util.ArrayList;
@@ -43,17 +44,17 @@ public class Pager3DActivity extends AppCompatActivity {
 
 
         //开始使用
-        mViewPager2.initBanner(urlList,true)
+        mViewPager2.initBanner(urlList,false)
                     .addPageMargin(10,60)
                     .addPoint(6)
-                    .addStartTimer(5)
+                    //.addStartTimer(5)
                     .addRoundCorners(12)
                     .finishConfig()
                     .addBannerListener(new BannerViewPager.OnClickBannerListener() {
                     @Override
                     public void onBannerClick(int position) {
                         //IntentUtil.IntenToActivity(Pager3DActivity.this,CardNoAct.class);
-                        //ToastUtil.showShort(Pager3DActivity.this,"点击了"+bannerBean.getsUrl());
+                       ToastUtil.showShort(Pager3DActivity.this,"点击了"+position);
                      }
                    });
 
