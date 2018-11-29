@@ -1,10 +1,8 @@
 package com.danqiu.myapplication.views;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Handler;
-import android.os.Message;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -19,8 +17,6 @@ import com.danqiu.myapplication.adapter.MyPager3DAdapter;
 import com.danqiu.myapplication.utils.MLog;
 
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 /**
  * Created by Administrator on 2018/11/26.
@@ -39,8 +35,14 @@ public class BannerViewPager extends RelativeLayout implements View.OnTouchListe
     private long secondTime=0,firstTime=0;
     private int currentIndex = 0;//当前page
     private int startCurrentIndex = 2000;//当前page
-    private Timer mTimer=null;//定时器
-    private MyTimerTask mTimerTask=null;
+
+    private Handler mHandler = null;
+    private AutoRollRunnable mAutoRollRunnable = null;
+    private int mRollTime=5000;
+
+    //private Timer mTimer=null;//定时器
+   // private MyTimerTask mTimerTask=null;
+
     private int resId_piont_press=R.mipmap.ic_banner_point_press;
     private int resId_piont=R.mipmap.ic_banner_point;
     private boolean isPoint=false;
@@ -55,16 +57,16 @@ public class BannerViewPager extends RelativeLayout implements View.OnTouchListe
         return this;
     }
 
-    @SuppressLint("HandlerLeak")
-    Handler mHandler = new Handler(){
-        public void handleMessage(Message msg) {
-            int index =  mViewPager.getCurrentItem()+1;//下一个页
-            mViewPager.setCurrentItem(index);//设置此次要显示的pager
-            currentIndex=index%mList.size();
-            setImageBackground(currentIndex);
-
-        }
-    };
+//    @SuppressLint("HandlerLeak")
+//    Handler mHandler = new Handler(){
+//        public void handleMessage(Message msg) {
+//            int index =  mViewPager.getCurrentItem()+1;//下一个页
+//            mViewPager.setCurrentItem(index);//设置此次要显示的pager
+//            currentIndex=index%mList.size();
+//            setImageBackground(currentIndex);
+//
+//        }
+//    };
 
     public BannerViewPager(Context context) {
         super(context);
@@ -137,6 +139,15 @@ public class BannerViewPager extends RelativeLayout implements View.OnTouchListe
         mViewPager.addOnPageChangeListener(this);
         return this;
     }
+    /**
+     * 添加默认图片,当加载失败后显示
+     * @param resId_img
+     * @return
+     */
+    public BannerViewPager addDefaultImg(int resId_img){
+        mPagerAdapter.setDefaultImg(resId_img);
+        return this;
+    }
      public BannerViewPager addRoundCorners(int corners){
          mPagerAdapter.setmRoundCorners(corners);
          return this;
@@ -156,12 +167,20 @@ public class BannerViewPager extends RelativeLayout implements View.OnTouchListe
         mViewPager.setLayoutParams(layout);
         return this;
     }
-
     /**
-     * 初始化指示器
+     * 添加小圆点底部间距
+     * @param paddBottom
+     */
+    public BannerViewPager addPointBottom(int paddBottom){
+        mLineIndicator.setPadding(0,0,0,dip2px(paddBottom));
+        return this;
+    }
+    /**
+     * 添加小圆点
+     * @param distance 间距
      */
     public BannerViewPager addPoint(int distance) {
-        this.isPoint=true;
+        isPoint=true;
         mImageView = new ImageView[mList.size()];
         for (int i = 0; i < mList.size(); i++) {
             ImageView imageView=new ImageView(mContext);
@@ -181,7 +200,35 @@ public class BannerViewPager extends RelativeLayout implements View.OnTouchListe
 
         return this;
     }
+    /**
+     * 添加小圆点
+     * @param distance 间距
+     * @param piont_press 替换选中图标
+     * @param piont       替换未选中图片
+     */
+    public BannerViewPager addPoint(int distance,int piont_press,int piont) {
+        isPoint=true;
+        resId_piont_press=piont_press;
+        resId_piont=piont;
+        mImageView = new ImageView[mList.size()];
+        for (int i = 0; i < mList.size(); i++) {
+            ImageView imageView=new ImageView(mContext);
 
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            params.setMargins(dip2px(distance)/2, 0, dip2px(distance)/2, 0);
+            imageView.setLayoutParams(params);
+            if(i==currentIndex){
+                imageView.setImageResource(resId_piont_press);
+            }
+            else {
+                imageView.setImageResource(resId_piont);
+            }
+            mImageView[i]=imageView;
+            mLineIndicator.addView(imageView);
+        }
+
+        return this;
+    }
     /**
      * 配置完成,将布局添加到父容器
      */
@@ -190,40 +237,93 @@ public class BannerViewPager extends RelativeLayout implements View.OnTouchListe
         return this;
     }
 
-
-
-    /**
-     * 开启定时器
-     * @param time
-     */
+    //开始轮播
     public BannerViewPager addStartTimer(int time) {
-        if (mTimer == null) {
-            mTimer = new Timer();
+        mRollTime=time;
+        if(mHandler==null){
+            mHandler = new Handler();
         }
-        if(mTimerTask==null){
-            mTimerTask=new MyTimerTask();
-        }
-        mTimer.schedule(mTimerTask, 3000, 1000*time);
-        return  this;
-    }
-
-    public void stopTimer(){
-        if(mTimer!=null){
-            mTimer.cancel();
-            mTimer = null;
-        }
-        if(mTimerTask!=null){
-            mTimerTask.cancel();
-            mTimerTask = null;
+        if(mAutoRollRunnable==null){
+            mAutoRollRunnable = new AutoRollRunnable();
         }
 
+        mAutoRollRunnable.start();
+        return this;
     }
-    class MyTimerTask extends TimerTask{
+
+    // 停止轮播
+    public void stopTimer() {
+        if(mAutoRollRunnable!=null){
+            mAutoRollRunnable.stop();
+        }
+    }
+    private class AutoRollRunnable implements Runnable {
+        //是否在轮播的标志
+        boolean isRunning = false;
         @Override
         public void run() {
-            mHandler.sendEmptyMessage(1001);//在此线程中，不能操作ui主线程
+            if (isRunning) {
+                int index =  mViewPager.getCurrentItem()+1;//下一个页
+                mViewPager.setCurrentItem(index);//设置此次要显示的pager
+                currentIndex=index%mList.size();
+                setImageBackground(currentIndex);
+                //mViewPager.setCurrentItem(mViewPager.getCurrentItem() + 1);
+                mHandler.postDelayed(this, 1000*mRollTime);
+                MLog.i("test","-------------执行中");
+            }
+        }
+        public void start() {
+            MLog.i("test","-------------开始");
+            if (!isRunning) {
+                isRunning = true;
+                mHandler.removeCallbacks(this);
+                mHandler.postDelayed(this, 1000*mRollTime);
+            }
+        }
+        public void stop() {
+            MLog.i("test","-------------暂停");
+            if (isRunning) {
+                mHandler.removeCallbacks(this);
+                isRunning = false;
+            }
         }
     }
+
+//    /**
+//     * 开启定时器
+//     * @param time
+//     */
+//    public BannerViewPager addStartTimer(int time) {
+//        if (mTimer == null) {
+//            mTimer = new Timer();
+//        }
+//        if(mTimerTask==null){
+//            mTimerTask=new MyTimerTask();
+//        }
+//        mTimer.schedule(mTimerTask, 3000, 1000*time);
+//        return  this;
+//    }
+//
+//    /**
+//     * 暂停
+//     */
+//    public void stopTimer(){
+//        if(mTimer!=null){
+//            mTimer.cancel();
+//            mTimer = null;
+//        }
+//        if(mTimerTask!=null){
+//            mTimerTask.cancel();
+//            mTimerTask = null;
+//        }
+//
+//    }
+//    class MyTimerTask extends TimerTask{
+//        @Override
+//        public void run() {
+//            mHandler.sendEmptyMessage(1001);//在此线程中，不能操作ui主线程
+//        }
+//    }
 
 
 

@@ -22,9 +22,10 @@ public class MyPager3DAdapter extends PagerAdapter {
     private List<String> mList;
     private Context mContext;
     private int mRoundCorners=-1;
+    private int defaultImg= R.mipmap.ic_banner_error;//默认图片
 
-    public int getmRoundCorners() {
-        return mRoundCorners;
+    public void setDefaultImg(int defaultImg) {
+        this.defaultImg = defaultImg;
     }
 
     public void setmRoundCorners(int mRoundCorners) {
@@ -58,14 +59,14 @@ public class MyPager3DAdapter extends PagerAdapter {
         ImageView imageView = (ImageView) view.findViewById(R.id.iv);
 
          int index=position % mList.size();
-         LoadImage(mList.get(index),imageView,R.mipmap.ic_launcher);
+         LoadImage(mList.get(index),imageView);
 
 
         container.addView(view);
         return view;
     }
 
-    public  void LoadImage( String url, ImageView imageview, int defaultImg) {
+    public  void LoadImage( String url, ImageView imageview) {
         if(mRoundCorners==-1){
             Glide.with(mContext)
                     .load(url)
