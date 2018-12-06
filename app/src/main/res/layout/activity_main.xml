@@ -16,6 +16,18 @@
             android:orientation="vertical">
 
             <Button
+                android:id="@+id/bt_loding"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="小圆球加载"/>
+
+            <Button
+                android:id="@+id/bt_Notification"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="通知栏"/>
+
+            <Button
                 android:id="@+id/bt_pager"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

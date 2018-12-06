@@ -14,7 +14,6 @@ import android.widget.RelativeLayout;
 
 import com.danqiu.myapplication.R;
 import com.danqiu.myapplication.adapter.MyPager3DAdapter;
-import com.danqiu.myapplication.utils.MLog;
 
 import java.util.List;
 
@@ -269,11 +268,9 @@ public class BannerViewPager extends RelativeLayout implements View.OnTouchListe
                 setImageBackground(currentIndex);
                 //mViewPager.setCurrentItem(mViewPager.getCurrentItem() + 1);
                 mHandler.postDelayed(this, 1000*mRollTime);
-                MLog.i("test","-------------执行中");
             }
         }
         public void start() {
-            MLog.i("test","-------------开始");
             if (!isRunning) {
                 isRunning = true;
                 mHandler.removeCallbacks(this);
@@ -281,7 +278,6 @@ public class BannerViewPager extends RelativeLayout implements View.OnTouchListe
             }
         }
         public void stop() {
-            MLog.i("test","-------------暂停");
             if (isRunning) {
                 mHandler.removeCallbacks(this);
                 isRunning = false;
@@ -345,8 +341,7 @@ public class BannerViewPager extends RelativeLayout implements View.OnTouchListe
             case  MotionEvent.ACTION_UP :
                 secondTime = System.currentTimeMillis();
                 if (secondTime - firstTime < 75) {
-                    MLog.i("test","------------+"+(secondTime - firstTime));
-                    mBannerListener.onBannerClick(currentIndex);
+                     mBannerListener.onBannerClick(currentIndex);
                 }
                 break ;
          }
