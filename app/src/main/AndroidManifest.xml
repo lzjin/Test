@@ -48,7 +48,14 @@
         <activity android:name=".activity.PayViewActivity"/>
         <activity android:name=".activity.Pager3DActivity"/>
         <activity android:name=".activity.LoaingActivity"/>
+
         <activity android:name=".activity.NotificationActivity"/>
+        <service android:name=".service.NotificationService"/>
+
+        <activity android:name=".activity.ServiceActivity"/>
+        <service android:name=".service.ServiceOne"/>
+
+
 
 
         <activity android:name=".activity.ClickScreenActivity"/>

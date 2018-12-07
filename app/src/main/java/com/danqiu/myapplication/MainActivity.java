@@ -17,6 +17,7 @@ import com.danqiu.myapplication.activity.Pager3DActivity;
 import com.danqiu.myapplication.activity.PayViewActivity;
 import com.danqiu.myapplication.activity.PreviewAct;
 import com.danqiu.myapplication.activity.RefreshActivity;
+import com.danqiu.myapplication.activity.ServiceActivity;
 import com.danqiu.myapplication.activity.TakePhotoAct;
 import com.danqiu.myapplication.activity.VedioPlayerActivity;
 import com.danqiu.myapplication.fragment.LoginDailogFragment;
@@ -70,6 +71,8 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
     Button bt_loding;
     @BindView(R.id.bt_Notification)
     Button bt_Notification;
+    @BindView(R.id.bt_service)
+    Button btService;
 
 
 
@@ -101,9 +104,13 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         }
     }
 
-    @OnClick({R.id.bt_Notification,R.id.bt_loding,R.id.bt_pager,R.id.bt_push,R.id.bt_pay,R.id.bt_custom,R.id.bt_refresh,R.id.bt_dialogfragment,R.id.bt_img, R.id.bt_db, R.id.bt_hand, R.id.bt_video, R.id.bt_tab,R.id.bt_take})
+    @OnClick({R.id.bt_service,R.id.bt_Notification,R.id.bt_loding,R.id.bt_pager,R.id.bt_push,R.id.bt_pay,R.id.bt_custom,
+               R.id.bt_refresh,R.id.bt_dialogfragment,R.id.bt_img, R.id.bt_db, R.id.bt_hand, R.id.bt_video, R.id.bt_tab,R.id.bt_take})
     public void onViewClicked(View view) {
         switch (view.getId()) {
+            case R.id.bt_service:
+                IntentUtil.IntenToActivity(this, ServiceActivity.class);
+                break;
             case R.id.bt_Notification:
                 IntentUtil.IntenToActivity(this, NotificationActivity.class);
                 break;

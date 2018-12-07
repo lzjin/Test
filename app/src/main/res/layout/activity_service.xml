@@ -6,22 +6,26 @@
     android:orientation="vertical">
 
     <Button
-        android:id="@+id/bt_nat"
+        android:id="@+id/bt_startService"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="通知栏"/>
+        android:text="服务开始"/>
+    <Button
+        android:id="@+id/bt_endService"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="服务结束"/>
 
     <Button
-        android:id="@+id/bt_start"
+        android:id="@+id/bt_bindService"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="开始服务下载"/>
+        android:text="绑定服务"/>
 
     <Button
-        android:id="@+id/bt_end"
+        android:id="@+id/bt_unbindService"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="结束服务下载"/>
-
+        android:text="解绑服务"/>
 
 </LinearLayout>
