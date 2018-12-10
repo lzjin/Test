@@ -9,23 +9,23 @@
         android:id="@+id/bt_startService"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="服务开始"/>
+        android:text="startService启动方式1"/>
     <Button
         android:id="@+id/bt_endService"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="服务结束"/>
+        android:text="stopService服务结束"/>
 
     <Button
         android:id="@+id/bt_bindService"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="绑定服务"/>
+        android:text="bindService启动方式2"/>
 
     <Button
         android:id="@+id/bt_unbindService"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="解绑服务"/>
+        android:text="unbindService解绑服务"/>
 
 </LinearLayout>

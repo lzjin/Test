@@ -21,7 +21,7 @@ import butterknife.OnClick;
 
 /**
  * Created by Administrator on 2018/12/7.
- * 服务使用
+ * 服务二种方式基本使用
  */
 
 public class ServiceActivity extends AppCompatActivity {

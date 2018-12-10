@@ -10,7 +10,8 @@ import com.danqiu.myapplication.utils.MLog;
 
 /**
  * Created by Administrator on 2018/12/7.
- * onCreate与onDestroy只调用一次
+ *  startService不用MyBinder
+ *  bindService常自定义内部类用来Activity调用方法 如下:myPlaying
  */
 
 public class ServiceOne extends Service{
@@ -39,12 +40,12 @@ public class ServiceOne extends Service{
     @Override
     public void onCreate() {
         super.onCreate();
-        MLog.i(tag,"-------------onCreate-----------");
+        MLog.i(tag,"-------------onCreate--一次---------");
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        MLog.i(tag,"-------------onStartCommand-----------");
+        MLog.i(tag,"-------------onStartCommand----可以多次调用-------");
 //        new Thread(new Runnable() {
 //            @Override
 //            public void run() {
