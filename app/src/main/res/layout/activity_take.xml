@@ -12,12 +12,18 @@
         android:background="@color/grayf0"/>
 
     <Button
-        android:id="@+id/bt_head"
+        android:id="@+id/bt_choice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="调用相机"/>
+
+    <Button
+        android:id="@+id/bt_take"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="拍照"/>
     <Button
-        android:id="@+id/bt_heads"
+        android:id="@+id/bt_photo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="相册"/>

@@ -52,10 +52,12 @@ public class TakePhotoAct extends BaseActivity implements InvokeListener, TakePh
     Uri imageUri;
     @BindView(R.id.iv_head)
     SimpleDraweeView ivHead;
-    @BindView(R.id.bt_head)
-    Button btHead;
-    @BindView(R.id.bt_heads)
-    Button btHeads;
+    @BindView(R.id.bt_choice)
+    Button btChoice;
+    @BindView(R.id.bt_take)
+    Button btTake;
+    @BindView(R.id.bt_photo)
+    Button btPhoto;
     private File photoFile;
     private String fileName = "test", ok_fileName;
     private String filePath = Constants.SOFT_FILE_PATH + Constants.HEAD_IMA_PATH;
@@ -124,13 +126,13 @@ public class TakePhotoAct extends BaseActivity implements InvokeListener, TakePh
 
 
 
-    @OnClick({R.id.iv_head, R.id.bt_head, R.id.bt_heads})
+    @OnClick({R.id.bt_choice, R.id.bt_take, R.id.bt_photo})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.iv_head:
+            case R.id.bt_choice:
                 showChoosePicDialog();
                 break;
-            case R.id.bt_head://拍照
+            case R.id.bt_take://拍照
                 photoFile =  File_Utils.mkFile(filePath, fileName + ".png");
                 imageUri = Uri.fromFile(photoFile);
                 configTakePhoto(takePhoto);//压缩
@@ -139,7 +141,7 @@ public class TakePhotoAct extends BaseActivity implements InvokeListener, TakePh
                 MLog.e("test","---------拍照imageUri-----"+imageUri.getPath());
 
                 break;
-            case R.id.bt_heads://相册
+            case R.id.bt_photo://相册
                 photoFile =  File_Utils.mkFile(filePath, fileName + ".png");
                 imageUri = Uri.fromFile(photoFile);
                 configTakePhoto(takePhoto);//压缩
