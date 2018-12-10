@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import com.danqiu.myapplication.activity.BroadcastActivity;
 import com.danqiu.myapplication.activity.ClickScreenActivity;
 import com.danqiu.myapplication.activity.CustomViewActivity;
 import com.danqiu.myapplication.activity.GreenDaoAct;
@@ -73,6 +74,8 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
     Button bt_Notification;
     @BindView(R.id.bt_service)
     Button btService;
+    @BindView(R.id.bt_Broadcast)
+    Button btBroadcast;
 
 
 
@@ -104,10 +107,13 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         }
     }
 
-    @OnClick({R.id.bt_service,R.id.bt_Notification,R.id.bt_loding,R.id.bt_pager,R.id.bt_push,R.id.bt_pay,R.id.bt_custom,
+    @OnClick({R.id.bt_Broadcast,R.id.bt_service,R.id.bt_Notification,R.id.bt_loding,R.id.bt_pager,R.id.bt_push,R.id.bt_pay,R.id.bt_custom,
                R.id.bt_refresh,R.id.bt_dialogfragment,R.id.bt_img, R.id.bt_db, R.id.bt_hand, R.id.bt_video, R.id.bt_tab,R.id.bt_take})
     public void onViewClicked(View view) {
         switch (view.getId()) {
+            case R.id.bt_Broadcast:
+                IntentUtil.IntenToActivity(this, BroadcastActivity.class);
+                break;
             case R.id.bt_service:
                 IntentUtil.IntenToActivity(this, ServiceActivity.class);
                 break;

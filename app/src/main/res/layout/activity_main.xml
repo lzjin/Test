@@ -30,7 +30,12 @@
                 android:id="@+id/bt_service"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="服务"/>
+                android:text="后台服务"/>
+            <Button
+                android:id="@+id/bt_Broadcast"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="广播介绍"/>
 
             <Button
                 android:id="@+id/bt_pager"

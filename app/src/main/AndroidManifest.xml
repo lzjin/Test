@@ -55,6 +55,14 @@
         <activity android:name=".activity.ServiceActivity"/>
         <service android:name=".service.ServiceOne"/>
 
+        <activity android:name=".activity.BroadcastActivity"/>
+        <!--静态注册，指定ttt过滤-->
+        <!--<receiver android:name=".service.MyBroadCastReceiver">-->
+            <!--<intent-filter>-->
+                <!--<action android:name="ttt"/>-->
+            <!--</intent-filter>-->
+        <!--</receiver>-->
+
 
 
 
