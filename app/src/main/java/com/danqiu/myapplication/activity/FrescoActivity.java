@@ -40,15 +40,15 @@ public class FrescoActivity extends BaseActivity {
     public void initCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_fresco);
         ButterKnife.bind(this);
-        initDate();
 
+        String url = "http://www.people.com.cn/mediafile/pic/20161022/76/4315084153778263996.jpg";
+        ImageLoader.loadImageBlur(draweeImg, url);
 
+        //initDate();
     }
 
     private void initDate() {
-        String url = "http://www.people.com.cn/mediafile/pic/20161022/76/4315084153778263996.jpg";
-        //ImageLoader.loadImage(draweeImg,url);
-        ImageLoader.loadImageBlur(draweeImg, url);
+
         //showDialog();
         // movieModel=new MovieModelImpl(this,dialog);
         // movieModel.getMovies(5,10);

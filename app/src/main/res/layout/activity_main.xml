@@ -10,107 +10,119 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+            <org.angmarch.views.NiceSpinner
+                android:id="@+id/nice_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp" />
+
             <Button
                 android:id="@+id/bt_loding"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="小圆球加载"/>
+                android:text="小圆球加载" />
 
             <Button
                 android:id="@+id/bt_Notification"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="通知栏"/>
+                android:text="通知栏" />
+
             <Button
                 android:id="@+id/bt_service"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="后台服务"/>
+                android:text="后台服务" />
+
             <Button
                 android:id="@+id/bt_Broadcast"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="广播介绍"/>
+                android:text="广播介绍" />
 
             <Button
                 android:id="@+id/bt_pager"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="3D画廊轮播"/>
+                android:text="3D画廊轮播" />
 
             <Button
                 android:id="@+id/bt_refresh"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="刷新框架"/>
+                android:text="刷新框架" />
+
             <Button
                 android:id="@+id/bt_push"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="自动点击"/>
+                android:text="自动点击" />
 
             <Button
                 android:id="@+id/bt_custom"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="自定义文字图片"/>
+                android:text="自定义文字图片" />
 
             <Button
                 android:id="@+id/bt_pay"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="仿支付宝密码"/>
-
-
+                android:text="仿支付宝密码" />
 
             <Button
                 android:id="@+id/bt_dialogfragment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="弹框dialogfragment"/>
-    <Button
-        android:id="@+id/bt_img"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="大图预览"/>
-    <Button
-        android:id="@+id/bt_db"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="数据库"/>
-    <Button
-        android:id="@+id/bt_hand"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="手控"/>
-    <Button
-        android:id="@+id/bt_video"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="视频播放"/>
+                android:text="弹框dialogfragment" />
 
-    <Button
-        android:id="@+id/bt_tab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="多个_tab"/>
+            <Button
+                android:id="@+id/bt_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="大图预览" />
+            <Button
+                android:id="@+id/bt_take"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="相册框架" />
 
-    <Button
-        android:id="@+id/bt_take"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="拍照"/>
+            <Button
+                android:id="@+id/bt_fresco"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="图片框架Fresco" />
 
-     <org.angmarch.views.NiceSpinner
-          android:id="@+id/nice_spinner"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_margin="16dp"/>
+
+            <Button
+                android:id="@+id/bt_db"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="数据库" />
+
+            <Button
+                android:id="@+id/bt_hand"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="手控" />
+
+            <Button
+                android:id="@+id/bt_video"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="视频播放" />
+
+            <Button
+                android:id="@+id/bt_tab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="多个_tab" />
 
 
 

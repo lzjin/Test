@@ -10,6 +10,7 @@ import android.widget.Button;
 import com.danqiu.myapplication.activity.BroadcastActivity;
 import com.danqiu.myapplication.activity.ClickScreenActivity;
 import com.danqiu.myapplication.activity.CustomViewActivity;
+import com.danqiu.myapplication.activity.FrescoActivity;
 import com.danqiu.myapplication.activity.GreenDaoAct;
 import com.danqiu.myapplication.activity.HandSlideAct;
 import com.danqiu.myapplication.activity.LoaingActivity;
@@ -76,6 +77,8 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
     Button btService;
     @BindView(R.id.bt_Broadcast)
     Button btBroadcast;
+    @BindView(R.id.bt_fresco)
+    Button btFresco;
 
 
 
@@ -107,7 +110,7 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         }
     }
 
-    @OnClick({R.id.bt_Broadcast,R.id.bt_service,R.id.bt_Notification,R.id.bt_loding,R.id.bt_pager,R.id.bt_push,R.id.bt_pay,R.id.bt_custom,
+    @OnClick({R.id.bt_fresco,R.id.bt_Broadcast,R.id.bt_service,R.id.bt_Notification,R.id.bt_loding,R.id.bt_pager,R.id.bt_push,R.id.bt_pay,R.id.bt_custom,
                R.id.bt_refresh,R.id.bt_dialogfragment,R.id.bt_img, R.id.bt_db, R.id.bt_hand, R.id.bt_video, R.id.bt_tab,R.id.bt_take})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -143,13 +146,15 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
                 LoginDailogFragment   fragment= new LoginDailogFragment();
                 //fragment.setTargetFragment( this, 10);
                 fragment.show(getSupportFragmentManager(), "login");
-
                 break;
             case R.id.bt_tab:
                 IntentUtil.IntenToActivity(this, TabLayoutAct.class);
                 break;
             case R.id.bt_img:
                 IntentUtil.IntenToActivity(this, PreviewAct.class);
+                break;
+            case R.id.bt_fresco:
+                IntentUtil.IntenToActivity(this, FrescoActivity.class);
                 break;
             case R.id.bt_db:
                 IntentUtil.IntenToActivity(this, GreenDaoAct.class);
