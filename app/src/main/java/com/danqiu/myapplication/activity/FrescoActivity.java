@@ -1,8 +1,6 @@
 package com.danqiu.myapplication.activity;
 
 import android.os.Bundle;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import com.danqiu.myapplication.R;
@@ -24,22 +22,16 @@ import butterknife.ButterKnife;
 public class FrescoActivity extends BaseActivity {
     @BindView(R.id.drawee_img)
     SimpleDraweeView draweeImg;
-
-    LoginModel loginModel;
-    @BindView(R.id.iv_head)
-    ImageView ivHead;
-    @BindView(R.id.bt_head)
-    Button btHead;
-    @BindView(R.id.bt_heads)
-    Button btHeads;
     @BindView(R.id.progress)
     ProgressBar progressBar;
+    LoginModel loginModel;
     private String apkPath = Constants.SOFT_FILE_PATH + Constants.HEAD_DOWN_NAME;
 
     @Override
     public void initCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_fresco);
         ButterKnife.bind(this);
+
 
         String url = "http://www.people.com.cn/mediafile/pic/20161022/76/4315084153778263996.jpg";
         ImageLoader.loadImageBlur(draweeImg, url);
@@ -49,7 +41,7 @@ public class FrescoActivity extends BaseActivity {
 
     private void initDate() {
 
-        //showDialog();
+
         // movieModel=new MovieModelImpl(this,dialog);
         // movieModel.getMovies(5,10);
         loginModel = new LoginModel(this, dialog);
