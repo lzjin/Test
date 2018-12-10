@@ -56,6 +56,8 @@ public class NotificationService extends Service{
                         manager.notify(1, builder.build());
                         if(conn!=null){
                             //unbindService(conn);
+                           // onUnbind(oneIntent);
+                            stopSelf();
                             conn=null;
                         }
                         //调用安装
@@ -91,7 +93,7 @@ public class NotificationService extends Service{
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
-        MLog.i(tag,"-------------onBind-----------");
+        MLog.i(tag,"-------------onBind--一次---------");
         sendNotification();
         return binder;
     }
@@ -99,12 +101,12 @@ public class NotificationService extends Service{
     @Override
     public void onCreate() {
         super.onCreate();
-        MLog.i(tag,"-------------onCreate-----------");
+        MLog.i(tag,"-------------onCreate----一次-------");
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        MLog.i(tag,"-------------onStartCommand-----------");
+        MLog.i(tag,"-------------onStartCommand---多次--------");
         return super.onStartCommand(intent, flags, startId);
     }
 

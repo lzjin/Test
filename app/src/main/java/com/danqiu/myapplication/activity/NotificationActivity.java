@@ -34,6 +34,8 @@ import butterknife.OnClick;
 /**
  * Created by Administrator on 2018/12/6.
  * 通知栏
+ * 1、使用startService启动方式,必须手动结束stopService
+ * 2、使用bindService启动方式,先绑定再使用，这样就也绑定组件同生同死。
  */
 
 public class NotificationActivity extends AppCompatActivity {
@@ -93,16 +95,19 @@ public class NotificationActivity extends AppCompatActivity {
     @OnClick({R.id.bt_nat,R.id.bt_start, R.id.bt_end})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.bt_nat://方式一  在Activity中更新通知栏
+            case R.id.bt_nat:
+                //方式一  在Activity中更新通知栏
                 sendNotification();
                 break;
-            case R.id.bt_start: //方式二:考虑到本Activity被销毁后，线程还在执行，建议通过service方式更新通知栏
+            case R.id.bt_start:
+                //方式二:考虑到本Activity被销毁后，线程还在执行，建议通过service方式更新通知栏
                 //建议使用绑定方式启动，不常用 startService(oneIntent)方式
                 myConn=new MyServiceConnection();
                 oneIntent = new Intent(this, NotificationService.class);
                 bindService(oneIntent,myConn, Context.BIND_AUTO_CREATE);
                 break;
-            case R.id.bt_end://根据需求解绑
+            case R.id.bt_end:
+                //根据需求解绑
                 if(myConn!=null){
                     unbindService(myConn);
                     myConn=null;
@@ -222,9 +227,10 @@ public class NotificationActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-//        if(myConn!=null){
-//            unbindService(myConn);
-//            myConn=null;
-//        }
+        MLog.i("test","----------onDestroy----");
+        if(myConn!=null){
+            unbindService(myConn);
+            myConn=null;
+        }
     }
 }
