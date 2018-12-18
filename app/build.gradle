@@ -27,6 +27,11 @@ android {
         daoPackage 'com.danqiu.myapplication.greendao'      //包名
         targetGenDir 'src/main/java'
     }
+
+    //数据绑定库
+    dataBinding {
+        enabled = true
+    }
 }
 
 dependencies {
@@ -111,5 +116,8 @@ dependencies {
 
 
     implementation 'com.github.lzjin:ViewPagerGallery:1.05'
+
+    //版本更新库
+    implementation 'com.qianwen:update-app:3.5.2'
 
 }
