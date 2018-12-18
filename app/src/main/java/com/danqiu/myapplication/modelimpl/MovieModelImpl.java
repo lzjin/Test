@@ -35,15 +35,14 @@ public class MovieModelImpl implements IMovieModel{
     }
 
     /**
-     * RxJava线程调度
-     *
+     *  通用 RxJava线程调度
      *
      * Schedulers.io I/O操作，比如文件操作，网络操作等，他和newThread有点类似
      * Schedulers.immediate 作用于当前线程运行，相当于你在哪个线程执行代码就在哪个线程运行
      * Schedulers.newthread 运行在新线程中，相当于new Thread()，每次执行都会在新线程中
      * Schedulers.computation 一些需要CPU计算的操作，比如图形，视频等
      * AndroidSchedulers.mainThread 指定运行在Android主线程中
-     * @return
+     *
      */
     public Observable.Transformer schedulersTransformer() {
         return new Observable.Transformer() {
@@ -56,8 +55,15 @@ public class MovieModelImpl implements IMovieModel{
         };
     }
 
+    //------------------------实列接口----------------------------
+
+    /**
+     *  自定配置线程调度
+     * @param start
+     * @param count
+     */
     @Override
-    public Subscription getMovies(int start, int count) {
+    public void getMovies(int start, int count) {
         Observable<BaseInfo> observable2= RetrofitClientManager.getInstance().apiService.getMovies(start,count);
         Subscription subscribe = observable2.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -73,9 +79,13 @@ public class MovieModelImpl implements IMovieModel{
 
                     }
                 });
-        return subscribe;
+
     }
 
+    /**
+     * 通用线程调度 schedulersTransformer() 方法
+     * @param map
+     */
     @Override
     public void login(Map<String, String> map) {
        apiService.login(map).compose(schedulersTransformer())

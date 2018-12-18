@@ -19,6 +19,7 @@ import com.danqiu.myapplication.utils.LogUtil;
 import com.danqiu.myapplication.utils.ToastUtil;
 
 import java.lang.reflect.Field;
+import java.util.Arrays;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -30,11 +31,13 @@ import butterknife.OnClick;
  * GestureDetectorCompat
  */
 
-public class HandSlideAct extends BaseActivity implements View.OnTouchListener {
+public class HandSlideAct extends BaseActivity  {
 
 
     @BindView(R.id.view_opt)
     ImageView viewOpt;
+    @BindView(R.id.line)
+    LinearLayout line;
     @BindView(R.id.bt_end)
     Button btEnd;
     @BindView(R.id.bt_find)
@@ -52,8 +55,20 @@ public class HandSlideAct extends BaseActivity implements View.OnTouchListener {
         ButterKnife.bind(this);
 
         getStatusBarHeight();
+
         initData();
 
+         String token = "abcdefghjklmn";
+         String s = token.substring(token.length() - 5) + token.substring(0, token.length() - 5);
+         LogUtil.e(TAG, "---------------转化---------s==----"+s);
+
+        byte bytes[] =s.getBytes();
+        LogUtil.e(TAG, "---------------转化---------bytes==----"+ Arrays.toString(bytes));
+        LogUtil.e(TAG, "---------------转化---------bytes==----"+bytes[0]);
+
+    }
+
+    public void initData() {
         viewOpt.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
             @Override
             public boolean onPreDraw() {
@@ -62,20 +77,62 @@ public class HandSlideAct extends BaseActivity implements View.OnTouchListener {
                 return true;
             }
         });
+        line.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                LogUtil.e(TAG, "---------------子view1---------onTouch----");
+                return false;
+            }
+        });
 
+        viewOpt.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                LogUtil.e(TAG, "---------------子view2---------onTouch----");
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        mTop = viewOpt.getTop();
+                        mLeft = viewOpt.getLeft();
+                        startX = (int) event.getRawX();
+                        startY = (int) event.getRawY();
+
+                        break;
+                    case MotionEvent.ACTION_MOVE:
+
+                        int MoveX = (int) event.getRawX();
+                        int MoveY = (int) event.getRawY();
+                        int dx = MoveX - startX;
+                        int dy = MoveY - startY;
+                        setViewPosition(dx, dy);
+                        break;
+                    case MotionEvent.ACTION_UP:
+
+                        mTop = viewOpt.getTop();
+                        mLeft = viewOpt.getLeft();
+                        break;
+                }
+                return false;
+            }
+        });
 
     }
 
-    public void initData() {
-        viewOpt.setOnTouchListener(this);
-    }
+    /**
+     * 分发事件
+     * flase 不走onTouchEvent
+     */
 
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        LogUtil.e(TAG, "--------------Act-------------dispatchTouchEvent--");
+        return super.dispatchTouchEvent(ev);
+    }
     //用来处理事件
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        LogUtil.e(TAG,"-------------Act--------------onTouchEvent--");
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                // LogUtil.e(TAG,"------------------------MainAct--onTouchEvent按下--");
                 break;
             case MotionEvent.ACTION_UP:
                 // LogUtil.e(TAG,"------------------------MainAct--onTouchEvent抬起--");
@@ -88,48 +145,6 @@ public class HandSlideAct extends BaseActivity implements View.OnTouchListener {
         return super.onTouchEvent(event);
     }
 
-    /**
-     * 分发事件
-     * flase 不走onTouchEvent
-     */
-
-    @Override
-    public boolean dispatchTouchEvent(MotionEvent ev) {
-        LogUtil.e(TAG, "------------------------MainAct--dispatchTouchEvent--");
-        return super.dispatchTouchEvent(ev);
-    }
-
-
-    @Override
-    public boolean onTouch(View v, MotionEvent event) {
-        switch (event.getAction()) {
-            case MotionEvent.ACTION_DOWN:
-                mTop = viewOpt.getTop();
-                mLeft = viewOpt.getLeft();
-                startX = (int) event.getRawX();
-                startY = (int) event.getRawY();
-
-                break;
-            case MotionEvent.ACTION_MOVE:
-
-                int MoveX = (int) event.getRawX();
-                int MoveY = (int) event.getRawY();
-                int dx = MoveX - startX;
-                int dy = MoveY - startY;
-                setViewPosition(dx, dy);
-                LogUtil.e(TAG, "------------------------onTouch--移动X--" + startX);
-                LogUtil.e(TAG, "------------------------onTouch--移动Y--" + startY);
-                break;
-            case MotionEvent.ACTION_UP:
-                LogUtil.e(TAG, "------------------------onTouch--抬起--");
-                mTop = viewOpt.getTop();
-                mLeft = viewOpt.getLeft();
-
-
-                break;
-        }
-        return true;
-    }
 
     /**
      * 设置控件坐标
