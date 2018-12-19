@@ -1,78 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <data>
-        <import type="com.danqiu.myapplication.bean.DataUserBean"/>
-        <import type="java.util.List"/>
 
-        <variable name="user"
-                  type="DataUserBean"/>
+        <import type="com.danqiu.myapplication.bean.DataUserBean" />
 
-        <!--<variable name="userList"-->
-                  <!--type="List&lt;DataUserBean>"/>-->
-
-        <variable name="list"
-            type="List&lt;String>"/>
+        <import type="java.util.List" />
 
         <variable
-            name="userListKey"
+            name="user"
+            type="DataUserBean" />
+
+        <variable
+            name="listBean"
+            type="List&lt;DataUserBean>" />
+
+        <variable
+            name="list"
+            type="List&lt;String>" />
+
+        <variable
+            name="listKey"
             type="int" />
 
 
         <variable
             name="str"
-            type="String"/>
+            type="String" />
+
+        <!--单击事件1-->
+        <variable
+            name="clickListener"
+            type="android.view.View.OnClickListener" />
+
+        <!--单击事件2-->
+
+        <import type="com.danqiu.myapplication.activity.DataBindingAct.MyBindListener" />
+
+
+        <variable
+            name="bindListener"
+            type="MyBindListener" />
+
+        <!--list的设配器-->
+        <import type="com.danqiu.myapplication.activity.DataBindingAct.MyAdapter" />
+        <variable
+            name="adapter"
+            type="MyAdapter" />
 
     </data>
 
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
+                <Button
+                    android:id="@+id/bt_qie1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{clickListener}"
+                    android:text="切换姓名方式1"/>
+                <Button
+                    android:id="@+id/bt_qie2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{bindListener.onBindClick}"
+                    android:text="切换姓名方式2"/>
+                <TextView
+                    android:id="@+id/tv_s1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{user.name}" />
 
-        <TextView
-            android:id="@+id/tv_s1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{user.name}"/>
+                <TextView
+                    android:id="@+id/tv_s2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{user.age}" />
 
-        <TextView
-            android:id="@+id/tv_s2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{user.age}"/>
+                <TextView
+                    android:id="@+id/tv_s3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{str}" />
 
-        <TextView
-            android:id="@+id/tv_s3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{str}"/>
-
-        <!--<TextView-->
-            <!--android:id="@+id/tv_s4"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="@{userList}"/>-->
+                <TextView
+                    android:id="@+id/tv_s4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{listBean[listKey].name}" />
 
                 <TextView
                     android:id="@+id/tv_s5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{list[0]}"/>
+                    android:text="@{list[listKey]}" />
 
 
                 <ListView
+                    android:id="@+id/listview"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    app:adapter="@{adapter}"/>
 
 
             </LinearLayout>
