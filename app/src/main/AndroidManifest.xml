@@ -66,6 +66,8 @@
 
         <activity android:name=".activity.DataBindingAct"/>
 
+        <activity android:name=".activity.DialogActivity"/>
+
 
 
         <activity android:name=".activity.ClickScreenActivity"/>

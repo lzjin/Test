@@ -19,7 +19,6 @@ public class RetrofitClientManager {
      * 服务器 Url
      */
     public static  String baseUrl = ApiService.Base_URL;
-
     private static final int DEFAULT_TIMEOUT = 5;
     public   ApiService apiService;
     private OkHttpClient.Builder  okHttpClient;
@@ -27,9 +26,11 @@ public class RetrofitClientManager {
     public  JsDownloadListener mDownloadListener;
 
     public static RetrofitClientManager getInstance() {
-        synchronized (RetrofitClientManager.class) {
-            if (mRetrofit == null)
-                mRetrofit = new RetrofitClientManager();
+        if(mRetrofit==null){
+            synchronized (RetrofitClientManager.class) {
+                if (mRetrofit == null)
+                    mRetrofit = new RetrofitClientManager();
+            }
         }
         return mRetrofit;
     }

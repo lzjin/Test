@@ -54,11 +54,11 @@ public class PayViewActivity extends AppCompatActivity{
      * 自主配置
      */
     private void payDialong() {
-        final PayPassDialog dialog=new PayPassDialog(this,R.style.dialog_gray);
+        final PayPassDialog dialog=new PayPassDialog(this,R.style.dialogCommonTheme);
         dialog.setAlertDialog(false)
                 .setWindowSize(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT,0.4f)
                 .setOutColse(false)
-                .setGravity(R.style.teamTypeAnimation, Gravity.BOTTOM);
+                .setGravity(R.style.commonAnimation, Gravity.BOTTOM);
         PayPassView payView=dialog.getPayViewPass();
         payView.setForgetText("忘记密码?");
         payView.setForgetColor(getResources().getColor(R.color.blue3bafd9));

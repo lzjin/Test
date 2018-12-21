@@ -10,6 +10,7 @@ import com.danqiu.myapplication.activity.BroadcastActivity;
 import com.danqiu.myapplication.activity.ClickScreenActivity;
 import com.danqiu.myapplication.activity.CustomViewActivity;
 import com.danqiu.myapplication.activity.DataBindingAct;
+import com.danqiu.myapplication.activity.DialogActivity;
 import com.danqiu.myapplication.activity.EventBusActivity;
 import com.danqiu.myapplication.activity.FrescoActivity;
 import com.danqiu.myapplication.activity.GreenDaoAct;
@@ -27,7 +28,6 @@ import com.danqiu.myapplication.bean.MessageEvent;
 import com.danqiu.myapplication.fragment.LoginDailogFragment;
 import com.danqiu.myapplication.utils.IntentUtil;
 import com.danqiu.myapplication.utils.MLog;
-import com.danqiu.myapplication.views.ComDialog;
 
 import org.angmarch.views.NiceSpinner;
 import org.greenrobot.eventbus.EventBus;
@@ -88,9 +88,10 @@ public class MainActivity extends AppCompatActivity {
     Button bt_event2;
     @BindView(R.id.bt_update)
     Button bt_update;
+    @BindView(R.id.bt_dialog)
+    Button bt_dialog;
 
 
-    ComDialog payDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,10 +127,13 @@ public class MainActivity extends AppCompatActivity {
      *
      * @param view
      */
-    @OnClick({R.id.bt_update, R.id.bt_event, R.id.bt_fresco, R.id.bt_Broadcast, R.id.bt_service, R.id.bt_Notification, R.id.bt_loding, R.id.bt_pager, R.id.bt_push, R.id.bt_pay, R.id.bt_custom,
+    @OnClick({R.id.bt_dialog,R.id.bt_update, R.id.bt_event, R.id.bt_fresco, R.id.bt_Broadcast, R.id.bt_service, R.id.bt_Notification, R.id.bt_loding, R.id.bt_pager, R.id.bt_push, R.id.bt_pay, R.id.bt_custom,
             R.id.bt_refresh, R.id.bt_dialogfragment, R.id.bt_img, R.id.bt_db, R.id.bt_hand, R.id.bt_video, R.id.bt_tab, R.id.bt_take})
     public void onViewClicked(View view) {
         switch (view.getId()) {
+            case R.id.bt_dialog:
+                IntentUtil.IntenToActivity(this, DialogActivity.class);
+                break;
             case R.id.bt_update:
                 IntentUtil.IntenToActivity(this, DataBindingAct.class);
                 break;
