@@ -41,17 +41,11 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-
     implementation 'com.android.support:design:27.1.1'
     implementation 'com.android.support:recyclerview-v7:27.1.1'
-
-
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.2.1'
     implementation 'com.jakewharton:butterknife:8.2.1'
-
     implementation 'org.greenrobot:eventbus:3.0.0'
-
-
     //视频ijkplayer
     //required, enough for most devices.
     implementation 'tv.danmaku.ijk.media:ijkplayer-java:0.8.8'
@@ -63,10 +57,8 @@ dependencies {
     implementation 'tv.danmaku.ijk.media:ijkplayer-x86_64:0.8.8'
     implementation 'com.danikula:videocache:2.7.0'
     implementation 'com.h6ah4i.android.widget.verticalseekbar:verticalseekbar:0.7.2'
-
     //数据库
     implementation 'org.greenrobot:greendao:3.2.0'
-
     //图库
     implementation 'com.facebook.fresco:fresco:0.14.1'
     implementation 'com.facebook.fresco:animated-base-support:0.14.1'
@@ -74,50 +66,35 @@ dependencies {
     implementation 'com.facebook.fresco:webpsupport:0.14.1'
     implementation 'com.facebook.fresco:animated-webp:0.14.1'
     implementation 'com.facebook.fresco:imagepipeline-okhttp3:0.14.1'
-
     //大图缩放
     implementation 'me.relex:photodraweeview:1.1.3'
-     //权限
+    //权限
     implementation 'pub.devrel:easypermissions:0.3.0'
     //网络框架
-
     implementation 'io.reactivex:rxandroid:1.1.0'
     implementation 'io.reactivex:rxjava:1.1.3'
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
     implementation 'com.squareup.retrofit2:adapter-rxjava:2.3.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.7.0'
-
     //相册、拍照框架
     implementation 'com.jph.takephoto:takephoto_library:4.0.3'
-
     //拍摄识别卡号
     implementation 'io.card:android-sdk:5.5.1'
-
     //状态栏
     implementation 'com.gyf.immersionbar:immersionbar:2.3.2-beta01'
-
     implementation 'org.greenrobot:eventbus:3.0.0'
-
     implementation 'com.blankj:utilcode:1.11.1'
-
-
     implementation 'com.github.arcadefire:nice-spinner:1.3.4'
-
     //下拉刷新1.0.5 当1.1.0出现问题可以回退到1.0.5.1
     compile 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.5.1'
-    compile 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.5.1'//没有使用特殊Header，可以不加这行
-
-
+    compile 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.5.1'
+    //没有使用特殊Header，可以不加这行
     //图片加载
     implementation 'com.github.bumptech.glide:glide:3.7.0'
-
     implementation 'com.github.lzjin:AlipayPassDialog:1.1'
-
-
     implementation 'com.github.lzjin:ViewPagerGallery:1.05'
-
     //版本更新库
     implementation 'com.qianwen:update-app:3.5.2'
-
+    implementation project(':xlibrary')
 }

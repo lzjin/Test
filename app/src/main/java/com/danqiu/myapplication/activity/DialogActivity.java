@@ -11,10 +11,10 @@ import android.widget.TextView;
 
 import com.danqiu.myapplication.R;
 import com.danqiu.myapplication.utils.MLog;
-import com.danqiu.myapplication.xframe.xdialog.XComDialog;
-import com.danqiu.myapplication.xframe.xdialog.XComPopupWindow;
-import com.danqiu.myapplication.xframe.xdialog.XDialog;
-import com.danqiu.myapplication.xframe.xdialog.XProgressDialog;
+import com.lzj.xdialog.XComDialog;
+import com.lzj.xdialog.XComPopupWindow;
+import com.lzj.xdialog.XDialog;
+import com.lzj.xdialog.XProgressDialog;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -52,6 +52,7 @@ public class DialogActivity extends AppCompatActivity {
 
         switch (view.getId()) {
             case R.id.bt1:
+
                 new XDialog(this)
                     .init("标题","这是内容")
                     .defaultShow(new XDialog.OnDialogListener() {

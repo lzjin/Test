@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--=======通用弹框主题============-->
+    <style name="dialogCommonTheme" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimAmount">0.4</item><!--弹框背景灰度-->
+    </style>
+
+    <!--====通用动画======-->
+    <style name="commonAnimation" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/xdialog_in_anim</item>  <!-- 下到上=显示 -->
+        <item name="android:windowExitAnimation">@anim/xdialog_out_anim</item>   <!-- 下到上=消失 -->
+    </style>
+
+    <!--==========自定义进度弹框============-->
+    <style name="xProgressDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <!--边框-->
+        <item name="android:windowIsFloating">true</item>
+        <!--是否浮现在activity之上-->
+        <item name="android:windowIsTranslucent">false</item>
+        <!--半透明-->
+        <item name="android:windowNoTitle">true</item>
+        <!--无标题-->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!--背景透明-->
+        <item name="android:backgroundDimEnabled">false</item>
+        <!--弹框背景灰度-->
+        <item name="android:backgroundDimAmount">0</item>
+    </style>
+
+</resources>
