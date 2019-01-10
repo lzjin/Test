@@ -11,6 +11,8 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.VIBRATE"/>
 
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
     <!--状态栏 android:resizeableActivity="true" -->
     <meta-data
         android:name="android.max_aspect"
@@ -67,6 +69,11 @@
         <activity android:name=".activity.DataBindingAct"/>
 
         <activity android:name=".activity.DialogActivity"/>
+
+        <activity android:name=".activity.TestActivity"/>
+
+        <activity android:name=".mp3.Mp3Activity"/>
+        <service android:name=".mp3.Mp3Service"/>
 
 
 

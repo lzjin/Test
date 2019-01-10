@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <co.lujun.androidtagview.TagContainerLayout
+        android:id="@+id/tv_Tag"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        app:container_border_radius="0dp"
+        app:container_background_color="@color/white"
+        app:container_border_color="@color/white"
+        app:horizontal_interval="10dp"
+        app:vertical_interval="10dp"
+        app:tag_horizontal_padding="10dp"
+        app:tag_corner_radius="3dp"
+        app:tag_border_width="1dp"
+        app:tag_border_color="#f8f8f8"
+        app:tag_background_color="#f8f8f8"
+        app:tag_text_color="@color/black33"
+        app:tag_text_size="14sp"
+        app:container_enable_drag="false"
+        app:tag_clickable="true"
+        app:tag_theme="none" />
+
+</LinearLayout>

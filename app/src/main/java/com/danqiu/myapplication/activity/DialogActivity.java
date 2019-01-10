@@ -111,7 +111,7 @@ public class DialogActivity extends AppCompatActivity {
     private void showPopupWindow() {
        popupWindow = new XComPopupWindow(this, R.layout.view_xcom_dialog)
         .init()
-        //.addAnimation(R.style.commonAnimation)
+         //.addAnimation(R.style.commonAnimation)
         .showAsDropDown(bt5)
         .setListener(new XComPopupWindow.OnPopupListener() {
           @Override
