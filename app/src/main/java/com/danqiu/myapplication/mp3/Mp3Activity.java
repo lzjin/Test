@@ -53,15 +53,16 @@ public class Mp3Activity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         arrayList=new ArrayList<>();
-        arrayList.add(new Mp3Bean("http://img-1253650823.file.myqcloud.com/中考词汇音频/七下/7年级下%20U1.mp3"));
-        arrayList.add(new Mp3Bean("http://img-1253650823.file.myqcloud.com/中考词汇音频/九年级/9年级下%20U1.mp3"));
+        arrayList.add(new Mp3Bean("http://img-1253650823.cosgz.myqcloud.com/listeningTest/practice/1.mp3"));
+        arrayList.add(new Mp3Bean("http://img-1253650823.cosgz.myqcloud.com/listeningTest/practice/2.mp3"));
+        arrayList.add(new Mp3Bean("http://img-1253650823.cosgz.myqcloud.com/listeningTest/practice/3.mp3"));
 
         conn=new ServiceConnection() {
             @Override
             public void onServiceConnected(ComponentName name, IBinder service) {
                 Log.i("test", "onServiceConnected"+"连接服务");
                 binder= (Mp3Service.MyBinder) service;
-                binder.init(arrayList);
+                binder.init(arrayList,tvTime,seekBar);
             }
             @Override
             public void onServiceDisconnected(ComponentName name) {
@@ -85,7 +86,7 @@ public class Mp3Activity extends AppCompatActivity {
                 break;
             case R.id.bt_naxt:
                 binder.next(1);
-                seekBar.setSecondaryProgress(50);
+                //seekBar.setSecondaryProgress(50);
                 break;
         }
     }

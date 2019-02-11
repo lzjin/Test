@@ -7,24 +7,39 @@ import android.os.Binder;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.widget.SeekBar;
+import android.widget.TextView;
 
 import com.danqiu.myapplication.bean.Mp3Bean;
+import com.danqiu.myapplication.utils.MLog;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Created by Administrator on 2019/1/10.
+ *   mp3播放服务
  */
 
-public class Mp3Service extends Service implements MediaPlayer.OnCompletionListener {
+public class Mp3Service extends Service implements MediaPlayer.OnCompletionListener{
     public MediaPlayer mediaPlayer;
     private ArrayList<Mp3Bean> arrayLists;
     private int newstart=-1;//当前播放
+    private Timer mTimer;
+
+    private TimerTask mTimerTask;
+    private SeekBar mSeekBar;
+    private TextView mTvTime;
+    SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
 
     public  class MyBinder extends Binder {
-        public  void init(ArrayList<Mp3Bean> arrayList){
+        public  void init(ArrayList<Mp3Bean> arrayList, TextView tvTime,SeekBar seekBar){
             Mp3Service.this.init(arrayList);
+            Mp3Service.this.mSeekBar=seekBar;
+            Mp3Service.this.mTvTime=tvTime;
         }
         public  void startMusic(int postion){
             Mp3Service.this.startMusic(postion);//内部类调外部类
@@ -62,6 +77,13 @@ public class Mp3Service extends Service implements MediaPlayer.OnCompletionListe
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        //时间
+//        mSeekBar.setMax(mediaPlayer.getDuration());
+//        Date d = new Date(mediaPlayer.getDuration() - TimeZone.getDefault().getRawOffset());
+//        mTvTime.setText("00:00:00/" + sdf.format(d));
+
+        startTimer();
     }
     //继续播放-----------------------------
     public  void keepStart(){
@@ -106,6 +128,7 @@ public class Mp3Service extends Service implements MediaPlayer.OnCompletionListe
         } catch (IOException e) {
             e.printStackTrace();
         }
+        startTimer();
     }
 
 
@@ -153,7 +176,10 @@ public class Mp3Service extends Service implements MediaPlayer.OnCompletionListe
 //        }
     }
 
-
+    /**
+     *  播放完成  自动下一首
+     * @param mp
+     */
     @Override
     public void onCompletion(MediaPlayer mp) {
         if(newstart<arrayLists.size()){
@@ -176,6 +202,25 @@ public class Mp3Service extends Service implements MediaPlayer.OnCompletionListe
 
     }
 
+
+    private void startTimer() {
+        if (mTimer == null && mTimerTask == null) {
+            mTimer = new Timer();
+            mTimerTask = new TimerTask() {
+                @Override
+                public void run() {
+                    mSeekBar.setProgress(mediaPlayer.getCurrentPosition());
+                   MLog.i("test","Current = " + mediaPlayer.getCurrentPosition());
+                    MLog.i("test","Duration= " + mediaPlayer.getDuration());
+                   // MLog.d("buffer = " + mediaPlayer.getVideoView().getBufferPercentage());
+//                    MLog.d("speed = "+showNetSpeed());
+//                    MLog.d("trueSpeed = "+player.getVideoView().getIjkMediaPlayer().getTcpSpeed()/1024);
+                   // mSeekBar.setSecondaryProgress((int) mediaPlayer.getCurrentPosition()  );
+                }
+            };
+            mTimer.schedule(mTimerTask, 0, 1000);
+        }
+    }
 
 
 }
