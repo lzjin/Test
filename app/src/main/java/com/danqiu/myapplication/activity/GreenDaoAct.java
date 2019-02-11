@@ -6,7 +6,11 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.danqiu.myapplication.R;
+import com.danqiu.myapplication.bean.ClassBean;
 import com.danqiu.myapplication.bean.UserBean;
+import com.danqiu.myapplication.greendao.TestBean;
+import com.danqiu.myapplication.greendb.ClassDaoUtil;
+import com.danqiu.myapplication.greendb.TestDaoUtil;
 import com.danqiu.myapplication.greendb.UserDaoUtil;
 import com.danqiu.myapplication.utils.LogUtil;
 
@@ -40,7 +44,10 @@ public class GreenDaoAct extends BaseActivity {
     @BindView(R.id.tv_return)
     TextView tvReturn;
 
-    UserDaoUtil userDaoUtil;
+    UserDaoUtil  userDaoUtil;
+    ClassDaoUtil classDaoUtil;
+    TestDaoUtil  testDaoUtil;
+
     boolean isOk = false;
     @BindView(R.id.bt_whereList)
     Button btWhereList;
@@ -54,6 +61,8 @@ public class GreenDaoAct extends BaseActivity {
 
     private void initSql() {
         userDaoUtil = new UserDaoUtil(this);
+        classDaoUtil=new ClassDaoUtil(this);
+        testDaoUtil=new TestDaoUtil(this);
     }
 
 
@@ -61,9 +70,12 @@ public class GreenDaoAct extends BaseActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.bt_add:
-                isOk = userDaoUtil.insert(new UserBean(null, "张三", 20, "男", "成都"));
+               // isOk = userDaoUtil.insert(new UserBean(null, "张三", 20, "男", "成都"));
+                //isOk = classDaoUtil.insert(new ClassBean(null,"陈飞2","初二"));
+                isOk =testDaoUtil.insert(new TestBean(null,"刘飞","男"));
                 tvReturn.setText("单个添加:" + isOk);
-                LogUtil.i(TAG,"--------添加----"+isOk);
+                LogUtil.i(TAG,"--------添加---"+isOk);
+
                 break;
             case R.id.bt_addList:
                 List<UserBean> list_=new ArrayList<>();
@@ -88,8 +100,12 @@ public class GreenDaoAct extends BaseActivity {
                 LogUtil.i(TAG,"--------模糊查询----"+list);
                 break;
             case R.id.bt_whereAll://全部查询
-                List<UserBean> list2=userDaoUtil.queryAll();
-                LogUtil.i(TAG,"--------查询全部----"+list2);
+                List<UserBean> list1=userDaoUtil.queryAll();
+                List<ClassBean> list2=classDaoUtil.queryAll();
+                List<TestBean>   list3=testDaoUtil.queryAll();
+                LogUtil.i(TAG,"--------查询全部1----"+list1);
+                LogUtil.i(TAG,"--------查询全部2----"+list2);
+                LogUtil.i(TAG,"--------查询全部3----"+list3);
                 break;
             case R.id.bt_alter://修改
                 UserBean obj=userDaoUtil.queryById(2);

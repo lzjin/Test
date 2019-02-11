@@ -13,13 +13,13 @@ import org.greenrobot.greendao.annotation.Generated;
 public class ClassBean {
     // 标明主键，括号里可以指定是否自增
     @Id(autoincrement = true)
-    private long id;
+    private Long id;
     // 非空
     @NotNull
     private String username;
     private String stclass;
-    @Generated(hash = 313809843)
-    public ClassBean(long id, @NotNull String username, String stclass) {
+    @Generated(hash = 1437719740)
+    public ClassBean(Long id, @NotNull String username, String stclass) {
         this.id = id;
         this.username = username;
         this.stclass = stclass;
@@ -27,10 +27,10 @@ public class ClassBean {
     @Generated(hash = 1395092832)
     public ClassBean() {
     }
-    public long getId() {
+    public Long getId() {
         return this.id;
     }
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
     public String getUsername() {

@@ -23,7 +23,7 @@ android {
     }
 
     greendao {
-        schemaVersion 1
+        schemaVersion 3
         daoPackage 'com.danqiu.myapplication.greendao'      //包名
         targetGenDir 'src/main/java'
     }

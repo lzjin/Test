@@ -24,7 +24,7 @@ public class ClassBeanDao extends AbstractDao<ClassBean, Long> {
      * Can be used for QueryBuilder and for referencing column names.
      */
     public static class Properties {
-        public final static Property Id = new Property(0, long.class, "id", true, "_id");
+        public final static Property Id = new Property(0, Long.class, "id", true, "_id");
         public final static Property Username = new Property(1, String.class, "username", false, "USERNAME");
         public final static Property Stclass = new Property(2, String.class, "stclass", false, "STCLASS");
     }
@@ -42,7 +42,7 @@ public class ClassBeanDao extends AbstractDao<ClassBean, Long> {
     public static void createTable(Database db, boolean ifNotExists) {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "\"CLASS_BEAN\" (" + //
-                "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL ," + // 0: id
+                "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT ," + // 0: id
                 "\"USERNAME\" TEXT NOT NULL ," + // 1: username
                 "\"STCLASS\" TEXT);"); // 2: stclass
     }
@@ -56,7 +56,11 @@ public class ClassBeanDao extends AbstractDao<ClassBean, Long> {
     @Override
     protected final void bindValues(DatabaseStatement stmt, ClassBean entity) {
         stmt.clearBindings();
-        stmt.bindLong(1, entity.getId());
+ 
+        Long id = entity.getId();
+        if (id != null) {
+            stmt.bindLong(1, id);
+        }
         stmt.bindString(2, entity.getUsername());
  
         String stclass = entity.getStclass();
@@ -68,7 +72,11 @@ public class ClassBeanDao extends AbstractDao<ClassBean, Long> {
     @Override
     protected final void bindValues(SQLiteStatement stmt, ClassBean entity) {
         stmt.clearBindings();
-        stmt.bindLong(1, entity.getId());
+ 
+        Long id = entity.getId();
+        if (id != null) {
+            stmt.bindLong(1, id);
+        }
         stmt.bindString(2, entity.getUsername());
  
         String stclass = entity.getStclass();
@@ -79,13 +87,13 @@ public class ClassBeanDao extends AbstractDao<ClassBean, Long> {
 
     @Override
     public Long readKey(Cursor cursor, int offset) {
-        return cursor.getLong(offset + 0);
+        return cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0);
     }    
 
     @Override
     public ClassBean readEntity(Cursor cursor, int offset) {
         ClassBean entity = new ClassBean( //
-            cursor.getLong(offset + 0), // id
+            cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
             cursor.getString(offset + 1), // username
             cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2) // stclass
         );
@@ -94,7 +102,7 @@ public class ClassBeanDao extends AbstractDao<ClassBean, Long> {
      
     @Override
     public void readEntity(Cursor cursor, ClassBean entity, int offset) {
-        entity.setId(cursor.getLong(offset + 0));
+        entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
         entity.setUsername(cursor.getString(offset + 1));
         entity.setStclass(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
      }
@@ -116,7 +124,7 @@ public class ClassBeanDao extends AbstractDao<ClassBean, Long> {
 
     @Override
     public boolean hasKey(ClassBean entity) {
-        throw new UnsupportedOperationException("Unsupported for entities with a non-null key");
+        return entity.getId() != null;
     }
 
     @Override
