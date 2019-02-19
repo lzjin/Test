@@ -13,7 +13,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.danqiu.myapplication.config.Constants;
-import com.danqiu.myapplication.config.MyApplication;
 import com.danqiu.myapplication.fresco.ImageLoader;
 import com.danqiu.myapplication.utils.File_Utils;
 import com.danqiu.myapplication.utils.LogUtil;
@@ -224,6 +223,6 @@ public class TabLAyoutFrg extends Fragment implements InvokeListener, TakePhoto.
     @Override
     public void onDestroy() {
         super.onDestroy();
-        MyApplication.getRefWatcher(getActivity());
+       // MyApplication.getRefWatcher(getActivity());
     }
 }

@@ -78,6 +78,7 @@ public class Mp3Activity extends AppCompatActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.bt_start:
+
                 binder.startMusic(0);
 
                 break;
@@ -88,11 +89,13 @@ public class Mp3Activity extends AppCompatActivity {
                 binder.next(1);
                 //seekBar.setSecondaryProgress(50);
                 break;
+
         }
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        binder.pause();
     }
 }
