@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -91,6 +92,7 @@ public class DialogActivity extends AppCompatActivity {
         xx=new XComDialog(this,R.layout.view_xcom_dialog)
         .init()
         .setWindowSize()
+        .setGravity(R.style.commonAnimation, Gravity.BOTTOM)
         .setDialogListener(new XComDialog.OnDialogListener() {
           @Override
           public void onViewClick(View mLayoutView, final AlertDialog mDialog) {

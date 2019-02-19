@@ -5,6 +5,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="120dp"
@@ -18,6 +20,13 @@
             android:layout_height="wrap_content"
             android:text="点击关闭"
             android:background="@null"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/lavender"
+            android:hint="输入内容"
+            android:layout_alignParentBottom="true"/>
 
     </RelativeLayout>
 
