@@ -23,6 +23,7 @@ import butterknife.OnClick;
 
 /**
  * Created by Administrator on 2018/12/19.
+ * 封装的弹框使用
  */
 
 public class DialogActivity extends AppCompatActivity {
