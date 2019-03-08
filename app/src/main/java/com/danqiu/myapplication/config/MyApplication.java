@@ -3,6 +3,7 @@ package com.danqiu.myapplication.config;
 import android.app.Application;
 
 import com.danqiu.myapplication.fresco.ImageLoaderConfig;
+import com.danqiu.myapplication.utils.CrashLogManager;
 import com.facebook.drawee.backends.pipeline.Fresco;
 
 /**
@@ -18,7 +19,9 @@ public class MyApplication extends Application{
        // Fresco.initialize(this);
         //配置缓存的初始化
         Fresco.initialize(this, ImageLoaderConfig.getImagePipelineConfig(this));
-
+        //崩溃日志初始化
+        CrashLogManager crashLog = CrashLogManager.getInstance();
+        crashLog.init(getApplicationContext());
 //        refWatcher= setupLeakCanary();
 //
 //        //内存检查

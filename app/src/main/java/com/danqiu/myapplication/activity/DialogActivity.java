@@ -106,6 +106,9 @@ public class DialogActivity extends AppCompatActivity {
              });
           }
         });
+
+
+
     }
 
     /**
