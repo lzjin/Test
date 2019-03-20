@@ -71,7 +71,6 @@ public class DataBindingAct extends AppCompatActivity {
                 switch (v.getId()) {
                     case R.id.bt_qie1:
                         binding.setListKey(1);
-                        adapter.notifyDataSetInvalidated();
                         Toast.makeText(DataBindingAct.this, "click", Toast.LENGTH_SHORT).show();
                         break;
                 }

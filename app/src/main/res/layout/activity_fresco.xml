@@ -1,25 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    xmlns:fresco="http://schemas.android.com/apk/res-auto">
+    android:padding="20dp"
+    android:orientation="vertical">
 
-    <com.facebook.drawee.view.SimpleDraweeView
-        android:id="@+id/drawee_img"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        fresco:roundAsCircle="true"
-        fresco:roundedCornerRadius="20dp"/>
-
-
-
-    <ProgressBar
-        android:id="@+id/progress"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/Widget.AppCompat.ProgressBar.Horizontal" />
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/bt_download"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:textSize="@dimen/sp_14"
+                android:text="MVC文件下载"/>
+
+            <ProgressBar
+                android:id="@+id/progress"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="30dp" />
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/simple_Ptong"
+                android:layout_marginTop="10dp"
+                android:layout_width="200dp"
+                android:layout_height="200dp" />
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/simple_Radius"
+                android:layout_marginTop="10dp"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                fresco:roundedCornerRadius="20dp" />
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/simple_Circle"
+                android:layout_marginTop="10dp"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                fresco:roundAsCircle="true" />
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/simple_GaussianBlur"
+                android:layout_marginTop="10dp"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                fresco:roundedCornerRadius="20dp" />
+
+
+
+
+        </LinearLayout>
+    </ScrollView>
 
 
 </LinearLayout>

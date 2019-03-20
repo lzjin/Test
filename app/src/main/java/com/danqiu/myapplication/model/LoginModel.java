@@ -209,7 +209,14 @@ public class LoginModel extends BaseModel{
                     }
                 });
     }
-    public void  downloadFiles(final String url,final String pathDown, final String saveName,final ProgressBar progressBar){
+
+    /**
+     * 不带进度条
+     * @param url
+     * @param pathDown
+     * @param saveName
+     */
+    public void  downloadFiles(final String url,final String pathDown, final String saveName){
         apiService.downloadApps(url).compose(schedulersTransformer())
                 .subscribe(new Subscriber<ResponseBody>() {
                     @Override
@@ -235,8 +242,13 @@ public class LoginModel extends BaseModel{
                     }
                 });
     }
+
     /**
-     * 下载
+     *  下载带进度条
+     * @param url
+     * @param pathDown
+     * @param saveName
+     * @param progressBar
      */
     public void  downloadFile(final String url,final String pathDown, final String saveName,final ProgressBar progressBar){
         final JsDownloadListener listener=new JsDownloadListener() {
