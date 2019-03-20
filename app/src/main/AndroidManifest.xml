@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.danqiu.myapplication">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -26,7 +27,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:resizeableActivity="true"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
 
 
         <activity android:name=".MainActivity">
@@ -71,6 +73,7 @@
         <activity android:name=".activity.DialogActivity"/>
 
         <activity android:name=".activity.TestActivity"/>
+        <activity android:name=".activity.RecycleViewActivity"/>
 
         <activity android:name=".mp3.Mp3Activity"/>
         <service android:name=".mp3.Mp3Service"/>
