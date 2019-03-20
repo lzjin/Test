@@ -26,7 +26,7 @@ import java.util.List;
 
 public class DataBindingAct extends AppCompatActivity {
     ActivityDatabindBinding binding;
-
+    MyAdapter adapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -40,57 +40,61 @@ public class DataBindingAct extends AppCompatActivity {
     private void initData() {
         DataUserBean user = new DataUserBean("张三", "男");
 
+        binding.setUser(user);
+        binding.setStr("字符串");
+
+
+
         List<String> stringList = new ArrayList<String>();
-        stringList.add("数组字符串1");
-        stringList.add("数组字符串2");
+        stringList.add("数组字符串：我是张三1");
+        stringList.add("数组字符串：我是张三2");
 
         List<DataUserBean> listUser = new ArrayList<>();
-        listUser.add(new DataUserBean("数组对象李四1", "女"));
-        listUser.add(new DataUserBean("数组对象李四2", "女"));
+        listUser.add(new DataUserBean("数组对象：李四1", "女"));
+        listUser.add(new DataUserBean("数组对象：李四2", "女"));
 
 
         binding.setListKey(0);
+
         binding.setListBean(listUser);
-        binding.setUser(user);
-        binding.setStr("字符串");
         binding.setList(stringList);
 
         //listview
-         MyAdapter adapter = new MyAdapter(listUser, BR.userBean);
+         adapter = new MyAdapter(listUser, BR.userBean);
 
          binding.setAdapter(adapter);
 
-        //监听方式一
+        //默认监听 方式一
         binding.setClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 switch (v.getId()) {
                     case R.id.bt_qie1:
                         binding.setListKey(1);
+                        adapter.notifyDataSetInvalidated();
                         Toast.makeText(DataBindingAct.this, "click", Toast.LENGTH_SHORT).show();
                         break;
                 }
 
             }
         });
-        //监听方式二
-        binding.setBindListener(new MyBindListener());
+        //自定监听 方式二
+         binding.setBindListener(new MyBindListener());
     }
 
     /**
-     * 自定监听
+     * 自定监听 方式二
      */
     public class MyBindListener {
         //带String的参数，当然也可以去掉
         public void onBindClick(View view) {
             switch (view.getId()) {
                 case R.id.bt_qie2:
-                    binding.setListKey(1);
+                    binding.setListKey(0);
                     Toast.makeText(DataBindingAct.this, "click2", Toast.LENGTH_SHORT).show();
                     break;
             }
         }
-
     }
 
     public class MyAdapter extends BaseAdapter {

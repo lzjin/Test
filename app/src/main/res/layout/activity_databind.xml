@@ -9,6 +9,10 @@
         <import type="java.util.List" />
 
         <variable
+            name="str"
+            type="String" />
+
+        <variable
             name="user"
             type="DataUserBean" />
 
@@ -24,10 +28,6 @@
             name="listKey"
             type="int" />
 
-
-        <variable
-            name="str"
-            type="String" />
 
         <!--单击事件1-->
         <variable
@@ -64,55 +64,72 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:gravity="center"
                 android:orientation="vertical">
 
-                <Button
-                    android:id="@+id/bt_qie1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:onClick="@{clickListener}"
-                    android:text="切换姓名方式1"/>
-                <Button
-                    android:id="@+id/bt_qie2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:onClick="@{bindListener.onBindClick}"
-                    android:text="切换姓名方式2"/>
                 <TextView
                     android:id="@+id/tv_s1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textSize="@dimen/sp_14"
                     android:text="@{user.name}" />
 
                 <TextView
                     android:id="@+id/tv_s2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textSize="@dimen/sp_14"
                     android:text="@{user.age}" />
 
                 <TextView
                     android:id="@+id/tv_s3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textSize="@dimen/sp_14"
                     android:text="@{str}" />
+
+
+
+                <Button
+                    android:id="@+id/bt_qie1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:OnClickListener="@{clickListener}"
+                    android:text="默认点击事件"/>
+
+                <Button
+                    android:id="@+id/bt_qie2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:OnClickListener="@{bindListener.onBindClick}"
+                    android:text="自定义点击事件"/>
+
 
                 <TextView
                     android:id="@+id/tv_s4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textSize="@dimen/sp_14"
                     android:text="@{listBean[listKey].name}" />
 
                 <TextView
                     android:id="@+id/tv_s5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textSize="@dimen/sp_14"
                     android:text="@{list[listKey]}" />
 
 
-                <ListView
+                <com.danqiu.myapplication.views.MyListView
                     android:id="@+id/listview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:divider="@null"
                     app:adapter="@{adapter}"/>
 
 
