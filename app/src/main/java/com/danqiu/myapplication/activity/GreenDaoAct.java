@@ -74,7 +74,7 @@ public class GreenDaoAct extends BaseActivity {
                 //isOk = classDaoUtil.insert(new ClassBean(null,"陈飞2","初二"));
                 isOk =testDaoUtil.insert(new TestBean(null,"刘飞","男"));
                 tvReturn.setText("单个添加:" + isOk);
-                LogUtil.i(TAG,"--------添加---"+isOk);
+                LogUtil.i(TAG,"--------添加刘飞---"+isOk);
 
                 break;
             case R.id.bt_addList:
@@ -83,14 +83,17 @@ public class GreenDaoAct extends BaseActivity {
                 list_.add(new UserBean(null, "老王", 22, "女", "成都"));
                 list_.add(new UserBean(null, "张三", 50, "女", "北京"));
                 isOk=userDaoUtil.insertList(list_);
-                LogUtil.i(TAG,"--------添加多个----"+isOk);
+                LogUtil.i(TAG,"--------添加多个李四,老王,张三----"+isOk);
+                tvReturn.setText("添加多个:" + isOk);
                 break;
             case R.id.bt_where://指定查询唯一
                  UserBean userBean=userDaoUtil.queryById(1);
                 if(userBean==null){
+                    tvReturn.setText("查询id1为空" );
                     LogUtil.i(TAG,"--------查询唯一空----");
                 }
                 else {
+                    tvReturn.setText("查询id1:" + userBean.getUsername());
                     LogUtil.i(TAG,"--------查询唯一----"+userBean.toString());
                 }
 
