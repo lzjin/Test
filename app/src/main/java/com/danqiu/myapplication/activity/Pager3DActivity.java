@@ -48,7 +48,6 @@ public class Pager3DActivity extends AppCompatActivity {
                   .addPageMargin(10, 50)//参数1page之间的间距,参数2中间item距离边界的间距
                   .addPoint(6)//添加指示器
                   .addPointBottom(7)
-                  .addStartTimer(5)//自动轮播5秒间隔
                   .addRoundCorners(12)//圆角
                   .finishConfig()//这句必须加
                   .addBannerListener(new BannerViewPager.OnClickBannerListener() {

@@ -18,6 +18,7 @@
 
     <com.lzj.gallery.library.views.BannerViewPager
         android:id="@+id/viewPager"
+        android:layout_marginTop="35dp"
         android:layout_width="match_parent"
         android:layout_height="150dp"/>
 

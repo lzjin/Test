@@ -72,6 +72,8 @@ public class RecycleViewActivity extends BaseActivity {
                 showToast("点击"+(position+1) );
             }
         });
+
+
     }
 
 
