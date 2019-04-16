@@ -26,7 +26,7 @@
                 android:id="@+id/bt_recycle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="滑动组件" />
+                android:text="滑动组件RecycleView" />
             <Button
                 android:id="@+id/bt_img"
                 android:layout_width="match_parent"

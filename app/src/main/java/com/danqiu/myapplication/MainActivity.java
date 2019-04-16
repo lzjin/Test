@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import com.danqiu.myapplication.activity.BaseRecyleViewAct;
 import com.danqiu.myapplication.activity.BroadcastActivity;
 import com.danqiu.myapplication.activity.ClickScreenActivity;
 import com.danqiu.myapplication.activity.CustomViewActivity;
@@ -21,7 +22,6 @@ import com.danqiu.myapplication.activity.NotificationActivity;
 import com.danqiu.myapplication.activity.Pager3DActivity;
 import com.danqiu.myapplication.activity.PayViewActivity;
 import com.danqiu.myapplication.activity.PreviewAct;
-import com.danqiu.myapplication.activity.RecycleViewActivity;
 import com.danqiu.myapplication.activity.RefreshActivity;
 import com.danqiu.myapplication.activity.ServiceActivity;
 import com.danqiu.myapplication.activity.TakePhotoAct;
@@ -147,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.bt_recycle:
-                IntentUtil.IntenToActivity(this, RecycleViewActivity.class);
+                IntentUtil.IntenToActivity(this, BaseRecyleViewAct.class);
                 break;
             case R.id.bt_mp:
                 IntentUtil.IntenToActivity(this, Mp3Activity.class);
