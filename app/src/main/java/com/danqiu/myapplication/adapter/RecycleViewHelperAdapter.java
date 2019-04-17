@@ -23,10 +23,12 @@ public class RecycleViewHelperAdapter extends BaseQuickAdapter<RecycleBean, Base
 
     @Override
     protected void convert(BaseViewHolder viewHolder, RecycleBean item) {
+
         viewHolder.setText(R.id.name, item.getName());
         viewHolder.setText(R.id.content, item.getContext());
-
-
         ImageLoader.loadImage((SimpleDraweeView) viewHolder.getView(R.id.simple_head), item.getHead());
+
+        //获取当前条目position
+        //int position = helper.getLayoutPosition();
     }
 }

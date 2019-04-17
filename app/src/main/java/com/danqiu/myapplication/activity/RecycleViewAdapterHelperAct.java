@@ -46,7 +46,7 @@ public class RecycleViewAdapterHelperAct extends AppCompatActivity {
 
     private void initData() {
         lisBean = new ArrayList<>();
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < 18; i++) {
             lisBean.add(new RecycleBean(url, "张三", "是打发水电费水电费第三方士大夫水电费水电费是打发斯蒂芬是否"));
         }
 
@@ -55,6 +55,7 @@ public class RecycleViewAdapterHelperAct extends AppCompatActivity {
         listRecycle.setLayoutManager(new LinearLayoutManager(this)); //设置LayoutManager为LinearLayoutManager
         listRecycle.setAdapter(listAdapter);
         listRecycle.setNestedScrollingEnabled(false);//解决滑动不流畅
+        listAdapter.openLoadAnimation();
         listAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
