@@ -7,14 +7,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
-import com.danqiu.myapplication.activity.AnnotationAct;
+import com.danqiu.myapplication.activity.BaseRecyleViewAct;
 import com.danqiu.myapplication.activity.BroadcastActivity;
 import com.danqiu.myapplication.activity.ClickScreenActivity;
 import com.danqiu.myapplication.activity.CustomViewActivity;
 import com.danqiu.myapplication.activity.DataBindingAct;
 import com.danqiu.myapplication.activity.DialogActivity;
 import com.danqiu.myapplication.activity.EventBusActivity;
-import com.danqiu.myapplication.activity.ExceleActivity;
 import com.danqiu.myapplication.activity.FrescoActivity;
 import com.danqiu.myapplication.activity.GreenDaoAct;
 import com.danqiu.myapplication.activity.HandSlideAct;
@@ -23,7 +22,6 @@ import com.danqiu.myapplication.activity.NotificationActivity;
 import com.danqiu.myapplication.activity.Pager3DActivity;
 import com.danqiu.myapplication.activity.PayViewActivity;
 import com.danqiu.myapplication.activity.PreviewAct;
-import com.danqiu.myapplication.activity.RecycleViewActivity;
 import com.danqiu.myapplication.activity.RefreshActivity;
 import com.danqiu.myapplication.activity.ServiceActivity;
 import com.danqiu.myapplication.activity.TakePhotoAct;
@@ -104,10 +102,6 @@ public class MainActivity extends AppCompatActivity {
     Button bt_mp;
     @BindView(R.id.bt_recycle)
     Button bt_recycle;
-    @BindView(R.id.bt_annotation)
-    Button bt_annotation;
-    @BindView(R.id.bt_excele)
-    Button bt_excele;
 
     private ConcurrentHashMap<String, Long> map = new ConcurrentHashMap<>();
 
@@ -145,21 +139,15 @@ public class MainActivity extends AppCompatActivity {
      *
      * @param view
      */
-    @OnClick({R.id.bt_mp,R.id.bt_cu,R.id.bt_dialog,R.id.bt_update, R.id.bt_event,R.id.bt_annotation,
+    @OnClick({R.id.bt_mp,R.id.bt_cu,R.id.bt_dialog,R.id.bt_update, R.id.bt_event,
             R.id.bt_fresco, R.id.bt_Broadcast, R.id.bt_service, R.id.bt_Notification,
             R.id.bt_loding, R.id.bt_pager, R.id.bt_push, R.id.bt_pay, R.id.bt_custom,
             R.id.bt_refresh, R.id.bt_dialogfragment, R.id.bt_img, R.id.bt_db,R.id.bt_recycle,
-            R.id.bt_hand, R.id.bt_video, R.id.bt_tab, R.id.bt_take,R.id.bt_excele})
+            R.id.bt_hand, R.id.bt_video, R.id.bt_tab, R.id.bt_take})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.bt_excele:
-                IntentUtil.IntenToActivity(this, ExceleActivity.class);
-                break;
-            case R.id.bt_annotation:
-                IntentUtil.IntenToActivity(this, AnnotationAct.class);
-                break;
             case R.id.bt_recycle:
-                IntentUtil.IntenToActivity(this, RecycleViewActivity.class);
+                IntentUtil.IntenToActivity(this, BaseRecyleViewAct.class);
                 break;
             case R.id.bt_mp:
                 IntentUtil.IntenToActivity(this, Mp3Activity.class);

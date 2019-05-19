@@ -39,7 +39,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".activity.AnnotationAct"/>
+        <activity android:name=".activity.BaseRecyleViewAct"/>
+        <activity android:name=".activity.RecycleViewActivity"/>
+        <activity android:name=".activity.RecycleViewAdapterHelperAct"/>
         <activity android:name=".TabLayoutAct"/>
         <activity android:name=".activity.HandSlideAct"/>
         <activity android:name=".activity.VedioPlayerActivity"/>
@@ -53,7 +55,6 @@
         <activity android:name=".activity.PayViewActivity"/>
         <activity android:name=".activity.Pager3DActivity"/>
         <activity android:name=".activity.LoaingActivity"/>
-        <activity android:name=".activity.ExceleActivity"/>
 
         <activity android:name=".activity.NotificationActivity"/>
         <service android:name=".service.NotificationService"/>
@@ -75,7 +76,7 @@
         <activity android:name=".activity.DialogActivity"/>
 
         <activity android:name=".activity.TestActivity"/>
-        <activity android:name=".activity.RecycleViewActivity"/>
+
 
         <activity android:name=".mp3.Mp3Activity"/>
         <service android:name=".mp3.Mp3Service"/>

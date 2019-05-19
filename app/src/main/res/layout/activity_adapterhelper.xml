@@ -2,9 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:focusable="true"
-    android:focusableInTouchMode="true">
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
 
     <ScrollView
         android:id="@+id/scrollView"
@@ -24,28 +24,21 @@
                 android:gravity="center"
                 android:text="纵向"
                 android:textSize="@dimen/sp_14" />
-
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/list_recycle"
+            <!--显示不全使用包裹-->
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:descendantFocusability="blocksDescendants">
 
-            </android.support.v7.widget.RecyclerView>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:gravity="center"
-                android:text="横向"
-                android:textSize="@dimen/sp_14" />
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/list_recycle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/grid_recycle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                </android.support.v7.widget.RecyclerView>
+            </RelativeLayout>
 
-            </android.support.v7.widget.RecyclerView>
 
         </LinearLayout>
     </ScrollView>
