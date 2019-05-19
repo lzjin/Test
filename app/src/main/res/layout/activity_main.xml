@@ -23,6 +23,16 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp" />
             <Button
+                android:id="@+id/bt_excele"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="excele" />
+            <Button
+                android:id="@+id/bt_annotation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="自定义注解" />
+            <Button
                 android:id="@+id/bt_recycle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

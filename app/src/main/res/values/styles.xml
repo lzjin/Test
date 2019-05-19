@@ -57,4 +57,40 @@
         <item name="android:backgroundDimAmount">0</item><!--弹框背景灰度-->
     </style>
 
+    <style name="list_ll">
+        <item name="android:padding">12dp</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="detail_tv">
+        <item name="android:layout_width">50dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:gravity">center_vertical|left</item>
+        <item name="android:textColor">#333333</item>
+    </style>
+
+    <style name="detail_et">
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">#999999</item>
+        <item name="android:gravity">top</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@drawable/edit_garya5a5a5</item>
+        <item name="android:textCursorDrawable">@null</item>
+    </style>
+
+    <style name="lines_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0.7dp</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:background">@color/color_dddddd</item>
+    </style>
+
 </resources>

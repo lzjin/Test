@@ -19,6 +19,10 @@
     <!--相册框架选中后颜色-->
     <color name="multiple_image_select_primary">#FF0000</color>
 
+    <color name="color_dddddd">#bdbdbd</color>
+    <color name="white_ffffff">#ffffff</color>
+    <color name="color_a5a5a5" >#a5a5a5</color>
+    <color name="color_ffc000">#ffc000</color>
 
     <color name="grayf9">#f9f9f9</color>  <!--===支付===-->
     <color name="gray_gb">#dddddd</color>

@@ -1,0 +1,80 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout style="@style/list_ll">
+
+            <TextView
+                style="@style/detail_tv"
+                android:text="姓名：" />
+
+            <EditText
+                android:id="@+id/et_name"
+                style="@style/detail_et"
+                android:gravity="top" />
+        </LinearLayout>
+
+        <View style="@style/lines_style" />
+
+        <LinearLayout style="@style/list_ll">
+
+            <TextView
+                style="@style/detail_tv"
+                android:text="性别：" />
+
+            <EditText
+                android:id="@+id/et_sex"
+                style="@style/detail_et" />
+
+        </LinearLayout>
+
+        <View style="@style/lines_style" />
+
+        <LinearLayout style="@style/list_ll">
+
+            <TextView
+                style="@style/detail_tv"
+                android:text="电话：" />
+
+            <EditText
+                android:id="@+id/et_phone"
+                style="@style/detail_et" />
+
+
+        </LinearLayout>
+
+        <View style="@style/lines_style" />
+
+        <LinearLayout style="@style/list_ll">
+
+            <TextView
+                style="@style/detail_tv"
+                android:text="地址：" />
+
+
+            <EditText
+                android:id="@+id/et_address"
+                style="@style/detail_et" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/save"
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/color_ffc000"
+            android:padding="10dp"
+            android:textSize="15sp"
+            android:textColor="@color/white_ffffff"
+            android:text="保 存 到 excel" />
+    </LinearLayout>
+
+</LinearLayout>
