@@ -55,6 +55,8 @@
         <activity android:name=".activity.PayViewActivity"/>
         <activity android:name=".activity.Pager3DActivity"/>
         <activity android:name=".activity.LoaingActivity"/>
+        <activity android:name=".activity.ExceleActivity"/>
+        <activity android:name=".activity.AnnotationAct"/>
 
         <activity android:name=".activity.NotificationActivity"/>
         <service android:name=".service.NotificationService"/>

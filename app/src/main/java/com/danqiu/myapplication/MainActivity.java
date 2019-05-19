@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import com.danqiu.myapplication.activity.AnnotationAct;
 import com.danqiu.myapplication.activity.BaseRecyleViewAct;
 import com.danqiu.myapplication.activity.BroadcastActivity;
 import com.danqiu.myapplication.activity.ClickScreenActivity;
@@ -14,6 +15,7 @@ import com.danqiu.myapplication.activity.CustomViewActivity;
 import com.danqiu.myapplication.activity.DataBindingAct;
 import com.danqiu.myapplication.activity.DialogActivity;
 import com.danqiu.myapplication.activity.EventBusActivity;
+import com.danqiu.myapplication.activity.ExceleActivity;
 import com.danqiu.myapplication.activity.FrescoActivity;
 import com.danqiu.myapplication.activity.GreenDaoAct;
 import com.danqiu.myapplication.activity.HandSlideAct;
@@ -102,6 +104,10 @@ public class MainActivity extends AppCompatActivity {
     Button bt_mp;
     @BindView(R.id.bt_recycle)
     Button bt_recycle;
+    @BindView(R.id.bt_excele)
+    Button bt_excele;
+    @BindView(R.id.bt_annotation)
+    Button bt_annotation;
 
     private ConcurrentHashMap<String, Long> map = new ConcurrentHashMap<>();
 
@@ -143,9 +149,15 @@ public class MainActivity extends AppCompatActivity {
             R.id.bt_fresco, R.id.bt_Broadcast, R.id.bt_service, R.id.bt_Notification,
             R.id.bt_loding, R.id.bt_pager, R.id.bt_push, R.id.bt_pay, R.id.bt_custom,
             R.id.bt_refresh, R.id.bt_dialogfragment, R.id.bt_img, R.id.bt_db,R.id.bt_recycle,
-            R.id.bt_hand, R.id.bt_video, R.id.bt_tab, R.id.bt_take})
+            R.id.bt_hand, R.id.bt_video, R.id.bt_tab, R.id.bt_take,R.id.bt_excele,R.id.bt_annotation})
     public void onViewClicked(View view) {
         switch (view.getId()) {
+            case R.id.bt_annotation:
+                IntentUtil.IntenToActivity(this, AnnotationAct.class);
+                break;
+            case R.id.bt_excele:
+                IntentUtil.IntenToActivity(this, ExceleActivity.class);
+                break;
             case R.id.bt_recycle:
                 IntentUtil.IntenToActivity(this, BaseRecyleViewAct.class);
                 break;

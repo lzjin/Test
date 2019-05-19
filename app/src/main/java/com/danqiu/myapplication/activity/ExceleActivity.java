@@ -16,7 +16,9 @@ import android.widget.Toast;
 import com.danqiu.myapplication.R;
 import com.danqiu.myapplication.utils.LogUtil;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.util.List;
 
 import butterknife.BindView;
@@ -24,6 +26,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import jxl.Workbook;
 import jxl.write.Label;
+import jxl.write.WritableImage;
 import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
 import pub.devrel.easypermissions.EasyPermissions;
@@ -138,7 +141,9 @@ public class ExceleActivity extends AppCompatActivity implements EasyPermissions
             ws.addCell(lab2);
             ws.addCell(lab3);
             ws.addCell(lab4);
-
+            ws.addImage(new WritableImage(5, 5, 2, 5, new File(
+                    "/data/user/0/com.danqiu.myapplication/cache/takephoto_cache/IMG_20190330_171808.jpg")));
+           // excelImageTest(ws);
             // 从内存中写入文件中,只能刷一次.
             wwb.write();
             wwb.close();
@@ -149,6 +154,42 @@ public class ExceleActivity extends AppCompatActivity implements EasyPermissions
         }
     }
 
+//    public void excelImageTest(WritableSheet ws) {
+//
+//            FileOutputStream fileOut = null;
+//            BufferedImage bufferImg = null;
+//            //先把读进来的图片放到一个ByteArrayOutputStream中，以便产生ByteArray
+//            try {
+//                ByteArrayOutputStream byteArrayOut = new ByteArrayOutputStream();
+//                bufferImg = ImageIO.read(new File("F:/图片/照片/无名氏/小昭11.jpg"));
+//                ImageIO.write(bufferImg, "jpg", byteArrayOut);
+//
+//                HSSFWorkbook wb = new HSSFWorkbook();
+//                HSSFSheet sheet1 = wb.createSheet("test picture");
+//                //画图的顶级管理器，一个sheet只能获取一个（一定要注意这点）
+//                HSSFPatriarch patriarch = sheet1.createDrawingPatriarch();
+//                //anchor主要用于设置图片的属性
+//                HSSFClientAnchor anchor = new HSSFClientAnchor(0, 0, 255, 255,(short) 1, 1, (short) 5, 8);
+//                anchor.setAnchorType(3);
+//                //插入图片
+//                patriarch.createPicture(anchor, wb.addPicture(byteArrayOut.toByteArray(), HSSFWorkbook.PICTURE_TYPE_JPEG));
+//                fileOut = new FileOutputStream("D:/测试Excel.xls");
+//                // 写入excel文件
+//                wb.write(fileOut);
+//                System.out.println("----Excle文件已生成------");
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }finally{
+//                if(fileOut != null){
+//                    try {
+//                        fileOut.close();
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//            }
+//
+//    }
 
     @OnClick(R.id.save)
     public void onViewClicked() {
