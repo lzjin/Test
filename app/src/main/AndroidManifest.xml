@@ -38,7 +38,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity android:name=".activity.MPAndroidChartActivity"/>
         <activity android:name=".activity.BaseRecyleViewAct"/>
         <activity android:name=".activity.RecycleViewActivity"/>
         <activity android:name=".activity.RecycleViewAdapterHelperAct"/>

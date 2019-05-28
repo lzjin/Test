@@ -20,6 +20,7 @@ import com.danqiu.myapplication.activity.FrescoActivity;
 import com.danqiu.myapplication.activity.GreenDaoAct;
 import com.danqiu.myapplication.activity.HandSlideAct;
 import com.danqiu.myapplication.activity.LoaingActivity;
+import com.danqiu.myapplication.activity.MPAndroidChartActivity;
 import com.danqiu.myapplication.activity.NotificationActivity;
 import com.danqiu.myapplication.activity.Pager3DActivity;
 import com.danqiu.myapplication.activity.PayViewActivity;
@@ -108,6 +109,8 @@ public class MainActivity extends AppCompatActivity {
     Button bt_excele;
     @BindView(R.id.bt_annotation)
     Button bt_annotation;
+    @BindView(R.id.bt_MPAndroidChart)
+    Button bt_MPAndroidChart;
 
     private ConcurrentHashMap<String, Long> map = new ConcurrentHashMap<>();
 
@@ -149,9 +152,13 @@ public class MainActivity extends AppCompatActivity {
             R.id.bt_fresco, R.id.bt_Broadcast, R.id.bt_service, R.id.bt_Notification,
             R.id.bt_loding, R.id.bt_pager, R.id.bt_push, R.id.bt_pay, R.id.bt_custom,
             R.id.bt_refresh, R.id.bt_dialogfragment, R.id.bt_img, R.id.bt_db,R.id.bt_recycle,
-            R.id.bt_hand, R.id.bt_video, R.id.bt_tab, R.id.bt_take,R.id.bt_excele,R.id.bt_annotation})
+            R.id.bt_hand, R.id.bt_video, R.id.bt_tab, R.id.bt_take,R.id.bt_excele,R.id.bt_annotation,
+            R.id.bt_MPAndroidChart})
     public void onViewClicked(View view) {
         switch (view.getId()) {
+            case R.id.bt_MPAndroidChart:
+                IntentUtil.IntenToActivity(this, MPAndroidChartActivity.class);
+                break;
             case R.id.bt_annotation:
                 IntentUtil.IntenToActivity(this, AnnotationAct.class);
                 break;

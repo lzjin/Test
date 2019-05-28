@@ -72,7 +72,7 @@ public class RefreshActivity extends AppCompatActivity {
 
     private void addDataDown() {
         list=new ArrayList<>();
-        for (int i=18;i<28;i++){
+        for (int i=18;i<27;i++){
             list.add(new ListBean("张三",i,"男"));
         }
         myListAdapter=new MyListAdapter(list,this);

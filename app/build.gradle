@@ -134,4 +134,6 @@ dependencies {
     //轮播
     implementation 'com.github.lzjin:ViewPagerGallery:1.05'
     implementation files('libs/jxl.jar')
+    //统计图
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 }
