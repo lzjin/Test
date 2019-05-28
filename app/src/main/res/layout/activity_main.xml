@@ -47,6 +47,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="大图预览" />
+            android:text="滑动组件RecycleView" />
+            <Button
+                android:id="@+id/bt_web"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="web" />
 
             <Button
                 android:id="@+id/bt_fresco"

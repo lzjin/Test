@@ -40,6 +40,7 @@
         </activity>
         <activity android:name=".activity.MPAndroidChartActivity"/>
         <activity android:name=".activity.BaseRecyleViewAct"/>
+        <activity android:name=".activity.WebViewAct"/>
         <activity android:name=".activity.RecycleViewActivity"/>
         <activity android:name=".activity.RecycleViewAdapterHelperAct"/>
         <activity android:name=".TabLayoutAct"/>
