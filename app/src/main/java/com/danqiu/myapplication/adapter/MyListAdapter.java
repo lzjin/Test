@@ -58,6 +58,7 @@ public class MyListAdapter extends BaseAdapter {
         }
         viewHolder.tvAge.setText(list.get(position).getAge()+"");
         viewHolder.tvName.setText(list.get(position).getName());
+
         viewHolder.tvSex.setText(list.get(position).getSex());
 
 

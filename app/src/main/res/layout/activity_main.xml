@@ -23,6 +23,11 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp" />
             <Button
+                android:id="@+id/bt_take"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="相册框架" />
+            <Button
                 android:id="@+id/bt_MPAndroidChart"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -154,12 +159,6 @@
                 android:layout_height="wrap_content"
                 android:text="弹框dialogfragment" />
 
-
-            <Button
-                android:id="@+id/bt_take"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="相册框架" />
 
 
             <Button

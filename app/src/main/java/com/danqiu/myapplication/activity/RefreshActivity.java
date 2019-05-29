@@ -8,6 +8,7 @@ import android.widget.ListView;
 import com.danqiu.myapplication.R;
 import com.danqiu.myapplication.adapter.MyListAdapter;
 import com.danqiu.myapplication.bean.ListBean;
+import com.danqiu.myapplication.utils.MLog;
 import com.danqiu.myapplication.views.MyRefreshFooter;
 import com.scwang.smartrefresh.header.MaterialHeader;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -47,9 +48,9 @@ public class RefreshActivity extends AppCompatActivity {
     private void ininData() {
         addDataDown();
         //设置 Header
-         refreshLayout.setRefreshHeader(new  MaterialHeader(this).setColorSchemeColors(getResources().getColor(R.color.redd2)));
-       //设置 Footer
-        refreshLayout.setRefreshFooter(  new MyRefreshFooter(this));
+        refreshLayout.setRefreshHeader(new MaterialHeader(this).setColorSchemeColors(getResources().getColor(R.color.redd2)));
+        //设置 Footer
+        refreshLayout.setRefreshFooter(new MyRefreshFooter(this));
 
 
         refreshLayout.setOnRefreshListener(new OnRefreshListener() {
@@ -63,28 +64,42 @@ public class RefreshActivity extends AppCompatActivity {
         refreshLayout.setOnLoadmoreListener(new OnLoadmoreListener() {
             @Override
             public void onLoadmore(RefreshLayout refreshlayout) {
-                 addDataUp();//上拉加载更多
-                 refreshlayout.finishLoadMore();
+                addDataUp();//上拉加载更多
+                refreshlayout.finishLoadMore();
             }
         });
 
     }
 
+    /**
+     * 初始化10条
+     */
     private void addDataDown() {
-        list=new ArrayList<>();
-        for (int i=18;i<27;i++){
-            list.add(new ListBean("张三",i,"男"));
+        list = new ArrayList<>();
+        for (int i = 18; i < 28; i++) {
+            list.add(new ListBean("张三", i, "男"));
         }
-        myListAdapter=new MyListAdapter(list,this);
+        myListAdapter = new MyListAdapter(list, this);
         listview.setAdapter(myListAdapter);
+
+
+        MLog.i("test", "----------------: " + myListAdapter.getItem(0));
+
+        ListBean bean= (ListBean) myListAdapter.getItem(0);
+        bean.setName("改变历史");
+        long id=myListAdapter.getItemId(0);
+
+        myListAdapter.notifyDataSetInvalidated();
+        MLog.i("test", "---------------- : " + myListAdapter.getItem(0));
+
     }
 
     private void addDataUp() {
 
-        TimerTask task = new TimerTask(){
-            public void run(){
-                for (int i=38;i<43;i++){
-                    list.add(new ListBean("李四",i,"男"));
+        TimerTask task = new TimerTask() {
+            public void run() {
+                for (int i = 38; i < 43; i++) {
+                    list.add(new ListBean("李四", i, "男"));
                 }
                 runOnUiThread(new Runnable() {
                     @Override

@@ -147,6 +147,8 @@ public class TakePhotoAct extends BaseActivity implements InvokeListener, TakePh
                 configTakePhoto(takePhoto);//压缩
                 //takePhoto.onPickFromGalleryWithCrop(imageUri, getCropOptions());//剪切
                  takePhoto.onPickFromGallery();//不剪切
+                //takePhoto.onPickMultiple(8);//多选
+
                 LogUtil.e("test","---------相册imageUri-----"+imageUri.getPath());
 
                 break;
