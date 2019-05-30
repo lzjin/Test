@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.danqiu.myapplication.R;
 import com.danqiu.myapplication.bean.BarChartVtDateValueBean;
 import com.danqiu.myapplication.utils.LocalJsonResolutionUtils;
+import com.danqiu.myapplication.utils.PieChartManaggerUtil;
 import com.danqiu.myapplication.views.MPA_LineMarkerView;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
@@ -22,6 +23,7 @@ import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 
@@ -50,6 +52,8 @@ public class MPAndroidChartActivity extends AppCompatActivity {
         initLineChart();
 
         initBarChart();
+
+        initPieChart();
     }
 
     /**
@@ -66,6 +70,32 @@ public class MPAndroidChartActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * 饼状图
+     */
+    private void initPieChart() {
+
+        //获取数据 5条
+        List<PieEntry> yvals = new ArrayList<>();
+
+        yvals.add(new PieEntry(2.0f, "单选"));
+        yvals.add(new PieEntry(3.0f, "阅读"));
+        yvals.add(new PieEntry(4.0f, "填空"));
+        yvals.add(new PieEntry(5.0f, "作文"));
+        yvals.add(new PieEntry(1.0f, "改错"));
+
+        // 设置每份的颜色
+        List<Integer> colors = new ArrayList<>();
+        colors.add(Color.parseColor("#6785f2"));
+        colors.add(Color.parseColor("#675cf2"));
+        colors.add(Color.parseColor("#496cef"));
+        colors.add(Color.parseColor("#aa63fa"));
+        colors.add(Color.parseColor("#f5a658"));
+
+        PieChartManaggerUtil pieChartManagger=new PieChartManaggerUtil(mpaPieChart);
+        pieChartManagger.showSolidPieChart(yvals,colors);
+
+    }
     /**
      * 初始化柱状图图表数据
      */
