@@ -1,12 +1,8 @@
 package com.danqiu.myapplication.activity;
 
 import android.Manifest;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Environment;
-import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Button;
@@ -14,11 +10,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.danqiu.myapplication.R;
-import com.danqiu.myapplication.utils.LogUtil;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.util.List;
 
 import butterknife.BindView;
@@ -54,8 +47,10 @@ public class ExceleActivity extends AppCompatActivity implements EasyPermissions
     private WritableWorkbook wwb;
     private File excelFile;
 
+
+
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_excele);
         ButterKnife.bind(this);
@@ -65,30 +60,11 @@ public class ExceleActivity extends AppCompatActivity implements EasyPermissions
 
         excelFile = new File(excelPath);
         createExcel(excelFile);
+
+
     }
 
-    private void requestPermission(){
-        String[] perms = {Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE
-                ,Manifest.permission.CAMERA};
-        if (EasyPermissions.hasPermissions(this, perms)) {
 
-        } else {
-            // Do not have permissions, request them now
-            EasyPermissions.requestPermissions(this, "为了更好的用户体验需要获取以下权限", 1, perms);
-        }
-    }
-
-    @Override
-    public void onPermissionsGranted(int requestCode, List<String> perms) {
-        switch (requestCode){
-            case 1:
-                break;
-        }
-    }
-
-    @Override
-    public void onPermissionsDenied(int requestCode, List<String> perms) {
-    }
 
     // 创建excel表.
     public void createExcel(File file) {
@@ -104,11 +80,15 @@ public class ExceleActivity extends AppCompatActivity implements EasyPermissions
                 Label lbl2 = new Label(1, 0, "性别");
                 Label lbl3 = new Label(2, 0, "电话");
                 Label lbl4 = new Label(3, 0, "地址");
+                Label lbl5 = new Label(4, 0, "图片1");
+                Label lbl6 = new Label(5, 0, "图片2");
 
                 ws.addCell(lbl1);
                 ws.addCell(lbl2);
                 ws.addCell(lbl3);
                 ws.addCell(lbl4);
+                ws.addCell(lbl5);
+                ws.addCell(lbl6);
 
                 // 从内存中写入文件中
                 wwb.write();
@@ -123,27 +103,26 @@ public class ExceleActivity extends AppCompatActivity implements EasyPermissions
     //将数据存入到Excel表中
     public void writeToExcel(Object... args) {
 
-        if(excelFile==null){
-            LogUtil.i("test-------------空");
-        }
-
         try {
             Workbook oldWwb = Workbook.getWorkbook(excelFile);
             wwb = Workbook.createWorkbook(excelFile, oldWwb);
             WritableSheet ws = wwb.getSheet(0);
+
             // 当前行数
             int row = ws.getRows();
-            Label lab1 = new Label(0, row, args[0] + "");
-            Label lab2 = new Label(1, row, args[1] + "");
-            Label lab3 = new Label(2, row, args[2] + "");
-            Label lab4 = new Label(3, row, args[3] + "");
-            ws.addCell(lab1);
-            ws.addCell(lab2);
-            ws.addCell(lab3);
-            ws.addCell(lab4);
-            ws.addImage(new WritableImage(5, 5, 2, 5, new File(
-                    "/data/user/0/com.danqiu.myapplication/cache/takephoto_cache/IMG_20190330_171808.jpg")));
-           // excelImageTest(ws);
+
+
+            ws.addCell(new Label(0, row, args[0] + ""));
+            ws.addCell(new Label(1, row, args[1] + ""));
+            ws.addCell(new Label(2, row, args[2] + ""));
+            ws.addCell(new Label(3, row, args[3] + ""));
+            File f1= new File("/storage/emulated/0/AAASewages/images/a_0_1558504666350.png");
+            File f2=new File("/storage/emulated/0/AAASewages/images/a_1_1558504666352.png");
+
+            ws.addImage(new WritableImage(4, row, 1, 1,f1));
+
+            ws.addImage(new WritableImage(5, row, 1, 1,f2 ));
+
             // 从内存中写入文件中,只能刷一次.
             wwb.write();
             wwb.close();
@@ -218,5 +197,28 @@ public class ExceleActivity extends AppCompatActivity implements EasyPermissions
             Log.i("test", "保存路径不存在,"+dir.toString());
             return dir.toString();
         }
+    }
+
+    private void requestPermission(){
+        String[] perms = {Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE
+                ,Manifest.permission.CAMERA};
+        if (EasyPermissions.hasPermissions(this, perms)) {
+
+        } else {
+            // Do not have permissions, request them now
+            EasyPermissions.requestPermissions(this, "为了更好的用户体验需要获取以下权限", 1, perms);
+        }
+    }
+
+    @Override
+    public void onPermissionsGranted(int requestCode, List<String> perms) {
+        switch (requestCode){
+            case 1:
+                break;
+        }
+    }
+
+    @Override
+    public void onPermissionsDenied(int requestCode, List<String> perms) {
     }
 }

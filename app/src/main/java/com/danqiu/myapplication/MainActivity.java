@@ -33,6 +33,7 @@ import com.danqiu.myapplication.activity.VedioPlayerActivity;
 import com.danqiu.myapplication.bean.MessageEvent;
 import com.danqiu.myapplication.fragment.LoginDailogFragment;
 import com.danqiu.myapplication.mp3.Mp3Activity;
+import com.danqiu.myapplication.ontouch_event.TouchActivity;
 import com.danqiu.myapplication.utils.IntentUtil;
 import com.danqiu.myapplication.utils.MLog;
 
@@ -73,6 +74,8 @@ public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.bt_refresh)
     Button bRefresh;
+    @BindView(R.id.bt_ontouch)
+    Button bt_ontouch;
     @BindView(R.id.bt_custom)
     Button btCustom;
     @BindView(R.id.bt_pay)
@@ -153,9 +156,12 @@ public class MainActivity extends AppCompatActivity {
             R.id.bt_loding, R.id.bt_pager, R.id.bt_push, R.id.bt_pay, R.id.bt_custom,
             R.id.bt_refresh, R.id.bt_dialogfragment, R.id.bt_img, R.id.bt_db,R.id.bt_recycle,
             R.id.bt_hand, R.id.bt_video, R.id.bt_tab, R.id.bt_take,R.id.bt_excele,R.id.bt_annotation,
-            R.id.bt_MPAndroidChart})
+            R.id.bt_MPAndroidChart,R.id.bt_ontouch})
     public void onViewClicked(View view) {
         switch (view.getId()) {
+            case R.id.bt_ontouch:
+                IntentUtil.IntenToActivity(this, TouchActivity.class);
+                break;
             case R.id.bt_MPAndroidChart:
                 IntentUtil.IntenToActivity(this, MPAndroidChartActivity.class);
                 break;

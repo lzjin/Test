@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.danqiu.myapplication.ontouch_event.TestRelativeLayout
+        android:id="@+id/test_1"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:background="@color/blue3bafd9">
+
+        <com.danqiu.myapplication.ontouch_event.TestLinearLayout
+            android:id="@+id/test_2"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:background="@color/crimson">
+
+            <com.danqiu.myapplication.ontouch_event.TestTextView
+                android:id="@+id/test_3"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:background="@color/colorPrimary"/>
+
+
+
+        </com.danqiu.myapplication.ontouch_event.TestLinearLayout>
+
+
+
+
+
+
+
+    </com.danqiu.myapplication.ontouch_event.TestRelativeLayout>
+
+</LinearLayout>

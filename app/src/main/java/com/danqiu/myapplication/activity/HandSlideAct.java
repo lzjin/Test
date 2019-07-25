@@ -19,7 +19,6 @@ import com.danqiu.myapplication.utils.LogUtil;
 import com.danqiu.myapplication.utils.ToastUtil;
 
 import java.lang.reflect.Field;
-import java.util.Arrays;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -58,14 +57,6 @@ public class HandSlideAct extends BaseActivity  {
 
         initData();
 
-         String token = "abcdefghjklmn";
-         String s = token.substring(token.length() - 5) + token.substring(0, token.length() - 5);
-         LogUtil.e(TAG, "---------------转化---------s==----"+s);
-
-        byte bytes[] =s.getBytes();
-        LogUtil.e(TAG, "---------------转化---------bytes==----"+ Arrays.toString(bytes));
-        LogUtil.e(TAG, "---------------转化---------bytes==----"+bytes[0]);
-
     }
 
     public void initData() {
@@ -80,8 +71,8 @@ public class HandSlideAct extends BaseActivity  {
         line.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                LogUtil.e(TAG, "---------------子view1---------onTouch----");
-                return false;
+                 LogUtil.e(TAG, "---------------子view1---------onTouch----");
+                return true;
             }
         });
 
@@ -123,23 +114,33 @@ public class HandSlideAct extends BaseActivity  {
      */
 
     @Override
-    public boolean dispatchTouchEvent(MotionEvent ev) {
-        LogUtil.e(TAG, "--------------Act-------------dispatchTouchEvent--");
-        return super.dispatchTouchEvent(ev);
+    public boolean dispatchTouchEvent(MotionEvent event) {
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                LogUtil.e(TAG,"-------Act------dispatchTouchEvent----按下");
+                break;
+            case MotionEvent.ACTION_UP:
+                LogUtil.e(TAG,"-------Act------dispatchTouchEvent----抬起");
+                break;
+            case MotionEvent.ACTION_MOVE:
+                //LogUtil.e(TAG,"-------Act------dispatchTouchEvent----移动");
+                break;
+        }
+        return super.dispatchTouchEvent(event);
     }
     //用来处理事件
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        LogUtil.e(TAG,"-------------Act--------------onTouchEvent--");
+
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
+                LogUtil.e(TAG,"-------Act------onTouchEvent----按下");
                 break;
             case MotionEvent.ACTION_UP:
-                // LogUtil.e(TAG,"------------------------MainAct--onTouchEvent抬起--");
+                LogUtil.e(TAG,"-------Act------onTouchEvent----抬起");
                 break;
             case MotionEvent.ACTION_MOVE:
-                // LogUtil.e(TAG,"------------------------MainAct--onTouchEvent移动--");
-
+                //LogUtil.e(TAG,"-------Act------onTouchEvent----移动");
                 break;
         }
         return super.onTouchEvent(event);
@@ -214,14 +215,6 @@ public class HandSlideAct extends BaseActivity  {
         return defaultDisplay.getHeight();
     }
 
-
-    /**
-     * px转dp
-     */
-    private int px2dip(int px) {
-        float density = getResources().getDisplayMetrics().density;
-        return (int) (px / density + 0.5);
-    }
 
 
 
