@@ -3,6 +3,7 @@ package com.danqiu.myapplication.utils;
 import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.Typeface;
+
 import com.danqiu.myapplication.R;
 import com.danqiu.myapplication.views.MPA_LineMarkerView;
 import com.github.mikephil.charting.animation.Easing;
@@ -10,6 +11,7 @@ import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.Chart;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
@@ -23,8 +25,8 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.formatter.PercentFormatter;
-import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 
 import java.util.ArrayList;
@@ -131,13 +133,21 @@ public class MPChartUtils {
         xAxis.setAxisMaximum(11f);//最大值
 
         //x轴修改 label标签
-        xAxis.setValueFormatter(new ValueFormatter() {
+        xAxis.setValueFormatter(new IAxisValueFormatter() {
             @Override
-            public String getFormattedValue(float value) {
+            public String getFormattedValue(float value, AxisBase axis) {
                 int index=(int )value;
                 return xLabels.get(index)+"";
             }
         });
+        //3.1版本
+//        xAxis.setValueFormatter(new ValueFormatter() {
+//            @Override
+//            public String getFormattedValue(float value) {
+//                int index=(int )value;
+//                return xLabels.get(index)+"";
+//            }
+//        });
 
 
         //Y轴左边
@@ -246,7 +256,9 @@ public class MPChartUtils {
         dataset.setValueLinePart1OffsetPercentage(70f);
 
         //设置Y轴描述线和填充区域的颜色一致
-        dataset.setUsingSliceColorAsValueLineColor(false);
+        //3.1版本
+       // dataset.setUsingSliceColorAsValueLineColor(false);
+
         //设置每条之前的间隙
         dataset.setSliceSpace(0);
 
@@ -314,7 +326,8 @@ public class MPChartUtils {
         PieData pieData = new PieData(dataset); //填充数据
         pieData.setValueFormatter(new PercentFormatter());//格式化显示的数据为%百分比
         pieChart.setUsePercentValues(true);//显示成百分比
-        pieChart.animateY(1000, Easing.EaseInBack); //设置动画
+       // pieChart.animateY(1000, Easing.EaseInBack); //设置动画 3.1版本直接使用
+        pieChart.animateY(1000, Easing.EasingOption.EaseInBack); //设置动画  //
         pieChart.setData(pieData);//显示饼图
         pieChart.invalidate();
     }
@@ -378,14 +391,21 @@ public class MPChartUtils {
         xAxis.setAxisMinimum(0f);//最小值
         xAxis.setAxisMaximum(6f);//最大值
 
-        //x轴修改 label标签
-        xAxis.setValueFormatter(new ValueFormatter() {
+        xAxis.setValueFormatter(new IAxisValueFormatter() {
             @Override
-            public String getFormattedValue(float value) {
+            public String getFormattedValue(float value, AxisBase axis) {
                 int index=(int )value;
                 return xLabels.get(index)+"";
             }
         });
+        //x轴修改 label标签  3.1版本
+//        xAxis.setValueFormatter(new ValueFormatter() {
+//            @Override
+//            public String getFormattedValue(float value) {
+//                int index=(int )value;
+//                return xLabels.get(index)+"";
+//            }
+//        });
 
 
         //Y轴左边

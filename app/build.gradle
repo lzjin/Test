@@ -134,6 +134,7 @@ dependencies {
     //表格
     implementation files('libs/jxl.jar')
     //统计图
-    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+    //implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.0.2'
     implementation 'org.jetbrains:annotations-java5:15.0'
 }
