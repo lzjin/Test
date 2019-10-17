@@ -31,6 +31,7 @@ import com.danqiu.myapplication.activity.ServiceActivity;
 import com.danqiu.myapplication.activity.TakePhotoAct;
 import com.danqiu.myapplication.activity.TestActivity;
 import com.danqiu.myapplication.activity.VedioPlayerActivity;
+import com.danqiu.myapplication.activity.WebViewAct;
 import com.danqiu.myapplication.bean.MessageEvent;
 import com.danqiu.myapplication.fragment.LoginDailogFragment;
 import com.danqiu.myapplication.mp3.Mp3Activity;
@@ -69,7 +70,8 @@ public class MainActivity extends AppCompatActivity {
     Button btTab;
     @BindView(R.id.bt_take)
     Button btTake;
-
+    @BindView(R.id.bt_web)
+    Button btWeb;
     @BindView(R.id.nice_spinner)
     NiceSpinner niceSpinner;
 
@@ -162,9 +164,12 @@ public class MainActivity extends AppCompatActivity {
             R.id.bt_loding, R.id.bt_pager, R.id.bt_push, R.id.bt_pay, R.id.bt_custom,
             R.id.bt_refresh, R.id.bt_dialogfragment, R.id.bt_img, R.id.bt_db,R.id.bt_recycle,
             R.id.bt_hand, R.id.bt_video, R.id.bt_tab, R.id.bt_take,R.id.bt_excele,R.id.bt_annotation,
-            R.id.bt_MPAndroidChart,R.id.bt_ontouch,R.id.bt_jitter})
+            R.id.bt_MPAndroidChart,R.id.bt_ontouch,R.id.bt_jitter,R.id.bt_web})
     public void onViewClicked(View view) {
         switch (view.getId()) {
+            case R.id.bt_web:
+                IntentUtil.IntenToActivity(this, WebViewAct.class);
+                break;
             case R.id.bt_jitter:
                 IntentUtil.IntenToActivity(this, JitterActivity.class);
                 break;

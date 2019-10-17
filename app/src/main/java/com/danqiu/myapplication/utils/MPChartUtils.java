@@ -159,7 +159,7 @@ public class MPChartUtils {
         //Y轴左边 线宽
         leftYAxis.setAxisLineWidth(2);
         //Y轴左边 绘制标签
-        xAxis.setDrawLabels(true);
+        leftYAxis.setDrawLabels(true);
         //Y轴左边 文字的大小
         leftYAxis.setTextSize(12);
         //Y轴左边 文字颜色
