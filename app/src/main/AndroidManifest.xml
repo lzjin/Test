@@ -82,6 +82,8 @@
 
         <activity android:name=".activity.TestActivity"/>
 
+        <activity android:name=".activity.SlideRecycleViewAct"/>
+
 
         <activity android:name=".mp3.Mp3Activity"/>
         <service android:name=".mp3.Mp3Service"/>

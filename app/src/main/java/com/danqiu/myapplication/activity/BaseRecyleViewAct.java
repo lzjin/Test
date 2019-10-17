@@ -22,6 +22,8 @@ public class BaseRecyleViewAct extends AppCompatActivity {
     Button bt1;
     @BindView(R.id.bt2)
     Button bt2;
+    @BindView(R.id.bt3)
+    Button bt3;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -30,7 +32,7 @@ public class BaseRecyleViewAct extends AppCompatActivity {
         ButterKnife.bind(this);
     }
 
-    @OnClick({R.id.bt1, R.id.bt2})
+    @OnClick({R.id.bt1, R.id.bt2,R.id.bt3})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.bt1:
@@ -38,6 +40,9 @@ public class BaseRecyleViewAct extends AppCompatActivity {
                 break;
             case R.id.bt2:
                 IntentUtil.IntenToActivity(this,RecycleViewAdapterHelperAct.class);
+                break;
+            case R.id.bt3:
+                IntentUtil.IntenToActivity(this,SlideRecycleViewAct.class);
                 break;
         }
     }

@@ -20,6 +20,7 @@
     <dimen name="dp_30">30dp</dimen>
     <dimen name="dp_35">35dp</dimen>
     <dimen name="dp_40">40dp</dimen>
+    <dimen name="dp_50">50dp</dimen>
     <dimen name="sp_42">42sp</dimen><!--==支付密码===-->
 
 
