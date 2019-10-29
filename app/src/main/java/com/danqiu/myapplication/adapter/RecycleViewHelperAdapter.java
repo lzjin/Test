@@ -34,6 +34,9 @@ public class RecycleViewHelperAdapter extends BaseQuickAdapter<RecycleBean, Base
         viewHolder.setText(R.id.content, item.getContext());
         viewHolder.addOnClickListener(R.id.content);
         viewHolder.addOnClickListener(R.id.simple_head);
+
+       // viewHolder.getView(R.id.name).setVisibility(View.GONE);
+
         ImageLoader.loadImage((SimpleDraweeView) viewHolder.getView(R.id.simple_head), item.getHead());
 
         //可见时加载

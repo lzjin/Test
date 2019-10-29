@@ -28,6 +28,7 @@ import com.danqiu.myapplication.activity.PayViewActivity;
 import com.danqiu.myapplication.activity.PreviewAct;
 import com.danqiu.myapplication.activity.RefreshActivity;
 import com.danqiu.myapplication.activity.ServiceActivity;
+import com.danqiu.myapplication.activity.SlidePageAct;
 import com.danqiu.myapplication.activity.TakePhotoAct;
 import com.danqiu.myapplication.activity.TestActivity;
 import com.danqiu.myapplication.activity.VedioPlayerActivity;
@@ -120,7 +121,8 @@ public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.bt_jitter)
     Button bt_jitter;
-
+    @BindView(R.id.bt_slide)
+    Button bt_slide;
 
 
     private ConcurrentHashMap<String, Long> map = new ConcurrentHashMap<>();
@@ -159,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
      *
      * @param view
      */
-    @OnClick({R.id.bt_mp,R.id.bt_cu,R.id.bt_dialog,R.id.bt_update, R.id.bt_event,
+    @OnClick({R.id.bt_mp,R.id.bt_cu,R.id.bt_dialog,R.id.bt_update, R.id.bt_event,R.id.bt_slide,
             R.id.bt_fresco, R.id.bt_Broadcast, R.id.bt_service, R.id.bt_Notification,
             R.id.bt_loding, R.id.bt_pager, R.id.bt_push, R.id.bt_pay, R.id.bt_custom,
             R.id.bt_refresh, R.id.bt_dialogfragment, R.id.bt_img, R.id.bt_db,R.id.bt_recycle,
@@ -167,6 +169,9 @@ public class MainActivity extends AppCompatActivity {
             R.id.bt_MPAndroidChart,R.id.bt_ontouch,R.id.bt_jitter,R.id.bt_web})
     public void onViewClicked(View view) {
         switch (view.getId()) {
+            case R.id.bt_slide:
+                IntentUtil.IntenToActivity(this, SlidePageAct.class);
+                break;
             case R.id.bt_web:
                 IntentUtil.IntenToActivity(this, WebViewAct.class);
                 break;
