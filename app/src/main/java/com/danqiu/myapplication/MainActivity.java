@@ -7,6 +7,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import com.binioter.guideview.Component;
+import com.binioter.guideview.Guide;
+import com.binioter.guideview.GuideBuilder;
 import com.danqiu.myapplication.activity.AnnotationAct;
 import com.danqiu.myapplication.activity.BaseRecyleViewAct;
 import com.danqiu.myapplication.activity.BroadcastActivity;
@@ -35,6 +38,8 @@ import com.danqiu.myapplication.activity.TestActivity;
 import com.danqiu.myapplication.activity.VedioPlayerActivity;
 import com.danqiu.myapplication.activity.WebViewAct;
 import com.danqiu.myapplication.bean.MessageEvent;
+import com.danqiu.myapplication.component.SimpleComponent;
+import com.danqiu.myapplication.component.SimpleComponentB;
 import com.danqiu.myapplication.fragment.LoginDailogFragment;
 import com.danqiu.myapplication.mp3.Mp3Activity;
 import com.danqiu.myapplication.ontouch_event.TouchActivity;
@@ -126,6 +131,10 @@ public class MainActivity extends AppCompatActivity {
     Button bt_slide;
     @BindView(R.id.bt_getView)
     Button bt_getView;
+    @BindView(R.id.bt_guide)
+    Button bt_guide;
+    @BindView(R.id.bt_guide2)
+    Button bt_guide2;
 
 
     private ConcurrentHashMap<String, Long> map = new ConcurrentHashMap<>();
@@ -169,9 +178,13 @@ public class MainActivity extends AppCompatActivity {
             R.id.bt_loding, R.id.bt_pager, R.id.bt_push, R.id.bt_pay, R.id.bt_custom,
             R.id.bt_refresh, R.id.bt_dialogfragment, R.id.bt_img, R.id.bt_db,R.id.bt_recycle,
             R.id.bt_hand, R.id.bt_video, R.id.bt_tab, R.id.bt_take,R.id.bt_excele,R.id.bt_annotation,
-            R.id.bt_MPAndroidChart,R.id.bt_ontouch,R.id.bt_jitter,R.id.bt_web,R.id.bt_getView})
+            R.id.bt_MPAndroidChart,R.id.bt_ontouch,R.id.bt_jitter,R.id.bt_web,R.id.bt_getView,
+            R.id.bt_guide})
     public void onViewClicked(View view) {
         switch (view.getId()) {
+            case R.id.bt_guide://新手引导
+                showGuideView();
+                break;
             case R.id.bt_getView:
                 IntentUtil.IntenToActivity(this, GetViewActivity.class);
                 break;
@@ -271,5 +284,48 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void showGuideView() {
+        GuideBuilder builder = new GuideBuilder();
+        builder.setTargetView(bt_guide)
+                .setAlpha(150)
+                .setHighTargetCorner(20)//圆角
+                .setHighTargetPadding(10);//内边距
+        builder.setOnVisibilityChangedListener(new GuideBuilder.OnVisibilityChangedListener() {
+            @Override
+            public void onShown() {
+            }
+
+            @Override
+            public void onDismiss() {
+                showGuideView2();
+            }
+        });
+
+        builder.addComponent(new SimpleComponent());
+        Guide guide = builder.createGuide();
+        guide.show(this);
+    }
+
+    public void showGuideView2() {
+        final GuideBuilder builder1 = new GuideBuilder();
+        builder1.setTargetView(bt_guide2)
+                .setAlpha(150)
+                .setHighTargetGraphStyle(Component.CIRCLE);//圆形样式
+        builder1.setOnVisibilityChangedListener(new GuideBuilder.OnVisibilityChangedListener() {
+            @Override
+            public void onShown() {
+            }
+
+            @Override
+            public void onDismiss() {
+                IntentUtil.IntenToActivity(MainActivity.this, RefreshActivity.class);
+                //showGuideView3();
+            }
+        });
+
+        builder1.addComponent(new SimpleComponentB());
+        Guide guide = builder1.createGuide();
+        guide.show(this);
+    }
 
 }

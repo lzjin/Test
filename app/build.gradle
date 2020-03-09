@@ -143,4 +143,7 @@ dependencies {
     implementation 'com.github.PhilJay:MPAndroidChart:v3.0.2'
     implementation 'org.jetbrains:annotations-java5:15.0'
 
+    //新手引导
+    implementation 'com.binioter:guideview:1.0.0'
+
 }
