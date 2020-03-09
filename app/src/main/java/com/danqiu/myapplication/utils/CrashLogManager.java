@@ -24,7 +24,7 @@ public class CrashLogManager implements Thread.UncaughtExceptionHandler {
     public static final String TAG = "CrashHandler";
     public static final boolean DEBUG=true;
     //日志保存路径
-    public static final String PATH=Environment.getExternalStorageDirectory().getPath()+"/TestApp/CrashLog/";
+    public static final String PATH=Environment.getExternalStorageDirectory().getAbsolutePath()+"/AAA_Test/CrashLog/";
     public static final String FILE_NAME="carsh_";
     public static final String FILE_NAME_SUFFIX=".txt";
     //系统默认的UncaughtException处理类

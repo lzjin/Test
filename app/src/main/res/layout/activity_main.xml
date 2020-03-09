@@ -24,6 +24,12 @@
                 android:layout_margin="16dp" />
 
             <Button
+                android:id="@+id/bt_getView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="保存截图" />
+
+            <Button
                 android:id="@+id/bt_slide"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

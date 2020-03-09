@@ -90,7 +90,7 @@
         <service android:name=".mp3.Mp3Service"/>
 
 
-
+         <activity android:name=".activity.GetViewActivity"/>
         <activity android:name=".activity.ClickScreenActivity"/>
         <activity android:name=".accessibility.AccessiblityMian"/>
         <activity android:name=".accessibility.OpenSetHelperActivity"/>

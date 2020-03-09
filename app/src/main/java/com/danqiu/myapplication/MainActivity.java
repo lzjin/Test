@@ -17,6 +17,7 @@ import com.danqiu.myapplication.activity.DialogActivity;
 import com.danqiu.myapplication.activity.EventBusActivity;
 import com.danqiu.myapplication.activity.ExceleActivity;
 import com.danqiu.myapplication.activity.FrescoActivity;
+import com.danqiu.myapplication.activity.GetViewActivity;
 import com.danqiu.myapplication.activity.GreenDaoAct;
 import com.danqiu.myapplication.activity.HandSlideAct;
 import com.danqiu.myapplication.activity.JitterActivity;
@@ -123,6 +124,8 @@ public class MainActivity extends AppCompatActivity {
     Button bt_jitter;
     @BindView(R.id.bt_slide)
     Button bt_slide;
+    @BindView(R.id.bt_getView)
+    Button bt_getView;
 
 
     private ConcurrentHashMap<String, Long> map = new ConcurrentHashMap<>();
@@ -166,9 +169,12 @@ public class MainActivity extends AppCompatActivity {
             R.id.bt_loding, R.id.bt_pager, R.id.bt_push, R.id.bt_pay, R.id.bt_custom,
             R.id.bt_refresh, R.id.bt_dialogfragment, R.id.bt_img, R.id.bt_db,R.id.bt_recycle,
             R.id.bt_hand, R.id.bt_video, R.id.bt_tab, R.id.bt_take,R.id.bt_excele,R.id.bt_annotation,
-            R.id.bt_MPAndroidChart,R.id.bt_ontouch,R.id.bt_jitter,R.id.bt_web})
+            R.id.bt_MPAndroidChart,R.id.bt_ontouch,R.id.bt_jitter,R.id.bt_web,R.id.bt_getView})
     public void onViewClicked(View view) {
         switch (view.getId()) {
+            case R.id.bt_getView:
+                IntentUtil.IntenToActivity(this, GetViewActivity.class);
+                break;
             case R.id.bt_slide:
                 IntentUtil.IntenToActivity(this, SlidePageAct.class);
                 break;
