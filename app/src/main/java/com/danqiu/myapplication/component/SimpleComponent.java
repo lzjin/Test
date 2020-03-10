@@ -16,6 +16,18 @@ import com.danqiu.myapplication.utils.MLog;
  */
 public class SimpleComponent implements Component {
 
+  private String title;
+
+  private int img;
+
+  public SimpleComponent(String title, int img) {
+    this.title = title;
+    this.img = img;
+  }
+
+  public SimpleComponent() {
+  }
+
   @Override public View getView(LayoutInflater inflater) {
 
     LinearLayout ll = (LinearLayout) inflater.inflate(R.layout.layer_frends, null);

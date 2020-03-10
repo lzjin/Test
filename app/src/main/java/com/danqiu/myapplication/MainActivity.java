@@ -33,6 +33,7 @@ import com.danqiu.myapplication.activity.PreviewAct;
 import com.danqiu.myapplication.activity.RefreshActivity;
 import com.danqiu.myapplication.activity.ServiceActivity;
 import com.danqiu.myapplication.activity.SlidePageAct;
+import com.danqiu.myapplication.activity.SpeechActivity;
 import com.danqiu.myapplication.activity.TakePhotoAct;
 import com.danqiu.myapplication.activity.TestActivity;
 import com.danqiu.myapplication.activity.VedioPlayerActivity;
@@ -135,7 +136,8 @@ public class MainActivity extends AppCompatActivity {
     Button bt_guide;
     @BindView(R.id.bt_guide2)
     Button bt_guide2;
-
+    @BindView(R.id.bt_speech)
+    Button bt_speech;
 
     private ConcurrentHashMap<String, Long> map = new ConcurrentHashMap<>();
 
@@ -179,9 +181,12 @@ public class MainActivity extends AppCompatActivity {
             R.id.bt_refresh, R.id.bt_dialogfragment, R.id.bt_img, R.id.bt_db,R.id.bt_recycle,
             R.id.bt_hand, R.id.bt_video, R.id.bt_tab, R.id.bt_take,R.id.bt_excele,R.id.bt_annotation,
             R.id.bt_MPAndroidChart,R.id.bt_ontouch,R.id.bt_jitter,R.id.bt_web,R.id.bt_getView,
-            R.id.bt_guide})
+            R.id.bt_guide,R.id.bt_speech})
     public void onViewClicked(View view) {
         switch (view.getId()) {
+            case R.id.bt_speech:
+                IntentUtil.IntenToActivity(this, SpeechActivity.class);
+                break;
             case R.id.bt_guide://新手引导
                 showGuideView();
                 break;

@@ -3,8 +3,6 @@ package com.danqiu.myapplication.activity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.widget.ScrollView;
 
 import com.danqiu.myapplication.R;
 import com.danqiu.myapplication.adapter.RecycleViewAdapter;
@@ -22,26 +20,25 @@ import butterknife.ButterKnife;
  * Describe ：RecycleView代替 ListView 或GridView
  */
 public class RecycleViewActivity extends BaseActivity {
-
+//    @BindView(R.id.scrollView)
+//    ScrollView scrollView;
     @BindView(R.id.list_recycle)
     RecyclerView listRecycle;
-
-    @BindView(R.id.grid_recycle)
-    RecyclerView gridRecycle;
+//    @BindView(R.id.grid_recycle)
+//    RecyclerView gridRecycle;
 
     RecycleViewGridAdapter girdAdapter;
 
     RecycleViewAdapter listAdapter;
     List<RecycleBean> lisBean;
-    @BindView(R.id.scrollView)
-    ScrollView scrollView;
+
     private String url = "http://www.people.com.cn/mediafile/pic/20161022/76/4315084153778263996.jpg";
 
     @Override
     public void initCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_recycleview);
         ButterKnife.bind(this);
-        scrollView.scrollTo(0,0);
+        //scrollView.scrollTo(0,0);
         initData();
     }
 
@@ -52,7 +49,7 @@ public class RecycleViewActivity extends BaseActivity {
         }
 
         //ListView 效果
-        listAdapter = new RecycleViewAdapter(this, lisBean);
+        listAdapter = new RecycleViewAdapter(this, lisBean,listRecycle);
         listRecycle.setLayoutManager(new LinearLayoutManager(this)); //设置LayoutManager为LinearLayoutManager
         listRecycle.setAdapter(listAdapter);
         listRecycle.setNestedScrollingEnabled(false);//解决滑动不流畅
@@ -65,17 +62,17 @@ public class RecycleViewActivity extends BaseActivity {
         });
 
         //GridView 效果
-        girdAdapter = new RecycleViewGridAdapter(this, lisBean);
-        gridRecycle.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));//grid
-        gridRecycle.setAdapter(girdAdapter);
-        gridRecycle.setNestedScrollingEnabled(false);//解决滑动不流畅
-
-        girdAdapter.setOnItemClickListener(new RecycleViewGridAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(int position) {
-                showToast("点击" + (position + 1));
-            }
-        });
+//        girdAdapter = new RecycleViewGridAdapter(this, lisBean);
+//        gridRecycle.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));//grid
+//        gridRecycle.setAdapter(girdAdapter);
+//        gridRecycle.setNestedScrollingEnabled(false);//解决滑动不流畅
+//
+//        girdAdapter.setOnItemClickListener(new RecycleViewGridAdapter.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(int position) {
+//                showToast("点击" + (position + 1));
+//            }
+//        });
 
 
     }
