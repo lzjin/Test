@@ -4,53 +4,50 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/list_recycle"
+
+
+    <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:layout_height="450dp"/>
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
 
-    <!--<ScrollView-->
-        <!--android:id="@+id/scrollView"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:scrollbars="none">-->
-
-        <!--<LinearLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:orientation="vertical">-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
 
-            <!--<TextView-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="50dp"-->
-                <!--android:gravity="center"-->
-                <!--android:text="纵向"-->
-                <!--android:textSize="@dimen/sp_14" />-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:text="纵向"
+                android:textSize="@dimen/sp_14" />
 
 
-            <!--<android.support.v7.widget.RecyclerView-->
-                <!--android:id="@+id/list_recycle"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"/>-->
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/list_recycle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
 
-            <!---->
 
-            <!--<TextView-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="50dp"-->
-                <!--android:gravity="center"-->
-                <!--android:text="横向"-->
-                <!--android:textSize="@dimen/sp_14" />-->
 
-            <!--<android.support.v7.widget.RecyclerView-->
-                <!--android:id="@+id/grid_recycle"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"/>-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:text="横向"
+                android:textSize="@dimen/sp_14" />
 
-             <!---->
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/grid_recycle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
 
-        <!--</LinearLayout>-->
-    <!--</ScrollView>-->
+
+
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

@@ -7,9 +7,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.binioter.guideview.Component;
 import com.binioter.guideview.Guide;
 import com.binioter.guideview.GuideBuilder;
 import com.danqiu.myapplication.R;
@@ -32,7 +32,7 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
     private List<RecycleBean> list;
     private RecyclerView mRecyclerView;
     private Guide mGuide;
-    private int index_x=1;
+    private int index_x = 0;
 
     public RecycleViewAdapter(Context mContext, List<RecycleBean> list, RecyclerView recyclerView) {
         this.mContext = mContext;
@@ -45,7 +45,7 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
         this.list = list;
     }
 
-    public interface OnItemClickListener{
+    public interface OnItemClickListener {
         void onItemClick(int position);
     }
 
@@ -62,9 +62,10 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
         View mView = LayoutInflater.from(mContext).inflate(R.layout.item_recycle, parent, false);
         return new MyViewHolder(mView);
     }
+
     //绑定数据
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
         holder.name.setText(list.get(position).getName());
         holder.content.setText(list.get(position).getContext());
         ImageLoader.loadImage(holder.simpleHead, list.get(position).getHead());
@@ -75,15 +76,20 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
                 mItemClickListener.onItemClick(position);
             }
         });
-        View view=holder.itemView;
-        if(list!=null&&index_x==1&& null == mGuide){
-            view.post(new Runnable() {
-                @Override public void run() {
-                    //showGuideViewList(mContext,mRecyclerView);
-                    showGuideView(mRecyclerView);
+
+        View view = holder.itemView;
+
+        view.post(new Runnable() {
+            @Override
+            public void run() {
+                if (list != null && index_x == position && null == mGuide) {
+                    //showGuideView(holder.simpleHead);
+                    showGuideView(holder.relItem);
                 }
-            });
-        }
+            }
+        });
+
+
     }
 
     @Override
@@ -93,6 +99,8 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
 
     //继承RecyclerView.ViewHolder抽象类的自定义ViewHolder
     static class MyViewHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.rel_item)
+        RelativeLayout relItem;
         @BindView(R.id.simple_head)
         SimpleDraweeView simpleHead;
         @BindView(R.id.name)
@@ -107,38 +115,12 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
     }
 
     public void showGuideView(View targetView) {
-        index_x++;
+        index_x = -1;
         GuideBuilder builder = new GuideBuilder();
         builder.setTargetView(targetView)
                 .setAlpha(150)
                 .setHighTargetCorner(20)
                 .setHighTargetPadding(10)
-                .setOverlayTarget(false)
-                .setOutsideTouchable(false);
-        builder.setOnVisibilityChangedListener(new GuideBuilder.OnVisibilityChangedListener() {
-            @Override public void onShown() {
-            }
-
-            @Override public void onDismiss() {
-                if (null != mGuide) {
-                    mGuide.dismiss();
-                    mGuide = null;
-                }
-            }
-        });
-
-        builder.addComponent(new SimpleComponent());
-        Guide guide = builder.createGuide();
-        guide.setShouldCheckLocInWindow(true);
-        guide.show((Activity) mContext);
-    }
-
-    private void showGuideViewList(Context context, View view) {
-        index_x++;
-        GuideBuilder builder = new GuideBuilder();
-        builder.setTargetView(view)
-                .setAlpha(153)
-                .setHighTargetGraphStyle(Component.ROUNDRECT)
                 .setOverlayTarget(false)
                 .setOutsideTouchable(false);
         builder.setOnVisibilityChangedListener(new GuideBuilder.OnVisibilityChangedListener() {
@@ -154,9 +136,10 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
                 }
             }
         });
+
         builder.addComponent(new SimpleComponent());
-        mGuide = builder.createGuide();
-        mGuide.setShouldCheckLocInWindow(false);
-        mGuide.show((Activity) context);
+        Guide guide = builder.createGuide();
+        guide.setShouldCheckLocInWindow(true);
+        guide.show((Activity) mContext);
     }
 }

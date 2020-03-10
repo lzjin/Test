@@ -3,6 +3,8 @@ package com.danqiu.myapplication.activity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.widget.ScrollView;
 
 import com.danqiu.myapplication.R;
 import com.danqiu.myapplication.adapter.RecycleViewAdapter;
@@ -20,12 +22,12 @@ import butterknife.ButterKnife;
  * Describe ：RecycleView代替 ListView 或GridView
  */
 public class RecycleViewActivity extends BaseActivity {
-//    @BindView(R.id.scrollView)
-//    ScrollView scrollView;
+    @BindView(R.id.scrollView)
+    ScrollView scrollView;
     @BindView(R.id.list_recycle)
     RecyclerView listRecycle;
-//    @BindView(R.id.grid_recycle)
-//    RecyclerView gridRecycle;
+    @BindView(R.id.grid_recycle)
+    RecyclerView gridRecycle;
 
     RecycleViewGridAdapter girdAdapter;
 
@@ -38,7 +40,7 @@ public class RecycleViewActivity extends BaseActivity {
     public void initCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_recycleview);
         ButterKnife.bind(this);
-        //scrollView.scrollTo(0,0);
+        scrollView.scrollTo(0,0);
         initData();
     }
 
@@ -62,17 +64,17 @@ public class RecycleViewActivity extends BaseActivity {
         });
 
         //GridView 效果
-//        girdAdapter = new RecycleViewGridAdapter(this, lisBean);
-//        gridRecycle.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));//grid
-//        gridRecycle.setAdapter(girdAdapter);
-//        gridRecycle.setNestedScrollingEnabled(false);//解决滑动不流畅
-//
-//        girdAdapter.setOnItemClickListener(new RecycleViewGridAdapter.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(int position) {
-//                showToast("点击" + (position + 1));
-//            }
-//        });
+        girdAdapter = new RecycleViewGridAdapter(this, lisBean);
+        gridRecycle.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));//grid
+        gridRecycle.setAdapter(girdAdapter);
+        gridRecycle.setNestedScrollingEnabled(false);//解决滑动不流畅
+
+        girdAdapter.setOnItemClickListener(new RecycleViewGridAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                showToast("点击" + (position + 1));
+            }
+        });
 
 
     }
