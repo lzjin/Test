@@ -17,7 +17,6 @@ import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.cert.X509Certificate;
-import java.util.Timer;
 
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
@@ -38,6 +37,8 @@ public class JWebSocketClientService extends Service {
             if (socketClient != null) {
                 if (socketClient.isClosed()) {
                     reconnectWs();
+                }else {
+                    sendMsg("心跳检测消息");
                 }
             } else {
                 //如果client已为空，重新初始化连接
@@ -48,11 +49,7 @@ public class JWebSocketClientService extends Service {
             mHandler.postDelayed(this, HEART_BEAT_RATE);
         }
     };
-    private Timer mTimer=null;//定时器
 
-
-    private final static int GRAY_SERVICE_ID = 1001;
-    private boolean isOpenSocket;
     public  JWebSocketClient socketClient;
     private JWebSocketClientBinder mBinder = new JWebSocketClientBinder();
     public JWebSocketClientService() {
@@ -118,13 +115,11 @@ public class JWebSocketClientService extends Service {
             @Override
             public void onOpen(ServerHandshake handshakedata) {
                 super.onOpen(handshakedata);
-                isOpenSocket=true;
                 Log.e(TAG, "websocket连接成功");
                 EventBus.getDefault().post("连接成功");
             }
             @Override
             public void onClose(int code, String reason, boolean remote) {
-                isOpenSocket=false;
                 Log.e(TAG, "websocket连接关闭");
                 EventBus.getDefault().post("连接关闭");
             }
@@ -156,9 +151,10 @@ public class JWebSocketClientService extends Service {
      */
     public void sendMsg(String msg) {
         if (null != socketClient&&socketClient.isOpen()) {
-            socketClient.onMessage(msg);
             Log.e(TAG, "发送的消息：" + msg);
+            socketClient.onMessage(msg);
         }else {
+            EventBus.getDefault().post("断开连接");
             Log.e(TAG, "发送的消息：当前断连无法发送");
         }
     }

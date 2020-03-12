@@ -41,6 +41,8 @@ public class JWebsocketActivity extends AppCompatActivity {
     @BindView(R.id.btn_colse)
     Button btnColse;
     private final static String TAG="zz";
+    //定义一个全局变量用来标记
+    private boolean isConnected = false;
 
     private JWebSocketClient socketClient;
     private JWebSocketClientService.JWebSocketClientBinder binder;
@@ -67,6 +69,7 @@ public class JWebsocketActivity extends AppCompatActivity {
         setContentView(R.layout.activity_websocket);
         ButterKnife.bind(this);
         EventBus.getDefault().register(this);
+
     }
 
     //订阅方法，当接收到事件的时候，会调用该方法
@@ -79,6 +82,7 @@ public class JWebsocketActivity extends AppCompatActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_open:
+                isConnected=true;
                 //启动服务
                 startJWebSClientService();
                 //绑定服务
@@ -123,9 +127,10 @@ public class JWebsocketActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if(serviceConnection!=null){
+        if(isConnected&&serviceConnection!=null){
             unbindService(serviceConnection);
             serviceConnection=null;
+            isConnected = false;
         }
     }
 
