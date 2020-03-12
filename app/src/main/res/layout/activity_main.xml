@@ -24,6 +24,14 @@
                 android:layout_margin="16dp" />
 
             <Button
+                android:id="@+id/bt_socket"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:text="长连接测试" />
+
+            <Button
                 android:id="@+id/bt_speech"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

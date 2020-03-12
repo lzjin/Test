@@ -64,11 +64,19 @@
 
         <activity android:name=".activity.SpeechActivity"/>
 
+        <activity android:name=".activity.JWebsocketActivity"/>
+
         <activity android:name=".activity.NotificationActivity"/>
         <service android:name=".service.NotificationService"/>
 
         <activity android:name=".activity.ServiceActivity"/>
         <service android:name=".service.ServiceOne"/>
+
+
+        <service
+            android:name=".socket.JWebSocketClientService"
+            android:enabled="true"
+            android:exported="true" />
 
         <activity android:name=".activity.BroadcastActivity"/>
         <!--静态注册，指定ttt过滤-->

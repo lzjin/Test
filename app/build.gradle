@@ -145,8 +145,8 @@ dependencies {
 
     //新手引导
     implementation 'com.binioter:guideview:1.0.0'
-    //语音合成
-    implementation 'com.github.wulee510505:Text2Speach:1.0.0'
+    //
+    implementation "org.java-websocket:Java-WebSocket:1.4.0"
 
 
 }

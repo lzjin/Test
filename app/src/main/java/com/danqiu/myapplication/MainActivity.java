@@ -23,6 +23,7 @@ import com.danqiu.myapplication.activity.FrescoActivity;
 import com.danqiu.myapplication.activity.GetViewActivity;
 import com.danqiu.myapplication.activity.GreenDaoAct;
 import com.danqiu.myapplication.activity.HandSlideAct;
+import com.danqiu.myapplication.activity.JWebsocketActivity;
 import com.danqiu.myapplication.activity.JitterActivity;
 import com.danqiu.myapplication.activity.LoaingActivity;
 import com.danqiu.myapplication.activity.MPAndroidChartActivity;
@@ -138,6 +139,9 @@ public class MainActivity extends AppCompatActivity {
     Button bt_guide2;
     @BindView(R.id.bt_speech)
     Button bt_speech;
+    @BindView(R.id.bt_socket)
+    Button bt_socket;
+
 
     private ConcurrentHashMap<String, Long> map = new ConcurrentHashMap<>();
 
@@ -181,9 +185,12 @@ public class MainActivity extends AppCompatActivity {
             R.id.bt_refresh, R.id.bt_dialogfragment, R.id.bt_img, R.id.bt_db,R.id.bt_recycle,
             R.id.bt_hand, R.id.bt_video, R.id.bt_tab, R.id.bt_take,R.id.bt_excele,R.id.bt_annotation,
             R.id.bt_MPAndroidChart,R.id.bt_ontouch,R.id.bt_jitter,R.id.bt_web,R.id.bt_getView,
-            R.id.bt_guide,R.id.bt_speech})
+            R.id.bt_guide,R.id.bt_speech,R.id.bt_socket})
     public void onViewClicked(View view) {
         switch (view.getId()) {
+            case R.id.bt_socket:
+                IntentUtil.IntenToActivity(this, JWebsocketActivity.class);
+                break;
             case R.id.bt_speech:
                 IntentUtil.IntenToActivity(this, SpeechActivity.class);
                 break;

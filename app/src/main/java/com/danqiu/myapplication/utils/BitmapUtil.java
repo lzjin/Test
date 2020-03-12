@@ -11,6 +11,9 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import static com.danqiu.myapplication.utils.SystemUtil.getScreenHeight;
+import static com.danqiu.myapplication.utils.SystemUtil.getScreenWidth;
+
 /**
  * Created by lzj on 2020/3/9
  * Describe ：保存截图
@@ -95,6 +98,27 @@ public class BitmapUtil {
 
         return bmp;
     }
+
+    public static Bitmap snapShotWithoutStatusBar(Activity activity)
+    {
+        View view = activity.getWindow().getDecorView();
+        view.setDrawingCacheEnabled(true);
+        view.buildDrawingCache();
+        Bitmap bmp = view.getDrawingCache();
+        Rect frame = new Rect();
+        activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(frame);
+        int statusBarHeight = frame.top;
+
+        int width = getScreenWidth(activity);
+        int height = getScreenHeight(activity);
+        Bitmap bp = null;
+        bp = Bitmap.createBitmap(bmp, 0, statusBarHeight, width, height
+                - statusBarHeight);
+        view.destroyDrawingCache();
+        return bp;
+
+    }
+
 
     /**
      *  Bitmap保存为图片文件
