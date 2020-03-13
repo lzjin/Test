@@ -1,10 +1,12 @@
 package com.danqiu.myapplication.socket;
 
+import android.annotation.SuppressLint;
 import android.app.Service;
 import android.content.Intent;
 import android.os.Binder;
 import android.os.Handler;
 import android.os.IBinder;
+import android.os.Message;
 import android.util.Log;
 
 import com.danqiu.myapplication.utils.MLog;
@@ -17,6 +19,8 @@ import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.cert.X509Certificate;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
@@ -29,26 +33,27 @@ public class JWebSocketClientService extends Service {
     private final static String TAG="zz";
     // ---------websocket心跳检测------------------
     private static final long HEART_BEAT_RATE = 5 * 1000;//每隔10秒进行一次对长连接的心跳检测
-    private Handler mHandler = new Handler();
-    private Runnable heartBeatRunnable = new Runnable() {
-        @Override
-        public void run() {
-            Log.e(TAG, "心跳包检测websocket连接状态"+System.currentTimeMillis());
-            if (socketClient != null) {
-                if (socketClient.isClosed()) {
-                    reconnectWs();
-                }else {
-                    sendMsg("心跳检测消息");
-                }
-            } else {
-                //如果client已为空，重新初始化连接
-                socketClient = null;
-                initSocketClient();
-            }
-            //每隔一定的时间，对长连接进行一次心跳检测
-            mHandler.postDelayed(this, HEART_BEAT_RATE);
-        }
-    };
+
+//    private Handler mHandler = new Handler();
+//    private Runnable heartBeatRunnable = new Runnable() {
+//        @Override
+//        public void run() {
+//            Log.e(TAG, "心跳包检测websocket连接状态"+System.currentTimeMillis());
+//            if (socketClient != null) {
+//                if (socketClient.isClosed()) {
+//                    reconnectWs();
+//                }else {
+//                    sendMsg("心跳检测消息");
+//                }
+//            } else {
+//                //如果client已为空，重新初始化连接
+//                socketClient = null;
+//                initSocketClient();
+//            }
+//            //每隔一定的时间，对长连接进行一次心跳检测
+//            mHandler.postDelayed(this, HEART_BEAT_RATE);
+//        }
+//    };
 
     public  JWebSocketClient socketClient;
     private JWebSocketClientBinder mBinder = new JWebSocketClientBinder();
@@ -69,6 +74,7 @@ public class JWebSocketClientService extends Service {
     @Override
     public boolean onUnbind(Intent intent) {
         MLog.i(TAG,"-------------onUnbind----");
+        closeConnect();
         return super.onUnbind(intent);
     }
 
@@ -83,8 +89,8 @@ public class JWebSocketClientService extends Service {
         MLog.i(TAG,"-------------onStartCommand---------");
         //初始化websocket
         initSocketClient();
-        mHandler.postDelayed(heartBeatRunnable, HEART_BEAT_RATE);//开启心跳检测
-
+        //mHandler.postDelayed(heartBeatRunnable, HEART_BEAT_RATE);//开启心跳检测
+        startTimer();
         return START_STICKY;
     }
 
@@ -103,7 +109,7 @@ public class JWebSocketClientService extends Service {
      * 初始化websocket连接
      */
     private void initSocketClient() {
-        URI uri = URI.create("ws://echo.websocket.org");
+        URI uri = URI.create("ws://10.0.255.169:11211");
         socketClient = new JWebSocketClient(uri) {
             @Override
             public void onMessage(String message) {
@@ -166,9 +172,12 @@ public class JWebSocketClientService extends Service {
             if (null != socketClient) {
                 socketClient.close();
             }
-            if(null != mHandler){
-                mHandler.removeCallbacks(heartBeatRunnable);
-                mHandler.removeCallbacksAndMessages(null);
+//            if(null != mHandler){
+//                mHandler.removeCallbacks(heartBeatRunnable);
+//            }
+            if(null!=handler){
+                handler.removeCallbacksAndMessages(null);
+                stopTimer();
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -181,7 +190,8 @@ public class JWebSocketClientService extends Service {
      * 开启重连
      */
     private void reconnectWs() {
-        mHandler.removeCallbacks(heartBeatRunnable);
+        //mHandler.removeCallbacks(heartBeatRunnable);
+        handler.removeCallbacksAndMessages(null);
         new Thread() {
             @Override
             public void run() {
@@ -222,6 +232,64 @@ public class JWebSocketClientService extends Service {
             e.printStackTrace();
         }
         return sslContext;
+    }
+
+    private Timer mTimer=null;//定时器
+    private MyTimerTask mTimerTask=null;
+    @SuppressLint("HandlerLeak")
+    private Handler handler= new Handler(){
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case 1:
+                    Log.e(TAG, "心跳包检测websocket连接状态"+System.currentTimeMillis());
+                    if (socketClient != null) {
+                        if (socketClient.isClosed()) {
+                            reconnectWs();
+                        }else {
+                            sendMsg("心跳检测消息");
+                        }
+                    } else {
+                        //如果client已为空，重新初始化连接
+                        socketClient = null;
+                        initSocketClient();
+                    }
+                    break;
+            }
+        }
+    };
+    class MyTimerTask extends TimerTask {
+        @Override
+        public void run() {
+            Message msg = new Message();
+            msg.what = 1;  //消息(一个整型值)
+            handler.sendMessage(msg);// 每隔1秒发送一个msg给mHandler
+            //handler.sendEmptyMessage(1001);
+        }
+    }
+   /**
+     * 开启定时器
+     */
+    public void startTimer() {
+        if (mTimer == null) {
+            mTimer = new Timer();
+        }
+        if(mTimerTask==null){
+            mTimerTask=new MyTimerTask();
+        }
+        mTimer.schedule(mTimerTask, 3000, 1000*5);
+    }
+    /**
+     * 停止定时器
+     */
+    public void stopTimer(){
+        if(mTimer!=null){
+            mTimer.cancel();
+            mTimer = null;
+        }
+        if(mTimerTask!=null){
+            mTimerTask.cancel();
+            mTimerTask = null;
+        }
     }
 
 }

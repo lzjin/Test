@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.danqiu.myapplication.R;
+import com.danqiu.myapplication.socket.HeartbeatClient;
 import com.danqiu.myapplication.socket.JWebSocketClient;
 import com.danqiu.myapplication.socket.JWebSocketClientService;
 import com.danqiu.myapplication.utils.MLog;
@@ -47,6 +48,7 @@ public class JWebsocketActivity extends AppCompatActivity {
     private JWebSocketClient socketClient;
     private JWebSocketClientService.JWebSocketClientBinder binder;
     private JWebSocketClientService jWebSClientService;
+    private  HeartbeatClient client;
 
     private ServiceConnection serviceConnection = new ServiceConnection() {
         @Override
@@ -55,6 +57,7 @@ public class JWebsocketActivity extends AppCompatActivity {
             binder = (JWebSocketClientService.JWebSocketClientBinder) iBinder;
             jWebSClientService = binder.getService();
             socketClient = jWebSClientService.socketClient;
+            isConnected=true;
         }
 
         @Override
@@ -70,6 +73,11 @@ public class JWebsocketActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         EventBus.getDefault().register(this);
 
+//        //启动服务
+//        startJWebSClientService();
+//        //绑定服务
+//        bindService();
+
     }
 
     //订阅方法，当接收到事件的时候，会调用该方法
@@ -82,11 +90,19 @@ public class JWebsocketActivity extends AppCompatActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_open:
-                isConnected=true;
-                //启动服务
-                startJWebSClientService();
-                //绑定服务
-                bindService();
+
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            client=null;
+                            client=new HeartbeatClient();
+                            try {
+                                client.start();
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }).start();
                 break;
             case R.id.btn_add:
                 ToastUtil.showShort(this,"5秒内自动重连");
@@ -103,6 +119,7 @@ public class JWebsocketActivity extends AppCompatActivity {
                 if(jWebSClientService!=null){
                     jWebSClientService.closeConnect();
                 }
+
                 break;
         }
     }
@@ -129,7 +146,7 @@ public class JWebsocketActivity extends AppCompatActivity {
         super.onDestroy();
         if(isConnected&&serviceConnection!=null){
             unbindService(serviceConnection);
-            serviceConnection=null;
+            //serviceConnection=null;
             isConnected = false;
         }
     }
