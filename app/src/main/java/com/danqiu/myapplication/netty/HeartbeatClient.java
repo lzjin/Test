@@ -30,8 +30,8 @@ import io.netty.util.CharsetUtil;
 public class HeartbeatClient {
     private EventLoopGroup mWorkerGroup = new NioEventLoopGroup();
     private int nettyPort=11211;
-    private String host="10.0.255.169";
-    // private String host="10.0.255.228";
+    //private String host="10.0.255.169";
+    private String host="10.0.255.228";
     private  Channel channel;
     private  ChannelFuture future;
 
@@ -58,7 +58,7 @@ public class HeartbeatClient {
                 .handler(new ChannelInitializer<Channel>() {
                     @Override
                     protected void initChannel(Channel channel) throws Exception {
-                        channel.pipeline().addLast(new IdleStateHandler(5,0,0));
+                        channel.pipeline().addLast(new IdleStateHandler(3,5,8));
                         //channel.pipeline().addLast(new ObjectDecoder(1024 * 1024, ClassResolvers.cacheDisabled(this.getClass().getClassLoader())));
                         // 设置发送消息编码器
                         //  channel.pipeline().addLast(new ObjectEncoder());
@@ -102,7 +102,7 @@ public class HeartbeatClient {
             Log.e("test", "send: channel is not active!");
             return;
         }
-        Log.e("test", "我是客服端发送："+msg);
+        Log.e("test", "------------客服端发送："+msg);
         ByteBuf byf= Unpooled.wrappedBuffer(msg.getBytes((CharsetUtil.UTF_8)));
         channel.writeAndFlush(byf);
 

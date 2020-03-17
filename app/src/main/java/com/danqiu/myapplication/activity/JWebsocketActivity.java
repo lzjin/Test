@@ -12,7 +12,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.danqiu.myapplication.R;
-import com.danqiu.myapplication.socket.HeartbeatClient;
+import com.danqiu.myapplication.netty.HeartbeatClient;
 import com.danqiu.myapplication.socket.JWebSocketClient;
 import com.danqiu.myapplication.socket.JWebSocketClientService;
 import com.danqiu.myapplication.utils.MLog;
@@ -48,7 +48,7 @@ public class JWebsocketActivity extends AppCompatActivity {
     private JWebSocketClient socketClient;
     private JWebSocketClientService.JWebSocketClientBinder binder;
     private JWebSocketClientService jWebSClientService;
-    private  HeartbeatClient client;
+
 
     private ServiceConnection serviceConnection = new ServiceConnection() {
         @Override
@@ -90,14 +90,11 @@ public class JWebsocketActivity extends AppCompatActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_open:
-
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
-                            client=null;
-                            client=new HeartbeatClient();
                             try {
-                                client.start();
+                                HeartbeatClient.getInstance().start();
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
@@ -108,10 +105,7 @@ public class JWebsocketActivity extends AppCompatActivity {
                 ToastUtil.showShort(this,"5秒内自动重连");
                 break;
             case R.id.btn_send:
-                if(jWebSClientService!=null){
-                    jWebSClientService.sendMsg("发送消息");
-                }
-
+                HeartbeatClient.getInstance().sendMsg("我是客服端9527："+System.currentTimeMillis());
                 break;
             case R.id.btn_msg:
                 break;

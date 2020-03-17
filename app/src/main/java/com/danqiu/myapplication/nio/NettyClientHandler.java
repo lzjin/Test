@@ -34,7 +34,13 @@ public class NettyClientHandler extends SimpleChannelInboundHandler<Object> {
 //        }
         String msg=((ByteBuf)obj).toString(CharsetUtil.UTF_8).trim();
         MLog.e("test","--------------0s接收到服务器消息："+msg);
-        HeartbeatClient.getInstance().sendMsg(msg+"==二次回复");
+
+//        try {
+//            TimeUnit.SECONDS.sleep(6);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+       // HeartbeatClient.getInstance().sendMsg(msg+"==二次回复");
 
        // ReferenceCountUtil.release(msg);
     }
@@ -61,7 +67,7 @@ public class NettyClientHandler extends SimpleChannelInboundHandler<Object> {
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
         super.exceptionCaught(ctx, cause);
-        MLog.e("test", "-----出现异常!"+cause.getMessage());
+        MLog.e("test", "-------出现异常----"+cause.getMessage());
        // TimeUnit.SECONDS.sleep(5);
         //nettyClient.startNetty();
         cause.printStackTrace();
@@ -81,16 +87,17 @@ public class NettyClientHandler extends SimpleChannelInboundHandler<Object> {
         if(evt instanceof IdleStateEvent){
             IdleStateEvent e= (IdleStateEvent) evt;
             switch (e.state()){
-                case WRITER_IDLE:
-                    long currentTime=System.currentTimeMillis();
-                    if(currentTime-lastClickTime>INTERVAL_TIME_SECOND){
-                        MLog.e("test","--------------发送心跳包检查数据");
-                        lastClickTime=System.currentTimeMillis();
-                        ByteBuf byf= Unpooled.wrappedBuffer("心跳包".getBytes(CharsetUtil.UTF_8));
-                        ctx.writeAndFlush(byf);
-                    }else {
-                        MLog.e("test","--------------心跳包时间未到");
-                    }
+                case READER_IDLE://间隔x秒读取服务器
+                    MLog.e("test","--------心跳检测------读取");
+                    break;
+                case WRITER_IDLE://间隔x秒写入服务器
+                    MLog.e("test","--------心跳检测------发送");
+                    lastClickTime=System.currentTimeMillis();
+                    ByteBuf byf= Unpooled.wrappedBuffer("心跳包".getBytes(CharsetUtil.UTF_8));
+                    ctx.writeAndFlush(byf);
+                    break;
+                case ALL_IDLE://所有类型的超时时间
+                    MLog.e("test","--------心跳检测------所有类型");
                     break;
             }
         }
