@@ -54,6 +54,24 @@
                 android:text="保存截图" />
 
             <Button
+                android:id="@+id/bt_update"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="数据绑定库dataBinding" />
+
+            <Button
+                android:id="@+id/bt_update2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="数据绑定库viewBinding" />
+
+            <Button
+                android:id="@+id/bt_update3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="数据更新ViewModel+LiveData" />
+
+            <Button
                 android:id="@+id/bt_slide"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -139,11 +157,7 @@
                 android:layout_height="wrap_content"
                 android:text="云标签"/>
 
-            <Button
-                android:id="@+id/bt_update"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="数据绑定库" />
+
 
             <Button
                 android:id="@+id/bt_loding"

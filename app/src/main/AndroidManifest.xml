@@ -62,6 +62,9 @@
         <activity android:name=".activity.JitterActivity"/>
         <activity android:name=".ontouch_event.TouchActivity"/>
 
+        <activity android:name=".activity.ViewBindingAct"/>
+        <activity android:name=".activity.ViewModelAct"/>
+
         <activity android:name=".activity.SpeechActivity"/>
 
         <activity android:name=".activity.JWebsocketActivity"/>

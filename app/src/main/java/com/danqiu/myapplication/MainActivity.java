@@ -38,6 +38,8 @@ import com.danqiu.myapplication.activity.SpeechActivity;
 import com.danqiu.myapplication.activity.TakePhotoAct;
 import com.danqiu.myapplication.activity.TestActivity;
 import com.danqiu.myapplication.activity.VedioPlayerActivity;
+import com.danqiu.myapplication.activity.ViewBindingAct;
+import com.danqiu.myapplication.activity.ViewModelAct;
 import com.danqiu.myapplication.activity.WebViewAct;
 import com.danqiu.myapplication.bean.MessageEvent;
 import com.danqiu.myapplication.component.SimpleComponent;
@@ -112,6 +114,10 @@ public class MainActivity extends AppCompatActivity {
     Button bt_event2;
     @BindView(R.id.bt_update)
     Button bt_update;
+    @BindView(R.id.bt_update2)
+    Button bt_update2;
+    @BindView(R.id.bt_update3)
+    Button bt_update3;
     @BindView(R.id.bt_dialog)
     Button bt_dialog;
     @BindView(R.id.bt_cu)
@@ -185,7 +191,7 @@ public class MainActivity extends AppCompatActivity {
             R.id.bt_refresh, R.id.bt_dialogfragment, R.id.bt_img, R.id.bt_db,R.id.bt_recycle,
             R.id.bt_hand, R.id.bt_video, R.id.bt_tab, R.id.bt_take,R.id.bt_excele,R.id.bt_annotation,
             R.id.bt_MPAndroidChart,R.id.bt_ontouch,R.id.bt_jitter,R.id.bt_web,R.id.bt_getView,
-            R.id.bt_guide,R.id.bt_speech,R.id.bt_socket})
+            R.id.bt_guide,R.id.bt_speech,R.id.bt_socket,R.id.bt_update2,R.id.bt_update3})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.bt_socket:
@@ -199,6 +205,15 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.bt_getView:
                 IntentUtil.IntenToActivity(this, GetViewActivity.class);
+                break;
+            case R.id.bt_update3:
+                IntentUtil.IntenToActivity(this, ViewModelAct.class);
+                break;
+            case R.id.bt_update:
+                IntentUtil.IntenToActivity(this, DataBindingAct.class);
+                break;
+            case R.id.bt_update2:
+                IntentUtil.IntenToActivity(this, ViewBindingAct.class);
                 break;
             case R.id.bt_slide:
                 IntentUtil.IntenToActivity(this, SlidePageAct.class);
@@ -232,9 +247,6 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.bt_dialog:
                 IntentUtil.IntenToActivity(this, DialogActivity.class);
-                break;
-            case R.id.bt_update:
-                IntentUtil.IntenToActivity(this, DataBindingAct.class);
                 break;
             case R.id.bt_event:
                 IntentUtil.IntenToActivity(this, EventBusActivity.class);

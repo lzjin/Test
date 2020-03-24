@@ -6,7 +6,6 @@ import com.danqiu.myapplication.utils.MLog;
 import java.util.concurrent.TimeUnit;
 
 import io.netty.buffer.ByteBuf;
-import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.timeout.IdleStateEvent;
@@ -19,8 +18,6 @@ import io.netty.util.ReferenceCountUtil;
  */
 public class NettyClientHandler extends SimpleChannelInboundHandler<Object> {
     private static final int INTERVAL_TIME_SECOND= 1000*5;
-    private long lastClickTime=0;
-
     /**
      * 接收到消息的时候触发
      * Object
@@ -34,14 +31,12 @@ public class NettyClientHandler extends SimpleChannelInboundHandler<Object> {
 //        }
         String msg=((ByteBuf)obj).toString(CharsetUtil.UTF_8).trim();
         MLog.e("test","--------------0s接收到服务器消息："+msg);
-
 //        try {
 //            TimeUnit.SECONDS.sleep(6);
 //        } catch (InterruptedException e) {
 //            e.printStackTrace();
 //        }
        // HeartbeatClient.getInstance().sendMsg(msg+"==二次回复");
-
        // ReferenceCountUtil.release(msg);
     }
 
@@ -92,9 +87,7 @@ public class NettyClientHandler extends SimpleChannelInboundHandler<Object> {
                     break;
                 case WRITER_IDLE://间隔x秒写入服务器
                     MLog.e("test","--------心跳检测------发送");
-                    lastClickTime=System.currentTimeMillis();
-                    ByteBuf byf= Unpooled.wrappedBuffer("心跳包".getBytes(CharsetUtil.UTF_8));
-                    ctx.writeAndFlush(byf);
+                    HeartbeatClient.getInstance().sendMsg("心跳包");
                     break;
                 case ALL_IDLE://所有类型的超时时间
                     MLog.e("test","--------心跳检测------所有类型");
@@ -102,7 +95,6 @@ public class NettyClientHandler extends SimpleChannelInboundHandler<Object> {
             }
         }
     }
-
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         super.channelActive(ctx);

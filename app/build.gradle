@@ -32,6 +32,10 @@ android {
     dataBinding {
         enabled = true
     }
+    //数据绑定库2(3.6官方推荐)
+//    viewBinding {
+//        enabled = true
+//    }
 }
 
 dependencies {
@@ -158,4 +162,8 @@ dependencies {
 
     //implementation 'io.netty.netty-all:4.1.44'
     implementation files('libs/netty-all-4.1.46.Final.jar')
+
+
+    // ViewModel and LiveData
+    implementation "android.arch.lifecycle:extensions:1.1.1"
 }
