@@ -64,7 +64,7 @@
 
         <activity android:name=".activity.ViewBindingAct"/>
         <activity android:name=".activity.ViewModelAct"/>
-
+        <activity android:name=".activity.LottieAcitivity"/>
         <activity android:name=".activity.SpeechActivity"/>
 
         <activity android:name=".activity.JWebsocketActivity"/>

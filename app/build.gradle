@@ -166,4 +166,7 @@ dependencies {
 
     // ViewModel and LiveData
     implementation "android.arch.lifecycle:extensions:1.1.1"
+
+    //动画框架2.8以上支持AndroidX
+    implementation 'com.airbnb.android:lottie:2.7.0'
 }
