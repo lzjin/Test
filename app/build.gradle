@@ -3,6 +3,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'org.greenrobot.greendao'//greendao
 
 android {
+    buildToolsVersion '28.0.3'
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.danqiu.myapplication"
@@ -18,8 +19,14 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    buildToolsVersion '28.0.3'
+
     productFlavors {
+    }
+
+
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
     }
 
     greendao {

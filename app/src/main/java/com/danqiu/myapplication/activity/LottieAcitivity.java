@@ -55,7 +55,5 @@ public class LottieAcitivity extends AppCompatActivity {
                 MLog.i("test","----------onAnimationRepeat----");
             }
         });
-
-
     }
 }

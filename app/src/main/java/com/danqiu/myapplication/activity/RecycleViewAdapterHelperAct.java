@@ -17,9 +17,8 @@ import com.danqiu.myapplication.utils.ToastUtil;
 import com.danqiu.myapplication.views.MyRefreshFooter;
 import com.scwang.smartrefresh.header.MaterialHeader;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
-import com.scwang.smartrefresh.layout.api.OnLoadmoreListener;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
-import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
+import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,21 +50,59 @@ public class RecycleViewAdapterHelperAct extends AppCompatActivity {
         setContentView(R.layout.activity_adapterhelper);
         ButterKnife.bind(this);
         activity = this;
+        initRefreshLayout();
         initData();
+    }
+
+    private void initRefreshLayout() {
+
+        //设置 Header
+        refreshLayout.setRefreshHeader(new MaterialHeader(this).setColorSchemeColors(getResources().getColor(R.color.redd2)));
+        //设置 Footer
+        refreshLayout.setRefreshFooter(new MyRefreshFooter(this));
+
+        refreshLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
+            @Override
+            public void onLoadMore(RefreshLayout refreshLayout) {
+                addDataUp();//上拉加载更多
+            }
+
+            @Override
+            public void onRefresh(RefreshLayout refreshLayout) {
+                addDataDown();//下拉刷新
+            }
+        });
+
+
     }
 
     private void initData() {
         lisBean = new ArrayList<>();
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < 10; i++) {
             lisBean.add(new RecycleBean(url, "张三", "是打发水电费水电费第三方士大夫水电费水电费是打发斯蒂芬是否"));
         }
 
         //ListView 效果
         listAdapter = new RecycleViewHelperAdapter(R.layout.item_recycle, lisBean);
+        /**
+         * 渐显 ALPHAIN
+         * 缩放 SCALEIN
+         * 从下到上 SLIDEIN_BOTTOM
+         * 从左到右 SLIDEIN_LEFT
+         * 从右到左 SLIDEIN_RIGHT
+         */
+        listAdapter.openLoadAnimation();  //开启动画效果
+        listAdapter.isFirstOnly(false);
+        //listAdapter.openLoadAnimation(BaseQuickAdapter.SCALEIN);
+        //listAdapter.setNewData(lisBean);
+        listAdapter.openLoadAnimation(BaseQuickAdapter.SCALEIN);
+
+        listRecycle.setHasFixedSize(true);
         listRecycle.setLayoutManager(new LinearLayoutManager(this)); //设置LayoutManager为LinearLayoutManager
         listRecycle.setAdapter(listAdapter);
+        listRecycle.setFocusable(false); //解决数据加载完成后, 没有停留在顶部的问题
         listRecycle.setNestedScrollingEnabled(false);//解决滑动不流畅
-        listAdapter.openLoadAnimation();
+
         listAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
@@ -86,43 +123,6 @@ public class RecycleViewAdapterHelperAct extends AppCompatActivity {
 //            }
 //        });
 
-        //设置 Header
-        refreshLayout.setRefreshHeader(new MaterialHeader(this).setColorSchemeColors(getResources().getColor(R.color.redd2)));
-        //设置 Footer
-        refreshLayout.setRefreshFooter(new MyRefreshFooter(this));
-
-
-        refreshLayout.setOnRefreshListener(new OnRefreshListener() {
-            @Override
-            public void onRefresh(RefreshLayout refreshlayout) {
-                refreshlayout.finishRefresh(1500);
-                addDataDown();//下拉刷新
-            }
-
-        });
-        refreshLayout.setOnLoadmoreListener(new OnLoadmoreListener() {
-            @Override
-            public void onLoadmore(RefreshLayout refreshlayout) {
-                refreshlayout.finishLoadmore(1500);
-                addDataUp();//上拉加载更多
-            }
-        });
-
-
-//        listAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
-//            @Override
-//            public void onLoadMoreRequested() {
-//                lisBean = new ArrayList<>();
-//                for (int i = 0; i < 8; i++) {
-//                    lisBean.add(new RecycleBean(url, "李四", "撒大声地大夫水电费水电费是打发斯蒂芬是否"));
-//                }
-//
-//                listAdapter.setNewData(lisBean);
-//                listAdapter.loadMoreComplete();
-//                listAdapter.notifyDataSetChanged();
-//
-//            }
-//        });
 
     }
 
@@ -130,37 +130,48 @@ public class RecycleViewAdapterHelperAct extends AppCompatActivity {
         lisBean.clear();
         lisBean = null;
         lisBean = new ArrayList<>();
-        for (int i = 0; i < 8; i++) {
-            lisBean.add(new RecycleBean(url, "张三2", "是打发水电费水电费第三方士大夫水电费水电费是打发斯蒂芬是否"));
-        }
-        listAdapter.loadMoreComplete();
-        listAdapter.setNewData(lisBean);
-
-        listAdapter.notifyDataSetChanged();
-
-    }
-
-    private void addDataUp() {
 
         TimerTask task = new TimerTask() {
             public void run() {
-                for (int i = 0; i < 4; i++) {
+                for (int i = 0; i < 10; i++) {
                     lisBean.add(new RecycleBean(url, "李四", "发个非官方2222222222电费水电费是打发斯蒂芬是否"));
                 }
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        //  myListAdapter.notifyDataSetChanged();
+                        refreshLayout.finishRefresh();
                         listAdapter.setNewData(lisBean);
-                        listAdapter.loadMoreComplete();
                         listAdapter.notifyDataSetChanged();
+
                     }
                 });
 
             }
         };
         Timer timer = new Timer();
-        timer.schedule(task, 2000);
+        timer.schedule(task, 1500);
 
+    }
+
+    private void addDataUp() {
+        TimerTask task = new TimerTask() {
+            public void run() {
+                for (int i = 0; i < 10; i++) {
+                    lisBean.add(new RecycleBean(url, "张胜男", "胜多负少发6666"));
+                }
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        refreshLayout.finishLoadMore();
+                        listAdapter.setNewData(lisBean);
+                        listAdapter.notifyDataSetChanged();
+
+                    }
+                });
+
+            }
+        };
+        Timer timer = new Timer();
+        timer.schedule(task, 1500);
     }
 }

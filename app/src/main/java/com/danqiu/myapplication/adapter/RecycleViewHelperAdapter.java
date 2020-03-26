@@ -13,7 +13,7 @@ import java.util.List;
 
 /**
  * Created by lzj on 2019/4/16
- * Describe ：注释
+ * Describe ：万能适配器 示例类
  */
 public class RecycleViewHelperAdapter extends BaseQuickAdapter<RecycleBean, BaseViewHolder> {
     //滚动不加载图片
@@ -30,13 +30,10 @@ public class RecycleViewHelperAdapter extends BaseQuickAdapter<RecycleBean, Base
     @Override
     protected void convert(BaseViewHolder viewHolder, RecycleBean item) {
 
-        viewHolder.setText(R.id.name, item.getName());
+        viewHolder.setText(R.id.name, item.getName()+viewHolder.getLayoutPosition());
         viewHolder.setText(R.id.content, item.getContext());
         viewHolder.addOnClickListener(R.id.content);
         viewHolder.addOnClickListener(R.id.simple_head);
-
-       // viewHolder.getView(R.id.name).setVisibility(View.GONE);
-
         ImageLoader.loadImage((SimpleDraweeView) viewHolder.getView(R.id.simple_head), item.getHead());
 
         //可见时加载
@@ -46,8 +43,5 @@ public class RecycleViewHelperAdapter extends BaseQuickAdapter<RecycleBean, Base
 //        else {
 //             holder.avatarImg.setImageResource(占位图本地资源);
 //        }
-
-        //获取当前条目position
-        //int position = helper.getLayoutPosition();
     }
 }
