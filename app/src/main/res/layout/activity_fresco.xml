@@ -13,9 +13,64 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:text="Glide"/>
+
+            <ImageView
+                android:id="@+id/iv_glide"
+                android:layout_marginTop="10dp"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                tools:background="@color/gray99"/>
+
+            <ImageView
+                android:id="@+id/iv_Radius"
+                android:layout_marginTop="10dp"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                tools:background="@color/gray99"/>
+
+            <ImageView
+                android:id="@+id/iv_Radius_Top"
+                android:layout_marginTop="10dp"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                tools:background="@color/gray99"/>
+
+            <ImageView
+                android:id="@+id/iv_Circle"
+                android:layout_marginTop="10dp"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                tools:background="@color/gray99"/>
+
+            <TextView
+                android:id="@+id/tv_cache_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:text="Glide缓存大小"/>
+
+            <Button
+                android:id="@+id/bt_cache"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:textSize="@dimen/sp_14"
+                android:text="内存缓存清除"/>
+
+            <Button
+                android:id="@+id/bt_cache2"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:textSize="@dimen/sp_14"
+                android:text="磁盘缓存清除"/>
 
             <Button
                 android:id="@+id/bt_download"
@@ -62,39 +117,9 @@
                 android:layout_height="200dp"
                 fresco:roundedCornerRadius="20dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                android:text="Glide"/>
 
-            <ImageView
-                android:id="@+id/iv_glide"
-                android:layout_marginTop="10dp"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                tools:background="@color/gray99"/>
 
-            <ImageView
-                android:id="@+id/iv_Radius"
-                android:layout_marginTop="10dp"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                tools:background="@color/gray99"/>
 
-            <ImageView
-                android:id="@+id/iv_Radius_Top"
-                android:layout_marginTop="10dp"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                tools:background="@color/gray99"/>
-
-            <ImageView
-                android:id="@+id/iv_Circle"
-                android:layout_marginTop="10dp"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                tools:background="@color/gray99"/>
 
 
 
