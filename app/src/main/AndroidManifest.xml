@@ -19,6 +19,11 @@
         android:name="android.max_aspect"
         android:value="2.2" />
 
+    <!--glide缓存-->
+    <meta-data
+        android:name="com.danqiu.myapplication.glide.MyAppGlideModule"
+        android:value="MyGlideModule" />
+
     <application
         android:name=".config.MyApplication"
         android:allowBackup="true"

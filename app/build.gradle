@@ -127,10 +127,14 @@ dependencies {
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.5.1'
     implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.5.1'
 
-    //没有使用特殊Header，可以不加这行
 
-    //图片加载
-    implementation 'com.github.bumptech.glide:glide:3.7.0'
+    // 图片加载 官方 Glide
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
+    // 高斯模糊和圆角等
+    implementation 'jp.wasabeef:glide-transformations:4.0.1'
+
+
     implementation 'com.github.lzjin:AlipayPassDialog:1.1'
     implementation 'com.github.lzjin:ViewPagerGallery:1.05'
 

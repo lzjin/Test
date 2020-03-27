@@ -63,6 +63,6 @@ public class MyPagerAdapter extends PagerAdapter {
                 .centerCrop()
                 .dontAnimate()//防止设置placeholder导致第一次不显示网络图片,只显示默认图片的问题
                 .placeholder(defaultImg)
-                .diskCacheStrategy(DiskCacheStrategy.SOURCE).into(imageview);
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE).into(imageview);
     }
 }

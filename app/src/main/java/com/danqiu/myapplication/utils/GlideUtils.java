@@ -30,7 +30,7 @@ public class GlideUtils {
                 .dontAnimate()//防止设置placeholder导致第一次不显示网络图片,只显示默认图片的问题
                 .placeholder(defaultImg)
              //   .transform(new GlideCircleTransform(mContext,frameSize,mContext.getResources().getColor(mColor)))
-                .diskCacheStrategy(DiskCacheStrategy.SOURCE).into(imageview);
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE).into(imageview);
     }
     /**
      *  说明: 图片加载   本地或者网络
@@ -45,7 +45,7 @@ public class GlideUtils {
                 .centerCrop()
                 .dontAnimate()//防止设置placeholder导致第一次不显示网络图片,只显示默认图片的问题
                 .placeholder(defaultImg)
-                .diskCacheStrategy(DiskCacheStrategy.SOURCE).into(imageview);
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE).into(imageview);
     }
     /**
      *  说明: 圆形图片加载   本地或者网络
@@ -61,7 +61,7 @@ public class GlideUtils {
                 .dontAnimate()//防止设置placeholder导致第一次不显示网络图片,只显示默认图片的问题
                 .placeholder(defaultImg)
                 //.transform(new GlideCircleTransform(mContext))
-                .diskCacheStrategy(DiskCacheStrategy.SOURCE).into(imageview);
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE).into(imageview);
     }
     /**
      *  加载网络图片  自定义图片(如圆形)
@@ -75,7 +75,7 @@ public class GlideUtils {
                 .load(path)
                 .dontAnimate()//防止设置placeholder导致第一次不显示网络图片,只显示默认图片的问题
                 .placeholder(defaultImg)
-                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                 .into((ImageView) imageCustom);
     }
 
@@ -91,7 +91,7 @@ public class GlideUtils {
                 .load(resId)
                 .dontAnimate()//防止设置placeholder导致第一次不显示网络图片,只显示默认图片的问题
                 .placeholder(defaultImg)
-                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                 .into(imageview);
     }
     /**
@@ -106,7 +106,7 @@ public class GlideUtils {
                 .load(path)
                 .dontAnimate()//防止设置placeholder导致第一次不显示网络图片,只显示默认图片的问题
                 .placeholder(defaultImg)
-                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                 .into(imageview);
     }
     /**
@@ -121,7 +121,7 @@ public class GlideUtils {
                 .load(uri)
                 .dontAnimate()//防止设置placeholder导致第一次不显示网络图片,只显示默认图片的问题
                 .placeholder(defaultImg)
-                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                 .into(imageview);
     }
 
@@ -135,7 +135,7 @@ public class GlideUtils {
                 .placeholder(defaultImg)
                 .dontAnimate()//防止设置placeholder导致第一次不显示网络图片,只显示默认图片的问题
                 .override(Width, Height)
-                .diskCacheStrategy(DiskCacheStrategy.SOURCE).into(imageview);
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE).into(imageview);
     }
 
 }
