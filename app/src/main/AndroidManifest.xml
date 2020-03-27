@@ -53,6 +53,9 @@
         <activity android:name=".activity.HandSlideAct"/>
         <activity android:name=".activity.VedioPlayerActivity"/>
         <activity android:name=".activity.GreenDaoAct"/>
+
+        <activity android:name=".activity.PhotoViewAct"/>
+
         <activity android:name=".activity.FrescoActivity"/>
         <activity android:name=".activity.CardNoAct"/>
         <activity android:name=".activity.PreviewAct"/>

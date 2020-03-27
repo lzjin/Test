@@ -18,17 +18,18 @@ import com.danqiu.myapplication.utils.LogUtil;
 import com.danqiu.myapplication.utils.MLog;
 import com.danqiu.myapplication.views.ComDialog;
 import com.facebook.drawee.view.SimpleDraweeView;
-import com.jph.takephoto.app.TakePhoto;
-import com.jph.takephoto.app.TakePhotoImpl;
-import com.jph.takephoto.compress.CompressConfig;
-import com.jph.takephoto.model.CropOptions;
-import com.jph.takephoto.model.InvokeParam;
-import com.jph.takephoto.model.TContextWrap;
-import com.jph.takephoto.model.TResult;
-import com.jph.takephoto.model.TakePhotoOptions;
-import com.jph.takephoto.permission.InvokeListener;
-import com.jph.takephoto.permission.PermissionManager;
-import com.jph.takephoto.permission.TakePhotoInvocationHandler;
+
+import org.devio.takephoto.app.TakePhoto;
+import org.devio.takephoto.app.TakePhotoImpl;
+import org.devio.takephoto.compress.CompressConfig;
+import org.devio.takephoto.model.CropOptions;
+import org.devio.takephoto.model.InvokeParam;
+import org.devio.takephoto.model.TContextWrap;
+import org.devio.takephoto.model.TResult;
+import org.devio.takephoto.model.TakePhotoOptions;
+import org.devio.takephoto.permission.InvokeListener;
+import org.devio.takephoto.permission.PermissionManager;
+import org.devio.takephoto.permission.TakePhotoInvocationHandler;
 
 import java.io.File;
 

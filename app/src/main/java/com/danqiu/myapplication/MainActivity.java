@@ -31,6 +31,7 @@ import com.danqiu.myapplication.activity.MPAndroidChartActivity;
 import com.danqiu.myapplication.activity.NotificationActivity;
 import com.danqiu.myapplication.activity.Pager3DActivity;
 import com.danqiu.myapplication.activity.PayViewActivity;
+import com.danqiu.myapplication.activity.PhotoViewAct;
 import com.danqiu.myapplication.activity.PreviewAct;
 import com.danqiu.myapplication.activity.RefreshActivity;
 import com.danqiu.myapplication.activity.ServiceActivity;
@@ -70,6 +71,8 @@ public class MainActivity extends AppCompatActivity {
     LinearLayout ll;
     @BindView(R.id.bt_img)
     Button btImg;
+    @BindView(R.id.bt_img2)
+    Button btImg2;
     @BindView(R.id.bt_dialogfragment)
     Button dialogfragment;
     @BindView(R.id.bt_db)
@@ -190,7 +193,7 @@ public class MainActivity extends AppCompatActivity {
     @OnClick({R.id.bt_mp,R.id.bt_cu,R.id.bt_dialog,R.id.bt_update, R.id.bt_event,R.id.bt_slide,
             R.id.bt_fresco, R.id.bt_Broadcast, R.id.bt_service, R.id.bt_Notification,R.id.bt_lottie,
             R.id.bt_loding, R.id.bt_pager, R.id.bt_push, R.id.bt_pay, R.id.bt_custom,
-            R.id.bt_refresh, R.id.bt_dialogfragment, R.id.bt_img, R.id.bt_db,R.id.bt_recycle,
+            R.id.bt_refresh, R.id.bt_dialogfragment, R.id.bt_img, R.id.bt_img2,R.id.bt_db,R.id.bt_recycle,
             R.id.bt_hand, R.id.bt_video, R.id.bt_tab, R.id.bt_take,R.id.bt_excele,R.id.bt_annotation,
             R.id.bt_MPAndroidChart,R.id.bt_ontouch,R.id.bt_jitter,R.id.bt_web,R.id.bt_getView,
             R.id.bt_guide,R.id.bt_speech,R.id.bt_socket,R.id.bt_update2,R.id.bt_update3})
@@ -292,11 +295,14 @@ public class MainActivity extends AppCompatActivity {
             case R.id.bt_tab:
                 IntentUtil.IntenToActivity(this, TabLayoutAct.class);
                 break;
-            case R.id.bt_img:
-                IntentUtil.IntenToActivity(this, PreviewAct.class);
-                break;
             case R.id.bt_fresco:
                 IntentUtil.IntenToActivity(this, FrescoActivity.class);
+                break;
+            case R.id.bt_img://库1
+                IntentUtil.IntenToActivity(this, PreviewAct.class);
+                break;
+            case R.id.bt_img2://手势缩放等功能 库2
+                IntentUtil.IntenToActivity(this, PhotoViewAct.class);
                 break;
             case R.id.bt_db:
                 IntentUtil.IntenToActivity(this, GreenDaoAct.class);
