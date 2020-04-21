@@ -184,4 +184,8 @@ dependencies {
 
     //动画框架2.8以上支持AndroidX
     implementation 'com.airbnb.android:lottie:2.7.0'
+
+    //文件下载
+    implementation 'com.arialyy.aria:core:3.8.6'
+    annotationProcessor 'com.arialyy.aria:compiler:3.8.6'
 }

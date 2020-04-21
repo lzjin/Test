@@ -17,6 +17,7 @@ import com.danqiu.myapplication.activity.ClickScreenActivity;
 import com.danqiu.myapplication.activity.CustomViewActivity;
 import com.danqiu.myapplication.activity.DataBindingAct;
 import com.danqiu.myapplication.activity.DialogActivity;
+import com.danqiu.myapplication.activity.DownActivity;
 import com.danqiu.myapplication.activity.EventBusActivity;
 import com.danqiu.myapplication.activity.ExceleActivity;
 import com.danqiu.myapplication.activity.FrescoActivity;
@@ -153,6 +154,8 @@ public class MainActivity extends AppCompatActivity {
     Button bt_socket;
     @BindView(R.id.bt_lottie)
     Button bt_lottie;
+    @BindView(R.id.bt_down)
+    Button bt_down;
 
     private ConcurrentHashMap<String, Long> map = new ConcurrentHashMap<>();
 
@@ -196,9 +199,12 @@ public class MainActivity extends AppCompatActivity {
             R.id.bt_refresh, R.id.bt_dialogfragment, R.id.bt_img, R.id.bt_img2,R.id.bt_db,R.id.bt_recycle,
             R.id.bt_hand, R.id.bt_video, R.id.bt_tab, R.id.bt_take,R.id.bt_excele,R.id.bt_annotation,
             R.id.bt_MPAndroidChart,R.id.bt_ontouch,R.id.bt_jitter,R.id.bt_web,R.id.bt_getView,
-            R.id.bt_guide,R.id.bt_speech,R.id.bt_socket,R.id.bt_update2,R.id.bt_update3})
+            R.id.bt_guide,R.id.bt_speech,R.id.bt_socket,R.id.bt_update2,R.id.bt_update3,R.id.bt_down})
     public void onViewClicked(View view) {
         switch (view.getId()) {
+            case R.id.bt_down:
+                IntentUtil.IntenToActivity(this, DownActivity.class);
+                break;
             case R.id.bt_lottie:
                 IntentUtil.IntenToActivity(this, LottieAcitivity.class);
                 break;
