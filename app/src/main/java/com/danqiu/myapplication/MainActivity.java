@@ -24,6 +24,7 @@ import com.danqiu.myapplication.activity.FrescoActivity;
 import com.danqiu.myapplication.activity.GetViewActivity;
 import com.danqiu.myapplication.activity.GreenDaoAct;
 import com.danqiu.myapplication.activity.HandSlideAct;
+import com.danqiu.myapplication.activity.JCameraActivity;
 import com.danqiu.myapplication.activity.JWebsocketActivity;
 import com.danqiu.myapplication.activity.JitterActivity;
 import com.danqiu.myapplication.activity.LoaingActivity;
@@ -156,6 +157,8 @@ public class MainActivity extends AppCompatActivity {
     Button bt_lottie;
     @BindView(R.id.bt_down)
     Button bt_down;
+    @BindView(R.id.bt_camera)
+    Button btCamera;
 
     private ConcurrentHashMap<String, Long> map = new ConcurrentHashMap<>();
 
@@ -199,9 +202,12 @@ public class MainActivity extends AppCompatActivity {
             R.id.bt_refresh, R.id.bt_dialogfragment, R.id.bt_img, R.id.bt_img2,R.id.bt_db,R.id.bt_recycle,
             R.id.bt_hand, R.id.bt_video, R.id.bt_tab, R.id.bt_take,R.id.bt_excele,R.id.bt_annotation,
             R.id.bt_MPAndroidChart,R.id.bt_ontouch,R.id.bt_jitter,R.id.bt_web,R.id.bt_getView,
-            R.id.bt_guide,R.id.bt_speech,R.id.bt_socket,R.id.bt_update2,R.id.bt_update3,R.id.bt_down})
+            R.id.bt_guide,R.id.bt_speech,R.id.bt_socket,R.id.bt_update2,R.id.bt_update3,R.id.bt_down,R.id.bt_camera})
     public void onViewClicked(View view) {
         switch (view.getId()) {
+            case R.id.bt_camera:
+                IntentUtil.IntenToActivity(this, JCameraActivity.class);
+                break;
             case R.id.bt_down:
                 IntentUtil.IntenToActivity(this, DownActivity.class);
                 break;

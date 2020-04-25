@@ -201,7 +201,7 @@ public class ExceleActivity extends AppCompatActivity implements EasyPermissions
 
     private void requestPermission(){
         String[] perms = {Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE
-                ,Manifest.permission.CAMERA};
+                ,Manifest.permission.CAMERA,Manifest.permission.RECORD_AUDIO};
         if (EasyPermissions.hasPermissions(this, perms)) {
 
         } else {

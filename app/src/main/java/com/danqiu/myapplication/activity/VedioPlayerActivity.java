@@ -2,9 +2,12 @@ package com.danqiu.myapplication.activity;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.Environment;
 
 import com.danqiu.myapplication.R;
 import com.danqiu.myapplication.videoview.IjkPlayerVedioView;
+
+import java.io.File;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -20,13 +23,13 @@ public class VedioPlayerActivity extends BaseActivity {
     IjkPlayerVedioView playerVedioView;
 
     String url="http://img-1253650823.cosgz.myqcloud.com/5ece9bb3-43db-4074-b143-916507b64475.mp4";
-
+    String url2= Environment.getExternalStorageDirectory().getPath() + "/JCamera"+"/video_1587789234237.mp4";
     @Override
     public void initCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_vedio_player);
         ButterKnife.bind(this);
 
-        playerVedioView.setVideoUrl(url);
+        playerVedioView.setVideoUrl(url2);
         playerVedioView.playVideo();
         playerVedioView.setTitle("视频标题");
 

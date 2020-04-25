@@ -188,4 +188,7 @@ dependencies {
     //文件下载
     implementation 'com.arialyy.aria:core:3.8.6'
     annotationProcessor 'com.arialyy.aria:compiler:3.8.6'
+
+    //仿微信录制视频
+    implementation 'cjt.library.wheel:camera:1.1.9'
 }
