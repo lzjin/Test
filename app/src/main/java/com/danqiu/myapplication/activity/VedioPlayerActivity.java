@@ -13,7 +13,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * Created by Administrator on 2018/9/20.
+ * Created by Administrator on 2018/9/20.ss
  */
 
 public class VedioPlayerActivity extends BaseActivity {
