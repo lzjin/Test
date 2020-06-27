@@ -46,6 +46,7 @@ public class JCameraActivity extends BaseActivity {
         initView();
         //测试提交回滚1
         //测试提交回滚2
+        //测试提交回滚3
     }
 
     @OnClick(R.id.btnPlay)
