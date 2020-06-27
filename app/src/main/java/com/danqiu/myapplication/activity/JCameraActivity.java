@@ -45,6 +45,7 @@ public class JCameraActivity extends BaseActivity {
         ButterKnife.bind(this);
         initView();
         //测试提交回滚1
+        //测试提交回滚2
     }
 
     @OnClick(R.id.btnPlay)
