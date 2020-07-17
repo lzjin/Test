@@ -61,11 +61,10 @@ public class PreviewAct extends BaseActivity {
          indexImg=0;
         //获取所有图片列表
         urlList=new ArrayList<>();
-        urlList.add("http://img3.duitang.com/uploads/item/201601/18/20160118112921_8PyuS.thumb.700_0.jpeg");
-        urlList.add("http://05imgmini.eastday.com/mobile/20180914/20180914114745_caa689a91082980cc8f05f8bf0c910a6_3.jpeg");
-        urlList.add("http://img.17getfun.com/1WZAG94BZXdcCl0.JPEG");
-        urlList.add("http://5b0988e595225.cdn.sohucs.com/q_mini,c_zoom,w_640/images/20170804/4776d6eb537f4d87a418a62adb51422f.jpeg");
-        urlList.add("http://img4.duitang.com/uploads/item/201508/26/20150826200626_mS4nj.jpeg");
+        urlList.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1594877134192&di=1efc1454f02f066b23a26816ab09c02a&imgtype=0&src=http%3A%2F%2Fe.hiphotos.baidu.com%2Fzhidao%2Fwh%3D450%2C600%2Fsign%3Da97aff14ac86c91708565a3dfc0d5cf9%2F30adcbef76094b36901f0001a8cc7cd98c109d48.jpg");
+        urlList.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1594877159911&di=9caefee062c83c1bfa74622aeb74893d&imgtype=0&src=http%3A%2F%2Fb.zol-img.com.cn%2Fdesk%2Fbizhi%2Fimage%2F1%2F960x600%2F1349110400149.jpg");
+        urlList.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1594877186625&di=5890d642e62f71f69bda9926232d53a5&imgtype=0&src=http%3A%2F%2Fn.sinaimg.cn%2Fsinacn17%2F662%2Fw640h822%2F20180806%2F7a40-hhhczfc6181567.jpg");
+        urlList.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1594877210679&di=0862229abe7989446436dbe2e1b039b5&imgtype=0&src=http%3A%2F%2Fn1.itc.cn%2Fimg8%2Fwb%2Frecom%2F2017%2F01%2F15%2F148446031381262932.JPEG");
 
         imageList= new ArrayList<>();
         for(int i=0;i<urlList.size();i++){
