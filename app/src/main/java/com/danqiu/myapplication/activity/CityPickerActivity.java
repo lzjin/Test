@@ -24,7 +24,7 @@ import butterknife.OnClick;
 
 /**
  * description ： 仿美团外卖 城市选择
- * author : asus
+ * author : lzj
  * date : 2020/9/27
  */
 public class CityPickerActivity extends AppCompatActivity {
