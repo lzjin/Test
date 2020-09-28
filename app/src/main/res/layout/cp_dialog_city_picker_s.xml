@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/top_title_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/cp_search_view"
+            android:layout_marginEnd="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:clickable="true"
+            android:layout_marginTop="10dp"
+            android:focusable="true"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:id="@+id/cp_clear_all"
+                android:layout_width="50dp"
+                android:layout_height="25dp"
+                android:rotation="90"
+                android:src="@drawable/ic_back_bottom" />
+
+            <EditText
+                android:id="@+id/edt_cp_search_box"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/cp_shape_search_bg_s"
+                android:drawableLeft="@drawable/ic_hx_search"
+                android:clickable="true"
+                android:drawablePadding="5dp"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:hint="请输入站点名"
+                android:maxLength="20"
+                android:maxLines="1"
+                android:padding="7dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/line_gray"
+                android:textSize="13sp" />
+
+
+            <Space
+                android:layout_width="10dp"
+                android:layout_height="match_parent" />
+
+
+
+            <TextView
+                android:id="@+id/cp_cancel"
+                android:layout_width="30dp"
+                android:gravity="center"
+                android:layout_height="match_parent"
+                android:text="清除"
+                android:textColor="@color/black"
+                android:textSize="13sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="15dp">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/cp_city_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/white" />
+
+        <TextView
+            android:id="@+id/cp_overlay"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:textSize="28sp"
+            android:background="@drawable/cp_overlay_bg_s"
+            tools:text="A"
+            android:visibility="gone"
+            tools:visibility="visible"/>
+
+        <!--右侧字母导航-->
+        <com.zaaach.citypicker.view.SideIndexBar
+            android:id="@+id/cp_side_index_bar"
+            android:layout_width="@dimen/cp_index_bar_width"
+            android:layout_height="match_parent"
+            app:cpIndexBarSelected_TextColor="@color/hotpink"
+            app:cpIndexBarNormal_TextColor="@color/colorPrimary"
+            app:cpIndexBarNormalTextSize="13sp"
+            app:cpIndexBarSelectedTextSize="15sp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true" />
+
+        <include layout="@layout/cp_empty_view" />
+    </RelativeLayout>
+</LinearLayout>

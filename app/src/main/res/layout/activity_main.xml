@@ -21,7 +21,16 @@
                 android:id="@+id/nice_spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:arrowDrawable="@drawable/ic_arrow_back"
                 android:layout_margin="16dp" />
+
+            <Button
+                android:id="@+id/bt_CityPicker"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:text="城市选择" />
 
             <Button
                 android:id="@+id/bt_down"

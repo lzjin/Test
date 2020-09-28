@@ -13,6 +13,7 @@ import com.binioter.guideview.GuideBuilder;
 import com.danqiu.myapplication.activity.AnnotationAct;
 import com.danqiu.myapplication.activity.BaseRecyleViewAct;
 import com.danqiu.myapplication.activity.BroadcastActivity;
+import com.danqiu.myapplication.activity.CityPickerActivity;
 import com.danqiu.myapplication.activity.ClickScreenActivity;
 import com.danqiu.myapplication.activity.CustomViewActivity;
 import com.danqiu.myapplication.activity.DataBindingAct;
@@ -196,7 +197,7 @@ public class MainActivity extends AppCompatActivity {
      *
      * @param view
      */
-    @OnClick({R.id.bt_mp,R.id.bt_cu,R.id.bt_dialog,R.id.bt_update, R.id.bt_event,R.id.bt_slide,
+    @OnClick({R.id.bt_CityPicker,R.id.bt_mp,R.id.bt_cu,R.id.bt_dialog,R.id.bt_update, R.id.bt_event,R.id.bt_slide,
             R.id.bt_fresco, R.id.bt_Broadcast, R.id.bt_service, R.id.bt_Notification,R.id.bt_lottie,
             R.id.bt_loding, R.id.bt_pager, R.id.bt_push, R.id.bt_pay, R.id.bt_custom,
             R.id.bt_refresh, R.id.bt_dialogfragment, R.id.bt_img, R.id.bt_img2,R.id.bt_db,R.id.bt_recycle,
@@ -205,6 +206,9 @@ public class MainActivity extends AppCompatActivity {
             R.id.bt_guide,R.id.bt_speech,R.id.bt_socket,R.id.bt_update2,R.id.bt_update3,R.id.bt_down,R.id.bt_camera})
     public void onViewClicked(View view) {
         switch (view.getId()) {
+            case R.id.bt_CityPicker:
+                IntentUtil.IntenToActivity(this, CityPickerActivity.class);
+                break;
             case R.id.bt_camera:
                 IntentUtil.IntenToActivity(this, JCameraActivity.class);
                 break;

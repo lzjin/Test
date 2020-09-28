@@ -192,4 +192,10 @@ dependencies {
     //仿微信录制视频
     implementation 'cjt.library.wheel:camera:1.1.9'
 
+    //城市选择
+   // implementation 'com.zaaach:citypicker:2.0.3'
+
+    //城市选择器  热门历史
+    implementation project(':citypicker')
+
 }

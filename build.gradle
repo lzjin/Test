@@ -11,7 +11,7 @@ buildscript {
 
         classpath  'org.greenrobot:greendao-gradle-plugin:3.2.1'//greendao
 
-
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.4.1'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }

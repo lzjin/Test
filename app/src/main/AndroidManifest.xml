@@ -70,6 +70,11 @@
 
        <activity android:name=".activity.DownActivity"/>
 
+        <activity android:name=".activity.CityPickerActivity"
+                  android:theme="@style/DefaultCityPickerTheme"/>
+
+
+
         <activity android:name=".activity.FrescoActivity"/>
         <activity android:name=".activity.CardNoAct"/>
         <activity android:name=".activity.PreviewAct"/>
