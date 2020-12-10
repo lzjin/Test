@@ -87,7 +87,7 @@ dependencies {
     implementation 'com.h6ah4i.android.widget.verticalseekbar:verticalseekbar:0.7.2'
 
     //数据库
-    implementation 'org.greenrobot:greendao:3.2.0'
+    implementation 'org.greenrobot:greendao:3.2.2'
 
     //图库
     implementation 'com.facebook.fresco:fresco:0.14.1'
